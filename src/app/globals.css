@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "./work.css";
 @import "./home.css";
+@import "./pages.css";
 
 @theme inline {
   --color-background: #101112;
