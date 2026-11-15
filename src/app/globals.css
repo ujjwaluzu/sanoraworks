@@ -2,6 +2,7 @@
 @import "./work.css";
 @import "./home.css";
 @import "./pages.css";
+@import "./contact.css";
 
 @theme inline {
   --color-background: #101112;
