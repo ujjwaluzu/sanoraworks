@@ -1,33 +1,89 @@
 # SANORA WORKS
 
-The independent technology and engineering company website. Built with Next.js App Router, React, strict TypeScript, Tailwind CSS, and Lucide icons.
+The independent technology and engineering company website. Next.js 16 App Router, React 19, strict TypeScript, Tailwind CSS 4, and Lucide icons. Server Components render the site; client JavaScript is limited to navigation, project filtering, and the enquiry form.
 
-## Development
+## Run locally
 
-Requires Node.js 22 or newer.
+Requires Node.js 22.18 or newer and npm.
 
 ```sh
 npm ci
 npm run dev
 ```
 
-Open http://localhost:3000. Production checks:
+Open http://localhost:3000. For a production server, run `npm run build`, then `npm start`.
+
+## Checks
 
 ```sh
 npm run lint
-npm run typecheck
 npm run test
 npm run build
+npm run typecheck
 ```
 
-## Configuration
+The unit tests cover shared enquiry validation and locally prepared briefs. To check the production routes, internal links and anchors, metadata, social images, 404s, and enquiry safeguards, start a second terminal:
 
-Copy `.env.example` to `.env.local` and configure verified contact details when available. Keep secrets out of Git. Project, service, company, and navigation content lives in `src/data`. Unconfigured external links are not rendered as working links.
+```sh
+npm run start -- --port 3001
+# In another terminal:
+npm run test:smoke
+```
 
-The contact experience supports downloading a local project brief before an enquiry service is connected. It must never claim a message was delivered without a successful backend response. Integration instructions will be added with the contact milestone.
+`SMOKE_BASE_URL` overrides the smoke-test server URL. The smoke check avoids sending a valid test enquiry when delivery is enabled. Browser visual and keyboard QA should cover 375px mobile, 768px tablet, and 1440px desktop, including the mobile menu, filters, FAQs, and contact form. No browser is required for the other checks.
 
-## Development milestones
+## Content and configuration
 
-Implementation is committed and pushed incrementally: project setup, global navigation and layout, homepage sections, secondary pages, enquiry handling, and final validation.
+Copy `.env.example` to `.env.local`; never commit private environment files.
 
-All rights reserved. This repository does not grant an open-source license.
+| Setting                     | Purpose                                                                      |
+| --------------------------- | ---------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_CONTACT_EMAIL` | Verified public email; otherwise the site shows a clear coming-soon message. |
+| `NEXT_PUBLIC_LINKEDIN_URL`  | Verified HTTPS company profile; omitted until configured.                    |
+| `NEXT_PUBLIC_GITHUB_URL`    | Verified HTTPS company profile; omitted until configured.                    |
+| `CONTACT_WEBHOOK_URL`       | Private HTTPS endpoint accepting validated project enquiries.                |
+| `CONTACT_WEBHOOK_TOKEN`     | Optional private bearer token for that trusted endpoint.                     |
+
+Public environment values are read at build time. Rebuild after changing them. The private enquiry endpoint is read on the server. Set production environment variables in your hosting provider; `.env.local` is only for local development.
+
+- `src/data/site.ts`: company details, founders, navigation, principles, and process.
+- `src/data/services.ts`: services, capabilities, deliverables, and FAQs.
+- `src/data/projects.ts`: project descriptions, verified technology stacks, and live/repository URLs.
+- `src/app/globals.css`, `home.css`, `work.css`, `pages.css`, `contact.css`: design system and responsive layouts.
+
+Project interfaces are explicitly illustrative concepts. No client results, founder credentials, live project URLs, or project technology stacks have been invented. Populate those fields with verified information. The manually maintained sitemap modification date should be updated with substantive site changes.
+
+## Enquiry integration
+
+Without an enquiry endpoint, the form validates the brief and downloads a text file locally. It makes no network submission and explicitly says the brief has not been sent.
+
+Once `CONTACT_WEBHOOK_URL` is set to a trusted HTTPS endpoint, the same form submits to `/api/enquiry`. That route validates the payload again, limits its size, checks browser origin, rejects a populated honeypot, and forwards JSON server-side. Endpoint credentials are never exposed to the browser. The endpoint must return a successful `2xx` response only after accepting responsibility for delivery or storage; that response is the basis for the website’s success state. Failed requests and timeouts produce an error without clearing the form.
+
+Example forwarded payload:
+
+```json
+{
+  "name": "Alex Morgan",
+  "email": "alex@example.com",
+  "company": "Example",
+  "projectType": "Product Engineering",
+  "budget": "Not yet defined",
+  "description": "A project description of at least 30 characters.",
+  "submittedAt": "2026-11-15T12:00:00.000Z",
+  "source": "https://sanoraworks.com"
+}
+```
+
+The endpoint should supply durable delivery/storage, appropriate rate limiting, and operational monitoring. No database or email provider is bundled into this first release. The site does not persist drafts or add analytics/tracking scripts. Review the privacy notice alongside the actual enquiry provider and hosting configuration before enabling delivery.
+
+## Routes and deployment
+
+Completed routes: `/`, `/services`, `/work`, `/work/[slug]` for the three configured projects, `/about`, `/contact`, `/privacy`, and `/terms`. SEO includes route metadata, canonicals for `https://sanoraworks.com`, Organization JSON-LD, share imagery, a sitemap, and robots.txt.
+
+Service content already has stable slugs to support future service detail routes. Insights routes are deliberately absent until there is content to publish. There are no empty placeholder pages.
+
+Deploy to a host that supports the Next.js Node.js runtime, such as Vercel or a Node.js server. Build with `npm ci && npm run build`; start with `npm start`. The dynamic contact route requires a server runtime. Domain registration, DNS changes, and public hosting are separate from this repository implementation.
+
+Work is committed and pushed incrementally to `main` in reviewable milestones. A scoped dependency override keeps the lint toolchain on a patched version of `minimatch`; rerun lint and audit when updating the toolchain.
+
+Manrope is self-hosted under the SIL Open Font License; its notice is in `src/app/fonts/OFL.txt`. All rights reserved for original Sanora Works branding and website content. This repository does not grant an open-source license.
