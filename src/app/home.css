@@ -474,16 +474,21 @@
     width: 100%;
   }
   .workshop-banner {
-    grid-template-columns: minmax(0, 160px) minmax(0, 1fr) 80px;
+    grid-template-columns: minmax(0, 1fr);
     grid-template-areas:
-      "computer . logo"
-      "copy copy copy";
-    padding: 16px 12px;
-    gap: 12px;
-    min-height: 145px;
+      "logo"
+      "copy"
+      "computer";
+    padding: 24px 12px 16px;
+    gap: 20px;
   }
   .banner-monogram {
-    width: 80px;
+    width: 104px;
+    justify-self: center;
+  }
+  .dns-computer {
+    max-width: 260px;
+    justify-self: center;
   }
   .workshop-banner-copy h2 {
     font-size: 21px;

@@ -47,7 +47,7 @@ async function seek(time) {
 }
 try {
   await check("Responsive illustrations and accessible banner heading", async () => {
-    for (const width of [320, 375, 600, 768, 800, 1024, 1050, 1100, 1280, 1440, 1920]) {
+    for (const width of [320, 375, 599, 600, 768, 800, 1024, 1050, 1100, 1280, 1440, 1920]) {
       await page.setViewportSize({ width, height: 1100 });
       await open();
       await running();
@@ -56,11 +56,12 @@ try {
       const logo = await page.locator(".banner-monogram").boundingBox();
       const copy = await page.locator(".workshop-banner-copy").boundingBox();
       assert.ok(computer.width > 0 && logo.width > 0 && copy.width > 0);
-      assert.ok(computer.x + computer.width <= logo.x);
       if (width < 600) {
-        assert.ok(copy.y >= computer.y + computer.height);
         assert.ok(copy.y >= logo.y + logo.height);
+        assert.ok(computer.y >= copy.y + copy.height);
+        assert.ok(Math.abs(logo.x + logo.width / 2 - (computer.x + computer.width / 2)) < 1);
       } else {
+        assert.ok(computer.x + computer.width <= logo.x);
         assert.ok(copy.x >= computer.x + computer.width);
         assert.ok(copy.x + copy.width <= logo.x);
       }
