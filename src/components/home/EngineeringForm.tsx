@@ -3,9 +3,8 @@ export function EngineeringForm({ compact = false }: { compact?: boolean }) {
   return (
     <div
       className={`workshop-banner ${compact ? "banner-compact" : ""}`}
-      aria-hidden="true"
     >
-      <div className="pixel-computer">
+      <div className="pixel-computer" aria-hidden="true">
         <svg
           viewBox="0 0 160 120"
           shapeRendering="crispEdges"
@@ -40,20 +39,13 @@ export function EngineeringForm({ compact = false }: { compact?: boolean }) {
         </svg>
       </div>
       <div className="workshop-banner-copy">
-        <span className="mono">THE SANORAWORKS WORKSHOP</span>
-        <strong>
-          Thoughtfully built.
-          <br />
-          Ready for what’s next.
-        </strong>
-        <div className="capability-labels">
-          <span>SOFTWARE</span>
-          <span>PRODUCTS</span>
-          <span>AI & AUTOMATION</span>
-          <span>CLOUD</span>
-        </div>
+        <h2>Websites, business tools, and automation.</h2>
+        <p>
+          Reach customers online, organise day-to-day operations, and spend less
+          time on repetitive tasks with software built around your business.
+        </p>
       </div>
-      <div className="banner-monogram">
+      <div className="banner-monogram" aria-hidden="true">
         <BrandMark />
       </div>
     </div>

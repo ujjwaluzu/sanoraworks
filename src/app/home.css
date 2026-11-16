@@ -84,33 +84,20 @@
   min-width: 0;
   flex: 1;
 }
-.workshop-banner-copy > .mono {
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-}
-.workshop-banner-copy > strong {
+.workshop-banner-copy h2 {
   font-family: Arial, sans-serif;
   font-size: 25px;
   letter-spacing: -0.5px;
-  line-height: 1.18;
-  display: block;
+  line-height: 1.3;
   color: var(--ink);
-  margin: 8px 0 13px;
+  margin: 0 0 10px;
 }
-.capability-labels {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-}
-.capability-labels > span {
-  font:
-    12px "Courier New",
-    monospace;
+.workshop-banner-copy p {
+  font-size: 16px;
+  line-height: 1.7;
   color: var(--muted);
-  border: 1px solid var(--line-strong);
-  background: var(--surface);
-  padding: 2px 5px;
+  max-width: var(--reading-width);
+  margin: 0;
 }
 .banner-monogram {
   width: 80px;
@@ -414,7 +401,7 @@
     width: 120px;
     height: 92px;
   }
-  .workshop-banner-copy > strong {
+  .workshop-banner-copy h2 {
     font-size: 23px;
   }
   .final-cta {
@@ -446,27 +433,13 @@
     min-height: 145px;
   }
   .pixel-computer {
-    flex-basis: 85px;
-  }
-  .pixel-computer svg {
-    width: 85px;
-    height: 65px;
+    display: none;
   }
   .banner-monogram {
     display: none;
   }
-  .workshop-banner-copy > .mono {
-    font-size: 11px;
-  }
-  .workshop-banner-copy > strong {
-    font-size: 20px;
-  }
-  .capability-labels {
-    gap: 3px;
-  }
-  .capability-labels > span {
-    font-size: 10px;
-    padding: 1px 3px;
+  .workshop-banner-copy h2 {
+    font-size: 21px;
   }
   .panel-titlebar {
     align-items: flex-start;
