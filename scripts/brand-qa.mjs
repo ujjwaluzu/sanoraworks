@@ -15,11 +15,12 @@ for (const asset of assets) {
       const { data, info } = await sharp(bytes).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
       assert.equal(data[3], 0, `${asset.file}: transparent corner`);
       let opaque = 0;
-      for (let i = 3; i < data.length; i += info.channels) if (data[i] === 255) opaque++;
+      for (let i = 3; i < data.length; i += info.channels) if (data[i] >= 200) opaque++;
       assert.ok(opaque > 100, `${asset.file}: visible artwork`);
     }
-  } else if (asset.outlined) {
-    assert.doesNotMatch(bytes.toString(), /<(?:text|image|use|foreignObject)\b|font-family|href=/i, asset.file);
+  } else if (asset.embeddedRaster) {
+    assert.match(bytes.toString(), /<image href="data:image\/png;base64,/, asset.file);
+    assert.doesNotMatch(bytes.toString(), /<(?:text|foreignObject)\b|font-family/i, asset.file);
   }
 }
 
@@ -50,6 +51,6 @@ for (const [key, value] of Object.entries(c)) assert.ok(css.includes(`--${key}: 
 assert.deepEqual(await readFile(new URL("../src/app/icon.svg", import.meta.url)), await readFile(new URL("sanoraworks-favicon.svg", folder)));
 assert.deepEqual(await readFile(new URL("../src/app/icon1.png", import.meta.url)), await readFile(new URL("sanoraworks-favicon-32.png", folder)));
 for (const file of await readdir(folder)) {
-  if (file.endsWith(".svg")) assert.doesNotMatch(await readFile(new URL(file, folder), "utf8"), /#006666|#002f49|orbital/i, file);
+  if (file.endsWith(".svg")) assert.doesNotMatch(await readFile(new URL(file, folder), "utf8"), /#006666|#002f49/i, file);
 }
-console.log(`Passed ${assets.length} export contracts, transparency, outlined logos, circular crops, palette synchronization, favicon parity, and text contrast.`);
+console.log(`Passed ${assets.length} export contracts, transparency, embedded source logos, circular crops, palette synchronization, favicon parity, and text contrast.`);

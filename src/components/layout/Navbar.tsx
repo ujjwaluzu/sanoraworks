@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { navigation, site } from "@/data/site";
+import { navigation } from "@/data/site";
 import { Logo } from "@/components/ui/Logo";
 
 export function Navbar() {
@@ -12,7 +12,6 @@ export function Navbar() {
       <div className="masthead">
         <div>
           <Logo />
-          <p className="masthead-tagline">{site.tagline}</p>
         </div>
       </div>
       <nav className="primary-nav" aria-label="Main navigation">

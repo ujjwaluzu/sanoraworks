@@ -2,15 +2,25 @@ import { mkdir, writeFile, readFile, readdir, copyFile } from "node:fs/promises"
 import { deflateRawSync } from "node:zlib";
 import sharp from "sharp";
 import { brandColors as c } from "../src/lib/brand-colors.ts";
-import {
-  logoSvg, avatarSvg, faviconSvg, appleIconSvg, socialSvg,
-  svgDocument, horizontalWidth, letteringPaths, symbolPaths,
-} from "../src/lib/brand-artwork.ts";
+import * as artwork from "../src/lib/brand-artwork.ts";
+import { prepareBrandImages } from "./prepare-brand-images.mjs";
 
 const root = new URL("../", import.meta.url);
 const folder = new URL("public/brand/", root);
 await mkdir(folder, { recursive: true });
+const sources = await prepareBrandImages(folder);
+const { svgDocument, horizontalWidth } = artwork;
+const logoSvg = (kind, variant) => artwork.logoSvg(kind, variant, sources);
+const avatarSvg = (inverse) => artwork.avatarSvg(inverse, sources);
+const faviconSvg = () => artwork.faviconSvg(sources);
+const appleIconSvg = () => artwork.appleIconSvg(sources);
+const socialSvg = (kind) => artwork.socialSvg(kind, sources);
 const manifest = [];
+for (const file of ["sanoraworks-logo-source.png", ...["logo", "mark", "lettering"].flatMap((kind) =>
+  ["", "-white", "-black"].map((suffix) => `sanoraworks-${kind}${suffix}.png`))]) {
+  const { width, height } = await sharp(await readFile(new URL(file, folder))).metadata();
+  manifest.push({ file, width, height, transparent: true, suppliedRaster: true });
+}
 async function save(name, data, details = {}) {
   await writeFile(new URL(name, folder), data);
   manifest.push({ file: name, ...details });
@@ -29,7 +39,7 @@ for (const kind of ["monogram", "horizontal", "stacked"]) {
   for (const variant of ["color", "black", "white"]) {
     const name = `sanoraworks-${kind}${variant === "color" ? "" : `-${variant}`}`;
     const svg = logoSvg(kind, variant);
-    await save(`${name}.svg`, svg, { variant, outlined: true });
+    await save(`${name}.svg`, svg, { variant, embeddedRaster: true });
     if (kind !== "stacked") {
       const height = kind === "monogram" ? 2048 : Math.round(2048 * 128 / horizontalWidth);
       await png(`${name}-2048.png`, svg, 2048, height, true);
@@ -48,17 +58,18 @@ for (const inverse of [false, true]) {
 await png("sanoraworks-social-cover.png", socialSvg("cover"), 1500, 500);
 await png("sanoraworks-share.png", socialSvg("share"), 1200, 630);
 await png("sanoraworks-apple-icon.png", appleIconSvg(), 180, 180);
-await save("sanoraworks-favicon.svg", faviconSvg(), { outlined: true });
+await save("sanoraworks-favicon.svg", faviconSvg(), { embeddedRaster: true });
 for (const size of [16, 32, 48, 128]) {
   await png(`sanoraworks-favicon-${size}.png`, faviconSvg(), size, size);
 }
 await copyFile(new URL("sanoraworks-favicon.svg", folder), new URL("src/app/icon.svg", root));
 await copyFile(new URL("sanoraworks-favicon-32.png", folder), new URL("src/app/icon1.png", root));
 
-// A standalone sheet: logos are outlined paths; only explanatory labels use text.
+// Standalone sheet embeds the supplied, star-free bitmap and its export variants.
 const label = (x, y, text, fill = c.muted, size = 18) => `<text x="${x}" y="${y}" fill="${fill}" font-family="Arial, sans-serif" font-size="${size}" xml:space="preserve">${text}</text>`;
 const card = (x, y, width, height, fill = c.white) => `<rect x="${x}" y="${y}" width="${width}" height="${height}" fill="${fill}"/>`;
-const logo = (x, y, scale = 1, variant = "color") => `<g transform="translate(${x} ${y}) scale(${scale})"><g transform="translate(0 8)">${symbolPaths(variant)}</g><g transform="translate(152 34)">${letteringPaths(variant)}</g></g>`;
+const logo = (x, y, scale = 1, variant = "color") => logoSvg("horizontal", variant).replace(/<svg[^>]*>/,
+  `<svg x="${x}" y="${y}" width="${horizontalWidth * scale}" height="${128 * scale}" viewBox="0 0 ${horizontalWidth} 128">`);
 const nested = (svg, x, y, width, height) => svg.replace(/<svg[^>]*>/,
   `<svg x="${x}" y="${y}" width="${width}" height="${height}" viewBox="${svg.match(/viewBox="([^"]+)"/)[1]}">`);
 const preview = svgDocument(1600, 2120,

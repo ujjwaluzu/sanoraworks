@@ -61,9 +61,9 @@ Public environment values are read at build time. Rebuild after changing them. T
 - `src/app/globals.css`, `home.css`, `work.css`, `pages.css`, `contact.css`: cobalt, ink, and cool silver workshop design system and responsive layouts.
 - `src/components/layout/`: shared full-viewport frame navigation, 248px directory sidebar, and compact footer. The sidebar follows the main content below 800px; mobile navigation uses two clear rows.
 - `src/components/ui/Panel.tsx`: reusable titled content panels.
-- `public/brand/`: standalone, outlined SVG wordmarks and emblems in default, light, and monochrome variants, plus favicon and usage notes.
-- `src/lib/brand-symbol.ts`, `brand-paths.ts`, `brand-colors.ts`, and `brand-artwork.ts`: shared SW geometry, outlined lettering, master palette, and social layouts. Run `npm run brand:build` to regenerate the assets, CSS tokens, and ZIP. `npm run brand:check` validates export dimensions, transparency, circular crops, outlined logos, and palette contrast.
-- `/brand/index.html`: identity preview and downloadable kit; `public/brand/README.md` documents spacing, variants, and font licensing.
+- `public/brand/`: the supplied SW orbit logo with its star removed, native transparent PNGs, monochrome derivatives, embedded-raster SVG containers, social exports, favicon, and usage notes.
+- `src/lib/brand-artwork.ts`, `brand-server.ts`, and `brand-colors.ts`: shared raster compositions, metadata asset loading, and interface palette. Run `npm run brand:build` to regenerate crops, exports, CSS tokens, and ZIP; `npm run brand:check` validates them.
+- `/brand/index.html`: preview and downloadable kit. `public/brand/README.md` documents source resolution, spacing, and variants; `docs/logo-edit.md` records the image edit.
 
 Reading text starts at 16px with generous line spacing, and long paragraphs use a 68-character measure while the site frame fills the screen. Homepage shortcuts jump directly to services, projects, and process. Project entries have one full-row link each, and service rows offer a larger click target. The contact form comes before supporting information, keeps help text associated with validation errors, and displays a description character count without repeatedly announcing every keystroke.
 

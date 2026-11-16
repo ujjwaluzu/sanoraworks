@@ -162,39 +162,18 @@ img {
   padding: 20px 25px;
   background: linear-gradient(90deg, var(--surface), var(--silver));
 }
+.masthead > div {
+  width: 100%;
+}
 .brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--ink);
+  display: block;
+  width: min(560px, 100%);
   text-decoration: none;
 }
-.brand:visited {
-  color: var(--ink);
-}
-.brand-mark {
-  width: 74px;
-  height: 65px;
-}
-.brand-lettering {
-  width: 290px;
-  height: 60px;
-}
-.brand-light,
-.brand-light:visited {
-  color: var(--white);
-}
-.brand-mono,
-.brand-mono:visited {
-  color: var(--ink);
-}
-.masthead-tagline {
-  margin: -1px 0 0 84px;
-  color: var(--muted);
-  text-wrap: balance;
-  font:
-    14px/1.5 "Courier New",
-    monospace;
+.brand-image {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 .primary-nav {
   display: flex;
@@ -541,21 +520,6 @@ img {
     padding: 13px 10px;
     gap: 8px;
     min-height: 100px;
-  }
-  .brand {
-    gap: 4px;
-  }
-  .brand-mark {
-    width: 55px;
-    height: 46px;
-  }
-  .brand-lettering {
-    width: 218px;
-    height: 46px;
-  }
-  .masthead-tagline {
-    margin-left: 59px;
-    font-size: 13px;
   }
   .primary-nav > a {
     font-size: 15px;

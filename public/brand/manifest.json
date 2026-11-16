@@ -1,11 +1,81 @@
 [
   {
+    "file": "sanoraworks-logo-source.png",
+    "width": 2172,
+    "height": 724,
+    "transparent": true,
+    "suppliedRaster": true
+  },
+  {
+    "file": "sanoraworks-logo.png",
+    "width": 1671,
+    "height": 299,
+    "transparent": true,
+    "suppliedRaster": true
+  },
+  {
+    "file": "sanoraworks-logo-white.png",
+    "width": 1671,
+    "height": 299,
+    "transparent": true,
+    "suppliedRaster": true
+  },
+  {
+    "file": "sanoraworks-logo-black.png",
+    "width": 1671,
+    "height": 299,
+    "transparent": true,
+    "suppliedRaster": true
+  },
+  {
+    "file": "sanoraworks-mark.png",
+    "width": 437,
+    "height": 299,
+    "transparent": true,
+    "suppliedRaster": true
+  },
+  {
+    "file": "sanoraworks-mark-white.png",
+    "width": 437,
+    "height": 299,
+    "transparent": true,
+    "suppliedRaster": true
+  },
+  {
+    "file": "sanoraworks-mark-black.png",
+    "width": 437,
+    "height": 299,
+    "transparent": true,
+    "suppliedRaster": true
+  },
+  {
+    "file": "sanoraworks-lettering.png",
+    "width": 1142,
+    "height": 215,
+    "transparent": true,
+    "suppliedRaster": true
+  },
+  {
+    "file": "sanoraworks-lettering-white.png",
+    "width": 1142,
+    "height": 215,
+    "transparent": true,
+    "suppliedRaster": true
+  },
+  {
+    "file": "sanoraworks-lettering-black.png",
+    "width": 1142,
+    "height": 215,
+    "transparent": true,
+    "suppliedRaster": true
+  },
+  {
     "file": "colors.json"
   },
   {
     "file": "sanoraworks-monogram.svg",
     "variant": "color",
-    "outlined": true
+    "embeddedRaster": true
   },
   {
     "file": "sanoraworks-monogram-2048.png",
@@ -16,7 +86,7 @@
   {
     "file": "sanoraworks-monogram-black.svg",
     "variant": "black",
-    "outlined": true
+    "embeddedRaster": true
   },
   {
     "file": "sanoraworks-monogram-black-2048.png",
@@ -27,7 +97,7 @@
   {
     "file": "sanoraworks-monogram-white.svg",
     "variant": "white",
-    "outlined": true
+    "embeddedRaster": true
   },
   {
     "file": "sanoraworks-monogram-white-2048.png",
@@ -38,7 +108,7 @@
   {
     "file": "sanoraworks-horizontal.svg",
     "variant": "color",
-    "outlined": true
+    "embeddedRaster": true
   },
   {
     "file": "sanoraworks-horizontal-2048.png",
@@ -49,7 +119,7 @@
   {
     "file": "sanoraworks-horizontal-black.svg",
     "variant": "black",
-    "outlined": true
+    "embeddedRaster": true
   },
   {
     "file": "sanoraworks-horizontal-black-2048.png",
@@ -60,7 +130,7 @@
   {
     "file": "sanoraworks-horizontal-white.svg",
     "variant": "white",
-    "outlined": true
+    "embeddedRaster": true
   },
   {
     "file": "sanoraworks-horizontal-white-2048.png",
@@ -71,17 +141,17 @@
   {
     "file": "sanoraworks-stacked.svg",
     "variant": "color",
-    "outlined": true
+    "embeddedRaster": true
   },
   {
     "file": "sanoraworks-stacked-black.svg",
     "variant": "black",
-    "outlined": true
+    "embeddedRaster": true
   },
   {
     "file": "sanoraworks-stacked-white.svg",
     "variant": "white",
-    "outlined": true
+    "embeddedRaster": true
   },
   {
     "file": "sanoraworks-emblem.svg",
@@ -139,7 +209,7 @@
   },
   {
     "file": "sanoraworks-favicon.svg",
-    "outlined": true
+    "embeddedRaster": true
   },
   {
     "file": "sanoraworks-favicon-16.png",
