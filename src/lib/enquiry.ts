@@ -65,7 +65,7 @@ export function validateEnquiry(
 
 export function formatProjectBrief(data: Enquiry) {
   return [
-    "SANORA WORKS — PROJECT BRIEF",
+    "SANORA WORKS: PROJECT BRIEF",
     "Prepared locally. This brief has not been sent.",
     "",
     `Name: ${data.name}`,

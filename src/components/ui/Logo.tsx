@@ -25,7 +25,7 @@ export function Logo({ variant = "default" }: { variant?: BrandVariant }) {
     <Link href="/" aria-label="Sanora Works home" className={`brand brand-${variant}`}>
       <Image src={`/brand/sanoraworks-logo${suffix(variant)}.png`}
         className="brand-image" width={1671} height={299}
-        alt="SanoraWorks — Practical technology for business" loading="eager" unoptimized />
+        alt="SanoraWorks: Practical technology for business" loading="eager" unoptimized />
     </Link>
   );
 }

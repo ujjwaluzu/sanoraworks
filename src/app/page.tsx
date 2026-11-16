@@ -15,7 +15,7 @@ export const metadata = {
     "Sanora Works engineers ideas into meaningful digital solutions. Explore our software development, product engineering, AI automation, and cloud capabilities.",
     "/",
   ),
-  title: { absolute: `Sanora Works — ${site.tagline}` },
+  title: { absolute: `Sanora Works: ${site.tagline}` },
 };
 
 export default function Home() {

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   ),
   metadataBase: new URL(site.url),
   title: {
-    default: `Sanora Works — ${site.tagline}`,
+    default: `Sanora Works: ${site.tagline}`,
     template: "%s | Sanora Works",
   },
   applicationName: "Sanora Works",

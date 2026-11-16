@@ -28,7 +28,6 @@ export default function ServicesPage() {
       >
         {services.map((service) => (
           <a key={service.slug} href={`#${service.slug}`}>
-            <span className="mono">{service.number}</span>
             {service.shortTitle}
             <ArrowDown size={13} aria-hidden="true" />
           </a>
@@ -42,7 +41,6 @@ export default function ServicesPage() {
             key={service.slug}
           >
             <div className="service-detail-title">
-              <span className="mono service-index">{service.number} /</span>
               <h2>{service.title}</h2>
               <p>{service.fit}</p>
               <Link

@@ -253,11 +253,6 @@
   color: var(--muted);
   max-width: var(--reading-width);
 }
-.service-directory-number {
-  font-size: 13px;
-  color: var(--line-strong);
-  margin-left: auto;
-}
 .directory-bottom {
   padding-top: 11px;
   margin: 0;
@@ -395,13 +390,6 @@
   margin-bottom: 0;
   box-shadow: inset 1px 1px var(--white);
 }
-.final-cta .eyebrow {
-  font:
-    13px "Courier New",
-    monospace;
-  color: var(--muted);
-  margin: 0 0 6px;
-}
 .final-cta h2 {
   font:
     700 23px/1.2 Arial,
@@ -514,9 +502,6 @@
   .service-directory-icon svg {
     width: 20px;
     height: 20px;
-  }
-  .service-directory-number {
-    display: none;
   }
   .service-card h3 {
     font-size: 18px;

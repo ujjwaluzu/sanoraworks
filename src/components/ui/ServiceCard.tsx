@@ -24,9 +24,6 @@ export function ServiceCard({
         </h3>
         <p>{service.description}</p>
       </div>
-      <span className="service-directory-number mono" aria-hidden="true">
-        {service.number}
-      </span>
     </article>
   );
 }
