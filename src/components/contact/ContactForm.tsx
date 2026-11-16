@@ -30,6 +30,7 @@ export function ContactForm({
     "idle" | "sending" | "sent" | "downloaded" | "error"
   >("idle");
   const [message, setMessage] = useState("");
+  const [descriptionLength, setDescriptionLength] = useState(0);
   const formRef = useRef<HTMLFormElement>(null);
   const statusRef = useRef<HTMLDivElement>(null);
   const errorRef = useRef<HTMLDivElement>(null);
@@ -112,19 +113,51 @@ export function ContactForm({
     requestAnimationFrame(() => statusRef.current?.focus());
   }
 
-  const errorProps = (name: keyof Enquiry) => ({
+  function updateField(event: FormEvent<HTMLFormElement>) {
+    const field = event.target;
+    if (
+      !(field instanceof HTMLInputElement) &&
+      !(field instanceof HTMLSelectElement) &&
+      !(field instanceof HTMLTextAreaElement)
+    )
+      return;
+    if (field.name === "description") setDescriptionLength(field.value.length);
+    const name = field.name as keyof Enquiry;
+    if (!errors[name]) return;
+    const result = validateEnquiry(
+      Object.fromEntries(new FormData(event.currentTarget)),
+    );
+    if (result.success || !result.errors[name]) {
+      setErrors((previous) => {
+        const next = { ...previous };
+        delete next[name];
+        return next;
+      });
+    }
+  }
+
+  const errorProps = (name: keyof Enquiry, hint?: string) => ({
     "aria-invalid": errors[name] ? (true as const) : undefined,
-    "aria-describedby": errors[name] ? `${name}-error` : undefined,
+    "aria-describedby":
+      [hint, errors[name] ? `${name}-error` : ""].filter(Boolean).join(" ") ||
+      undefined,
   });
   const errorText = (name: keyof Enquiry) =>
     errors[name] && (
       <span className="field-error" id={`${name}-error`}>
-        {errors[name]}
+        Error: {errors[name]}
       </span>
     );
 
   return (
-    <form ref={formRef} className="enquiry-form" onSubmit={submit} noValidate>
+    <form
+      ref={formRef}
+      className="enquiry-form"
+      onSubmit={submit}
+      onInput={updateField}
+      onReset={() => setDescriptionLength(0)}
+      noValidate
+    >
       <div className="form-heading">
         <h2>Tell us what you have in mind.</h2>
         <span className="mono">REQUIRED FIELDS ARE LABELED</span>
@@ -133,8 +166,8 @@ export function ContactForm({
         <div className="form-availability">
           <span className="status-dot" aria-hidden="true" />
           <p>
-            Online enquiries are not open yet. Prepare and download your project
-            brief below so it’s ready for a conversation.
+            Online enquiries are not open yet. This form downloads a project
+            brief; it doesn’t send it.
           </p>
         </div>
       )}
@@ -256,11 +289,14 @@ export function ContactForm({
             minLength={30}
             maxLength={5000}
             placeholder="What would you like to build? Tell us about the challenge, the people it’s for, and what you hope to achieve."
-            {...errorProps("description")}
+            {...errorProps("description", "description-hint description-count")}
           />
-          <span className="field-hint">
+          <span className="field-hint" id="description-hint">
             30–5,000 characters. Please leave out passwords or confidential
             information.
+          </span>
+          <span className="field-character-count" id="description-count">
+            {descriptionLength.toLocaleString("en-US")} / 5,000 characters
           </span>
           {errorText("description")}
         </div>

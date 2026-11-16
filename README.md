@@ -59,10 +59,12 @@ Public environment values are read at build time. Rebuild after changing them. T
 - `src/data/services.ts`: services, capabilities, deliverables, and FAQs.
 - `src/data/projects.ts`: project descriptions, verified technology stacks, and live/repository URLs.
 - `src/app/globals.css`, `home.css`, `work.css`, `pages.css`, `contact.css`: teal-and-silver workshop design system and responsive layouts.
-- `src/components/layout/`: shared full-viewport frame navigation, 220px directory sidebar, and compact badge footer. The sidebar follows the main content below 800px.
+- `src/components/layout/`: shared full-viewport frame navigation, 248px directory sidebar, and compact badge footer. The sidebar follows the main content below 800px; mobile navigation uses two clear rows.
 - `src/components/ui/Panel.tsx`, `Badge.tsx`: reusable titled panels and original web badges.
 - `public/brand/`: standalone, outlined SVG wordmarks and emblems in default, light, and monochrome variants, plus favicon and usage notes.
 - `src/lib/brand-paths.ts`: shared outlined wordmark geometry for metadata images.
+
+Reading text starts at 16px with generous line spacing, and long paragraphs use a 68-character measure while the site frame fills the screen. Homepage shortcuts jump directly to services, projects, and process. Project entries have one full-row link each, and service rows offer a larger click target. The contact form comes before supporting information, keeps help text associated with validation errors, and displays a description character count without repeatedly announcing every keystroke.
 
 Project interfaces are explicitly illustrative concepts. No client results, founder credentials, live project URLs, or project technology stacks have been invented. Populate those fields with verified information. The manually maintained sitemap modification date should be updated with substantive site changes.
 

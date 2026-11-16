@@ -6,6 +6,7 @@ export function Approach({ detailed = false }: { detailed?: boolean }) {
       title="How we work"
       label="FROM CONCEPT TO EXECUTION"
       className="section-approach"
+      id="process"
     >
       <ol
         className={`approach-directory ${detailed ? "approach-detailed" : ""}`}

@@ -1,11 +1,11 @@
 ﻿.home-welcome {
-  padding: 22px 22px 0;
+  padding: 24px 24px 0;
   background: #fff;
   border: 1px solid #8b9696;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 .welcome-kicker {
-  font-size: 11px;
+  font-size: 13px;
   color: #526367;
   margin: 0 0 7px;
   letter-spacing: 0.05em;
@@ -20,7 +20,7 @@
   letter-spacing: -0.8px;
 }
 .welcome-intro {
-  max-width: 720px;
+  max-width: var(--reading-width);
   margin: 0 0 17px;
   line-height: 1.7;
 }
@@ -29,6 +29,26 @@
   gap: 10px;
   flex-wrap: wrap;
   margin-bottom: 22px;
+}
+.section-shortcuts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 12px;
+  border-top: 1px solid #bdcccc;
+  padding: 8px 0;
+  font-size: 15px;
+}
+.section-shortcuts > span {
+  color: var(--muted);
+  font-size: 14px;
+  margin-right: 4px;
+}
+.section-shortcuts a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 4px;
 }
 .workshop-banner {
   display: flex;
@@ -90,7 +110,7 @@
 }
 .capability-labels > span {
   font:
-    9px "Courier New",
+    12px "Courier New",
     monospace;
   color: #174f53;
   border: 1px solid #8ba9a8;
@@ -110,7 +130,7 @@
 }
 .welcome-footnote {
   font:
-    10px "Courier New",
+    13px "Courier New",
     monospace;
   color: #47565b;
   margin: 12px 0;
@@ -121,7 +141,7 @@
   font-size: 9px;
 }
 .workshop-panel {
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   background: #fff;
   border: 1px solid #869595;
   min-width: 0;
@@ -130,7 +150,7 @@
 .panel-titlebar {
   background: #006666;
   color: #fff;
-  padding: 7px 11px;
+  padding: 11px 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -139,19 +159,19 @@
 }
 .panel-titlebar h2 {
   font:
-    700 17px/1.35 Arial,
+    700 21px/1.35 Arial,
     sans-serif;
   margin: 0;
   color: #fff;
 }
 .panel-titlebar > .mono {
-  font-size: 9px;
+  font-size: 12px;
   letter-spacing: 0.04em;
   color: #d6eceb;
   text-align: right;
 }
 .panel-body {
-  padding: 17px;
+  padding: 24px;
 }
 .panel-body > p:first-child {
   margin-top: 0;
@@ -161,7 +181,7 @@
 }
 .panel-intro {
   margin: 0 0 14px;
-  font-size: 14px;
+  font-size: 16px;
   color: #4b5558;
 }
 .service-directory {
@@ -171,16 +191,35 @@
   display: flex;
   position: relative;
   align-items: flex-start;
-  gap: 14px;
-  padding: 15px;
+  gap: 16px;
+  padding: 20px;
   background: #fff;
   min-width: 0;
+}
+.service-card > div:nth-child(2) {
+  min-width: 0;
+  flex: 1;
+}
+.service-card h3 a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.service-card:hover {
+  background: #eaf3f1;
+}
+.service-card:focus-within {
+  outline: 3px solid #b84c00;
+  outline-offset: -3px;
 }
 .service-card + .service-card {
   border-top: 1px dotted #9daaaa;
 }
 .service-card:nth-child(even) {
   background: #f4f7f6;
+}
+.service-card:nth-child(even):hover {
+  background: #eaf3f1;
 }
 .service-directory-icon {
   width: 40px;
@@ -195,26 +234,32 @@
 }
 .service-card h3 {
   font:
-    700 16px/1.4 Arial,
+    700 19px/1.4 Arial,
     sans-serif;
   margin: 0 0 4px;
 }
 .service-card p {
-  font-size: 15px;
-  line-height: 1.7;
+  font-size: 16px;
+  line-height: 1.75;
   margin: 0;
   color: #3e4a4d;
+  max-width: var(--reading-width);
 }
 .service-directory-number {
-  font-size: 10px;
+  font-size: 13px;
   color: #5f777b;
   margin-left: auto;
 }
 .directory-bottom {
   padding-top: 11px;
   margin: 0;
-  font-size: 12px;
+  font-size: 15px;
   text-align: right;
+}
+.directory-bottom a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }
 .approach-directory {
   list-style: none;
@@ -222,7 +267,7 @@
   padding: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 17px;
+  gap: 24px;
 }
 .approach-directory > li {
   display: flex;
@@ -243,16 +288,17 @@
 .approach-directory h3,
 .principle-list h3 {
   font:
-    700 16px/1.4 Arial,
+    700 19px/1.4 Arial,
     sans-serif;
   color: #004d58;
   margin: 2px 0 5px;
 }
 .approach-directory p,
 .principle-list p {
-  font-size: 15px;
-  line-height: 1.7;
+  font-size: 16px;
+  line-height: 1.75;
   margin: 0;
+  max-width: var(--reading-width);
 }
 .approach-detailed {
   grid-template-columns: 1fr;
@@ -272,17 +318,20 @@
 .principle-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 17px;
+  gap: 24px;
 }
 .principle-list article {
   padding-left: 12px;
   border-left: 3px solid #a6c0be;
 }
 .section-about .panel-body {
-  font-size: 14px;
+  font-size: 16px;
+}
+.section-about .panel-body > p {
+  max-width: var(--reading-width);
 }
 .section-about .panel-body > a {
-  font-size: 13px;
+  font-size: 15px;
   display: inline-flex;
   align-items: center;
   min-height: 44px;
@@ -292,8 +341,8 @@
 }
 .philosophy-rows > div {
   display: grid;
-  grid-template-columns: 175px 1fr;
-  gap: 16px;
+  grid-template-columns: 190px 1fr;
+  gap: 24px;
   align-items: center;
   padding: 8px 0;
 }
@@ -305,14 +354,15 @@
   align-items: center;
   gap: 11px;
   font:
-    700 15px Arial,
+    700 17px Arial,
     sans-serif;
   color: #004b57;
 }
 .philosophy-rows dd {
   margin: 0;
-  font-size: 15px;
-  line-height: 1.6;
+  font-size: 16px;
+  line-height: 1.75;
+  max-width: var(--reading-width);
 }
 .philosophy-initial {
   font:
@@ -339,7 +389,7 @@
 }
 .final-cta .eyebrow {
   font:
-    10px "Courier New",
+    13px "Courier New",
     monospace;
   color: #685c26;
   margin: 0 0 6px;
@@ -352,13 +402,25 @@
   margin: 0 0 9px;
 }
 .final-cta p:last-child {
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.7;
   margin: 0;
   max-width: 470px;
 }
 .final-cta > .button {
   flex-shrink: 0;
+}
+@media (min-width: 1280px) {
+  .service-directory {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .service-card:nth-child(2) {
+    border-top: 0;
+  }
+  .service-card:nth-child(odd) {
+    border-right: 1px dotted #9daaaa;
+  }
 }
 @media (max-width: 1050px) and (min-width: 800px) {
   .banner-orbit {
@@ -393,13 +455,16 @@
     font-size: 29px;
   }
   .welcome-intro {
-    font-size: 14px;
+    font-size: 16px;
   }
   .welcome-kicker {
-    font-size: 9px;
+    font-size: 12px;
   }
   .hero-actions {
     gap: 8px;
+  }
+  .hero-actions .button {
+    width: 100%;
   }
   .workshop-banner {
     padding: 16px 12px;
@@ -417,7 +482,7 @@
     display: none;
   }
   .workshop-banner-copy > .mono {
-    font-size: 8px;
+    font-size: 11px;
   }
   .workshop-banner-copy > strong {
     font-size: 20px;
@@ -426,11 +491,11 @@
     gap: 3px;
   }
   .capability-labels > span {
-    font-size: 8px;
+    font-size: 10px;
     padding: 1px 3px;
   }
   .welcome-footnote {
-    font-size: 9px;
+    font-size: 12px;
     line-height: 1.6;
   }
   .panel-titlebar {
@@ -438,15 +503,13 @@
     gap: 8px;
   }
   .panel-titlebar h2 {
-    font-size: 16px;
+    font-size: 20px;
   }
   .panel-titlebar > .mono {
-    font-size: 8px;
-    max-width: 95px;
-    line-height: 1.5;
+    display: none;
   }
   .panel-body {
-    padding: 13px;
+    padding: 18px;
   }
   .service-card {
     gap: 10px;
@@ -464,7 +527,7 @@
     display: none;
   }
   .service-card h3 {
-    font-size: 15px;
+    font-size: 18px;
   }
   .service-card h3 a {
     display: inline-flex;
@@ -473,7 +536,7 @@
     margin-top: -8px;
   }
   .service-card p {
-    font-size: 15px;
+    font-size: 16px;
   }
   .approach-directory,
   .principle-list {

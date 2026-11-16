@@ -8,6 +8,7 @@ export function SelectedWork() {
       title="From the project directory"
       label="03 INDEPENDENT PROJECTS"
       className="section-work"
+      id="projects"
     >
       <p className="panel-intro">
         Ideas we’re exploring, and the products taking shape.

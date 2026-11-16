@@ -25,15 +25,17 @@ export default async function ContactPage({
         eyebrow="Let’s start a conversation"
         index="04"
         title="Start a project"
-        description="A new product, a complex challenge, or a possibility you’d like to explore. Tell us what you’re thinking, and let’s find a useful way forward."
+        description="Tell us what you’d like to build and the problem it should solve."
       />
       <section className="section contact-section">
         <div className="container contact-layout">
+          <ContactForm
+            deliveryEnabled={Boolean(getContactEndpoint())}
+            initialProjectType={selected}
+          />
           <aside className="contact-aside">
             <MessageSquare size={27} strokeWidth={1} aria-hidden="true" />
-            <h2>
-              Every good build starts with an idea.
-            </h2>
+            <h2>Every good build starts with an idea.</h2>
             <p>
               You don’t need all the answers. A clear starting point, a rough
               brief, or a question is enough.
@@ -51,7 +53,8 @@ export default async function ContactPage({
                     Contact email coming soon.
                   </p>
                   <span className="contact-small">
-                    In the meantime, prepare a brief using the form.
+                    In the meantime, prepare a brief using the form on this
+                    page.
                   </span>
                 </>
               )}
@@ -74,10 +77,6 @@ export default async function ContactPage({
               </ol>
             </div>
           </aside>
-          <ContactForm
-            deliveryEnabled={Boolean(getContactEndpoint())}
-            initialProjectType={selected}
-          />
         </div>
       </section>
     </main>

@@ -21,12 +21,6 @@ export function PageHero({
         </div>
         <h1>{title}</h1>
         <p className="page-hero-description">{description}</p>
-        <div className="page-hero-rule">
-          <span className="mono">
-            INDEPENDENT THINKING. PURPOSEFUL EXECUTION.
-          </span>
-          <span aria-hidden="true">↓</span>
-        </div>
       </div>
     </section>
   );

@@ -23,6 +23,12 @@ export function Hero() {
         <span aria-hidden="true">■</span> Independent thinking. Purposeful
         engineering. A considered way forward.
       </p>
+      <nav className="section-shortcuts" aria-label="On this page">
+        <span>Jump to</span>
+        <a href="#capabilities">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#process">Our process</a>
+      </nav>
     </section>
   );
 }

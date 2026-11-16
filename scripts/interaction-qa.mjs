@@ -61,6 +61,27 @@ async function fillBrief(target) {
     );
 }
 try {
+  await check("Homepage shortcuts reach the requested section", async () => {
+    for (const [name, id] of [
+      ["Services", "capabilities"],
+      ["Projects", "projects"],
+      ["Our process", "process"],
+    ]) {
+      await page.goto(base, { waitUntil: "networkidle" });
+      await page
+        .getByRole("navigation", { name: "On this page", exact: true })
+        .getByRole("link", { name, exact: true })
+        .click();
+      await page.waitForURL(`**/#${id}`);
+      await page.waitForFunction(
+        (id) => {
+          const top = document.getElementById(id).getBoundingClientRect().top;
+          return top >= 0 && top < 100;
+        },
+        id,
+      );
+    }
+  });
   await check("Primary navigation and current page", async () => {
     await page.goto(base, { waitUntil: "networkidle" });
     await page
@@ -115,6 +136,44 @@ try {
         .evaluate((el) => el === document.activeElement),
     );
   });
+  await check(
+    "Corrected errors clear and description guidance stays available",
+    async () => {
+      await page.locator("#name").fill("Local QA Person");
+      assert.equal(
+        await page.locator("#name").getAttribute("aria-invalid"),
+        null,
+      );
+      const description = page.locator("#description");
+      await description.fill("Short text");
+      assert.equal(await description.getAttribute("aria-invalid"), "true");
+      const invalidReferences = (
+        await description.getAttribute("aria-describedby")
+      ).split(" ");
+      for (const id of [
+        "description-hint",
+        "description-count",
+        "description-error",
+      ]) {
+        assert.ok(invalidReferences.includes(id));
+        assert.equal(await page.locator(`#${id}`).count(), 1);
+      }
+      assert.equal(
+        await page.locator("#description-count").textContent(),
+        "10 / 5,000 characters",
+      );
+      await description.fill(
+        "A clear project description with enough detail to start a useful conversation.",
+      );
+      assert.equal(await description.getAttribute("aria-invalid"), null);
+      assert.equal(await page.locator("#description-error").count(), 0);
+      assert.ok(
+        (await description.getAttribute("aria-describedby")).includes(
+          "description-hint",
+        ),
+      );
+    },
+  );
   await check("Local brief download clearly remains unsent", async () => {
     await fillBrief(page);
     const downloadPromise = page.waitForEvent("download");
@@ -151,6 +210,13 @@ try {
     async () => {
       await page.goto(`${base}/work`, { waitUntil: "networkidle" });
       assert.equal(await page.locator(".project-card").count(), 3);
+      for (const card of await page.locator(".project-card").all()) {
+        assert.equal(
+          await card.getByRole("link").count(),
+          1,
+          "One keyboard stop opens each project",
+        );
+      }
       for (const [category, project] of [
         ["Developer tools", "RepoTeam"],
         ["Digital entertainment", "UzzUTV"],

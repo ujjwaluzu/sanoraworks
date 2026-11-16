@@ -22,6 +22,7 @@
   --ink: #20282b;
   --muted: #505f63;
   --link: #0000bb;
+  --reading-width: 68ch;
   --bevel: inset 1px 1px #fff, inset -1px -1px #737c7c;
 }
 * {
@@ -37,7 +38,7 @@ body {
   background: var(--silver);
   color: var(--ink);
   font:
-    15px/1.65 Verdana,
+    16px/1.75 Verdana,
     Tahoma,
     Arial,
     sans-serif;
@@ -67,7 +68,8 @@ p {
 a {
   color: var(--link);
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
 }
 a:visited {
   color: #49358b;
@@ -105,6 +107,7 @@ img {
 :focus-visible {
   outline: 3px solid #b84c00;
   outline-offset: 3px;
+  box-shadow: 0 0 0 3px #fff;
 }
 [id] {
   scroll-margin-top: 18px;
@@ -191,7 +194,7 @@ img {
   margin: -1px 0 0 84px;
   color: #3b5555;
   font:
-    13px/1.4 "Courier New",
+    14px/1.5 "Courier New",
     monospace;
 }
 .masthead-stamp {
@@ -200,7 +203,7 @@ img {
   gap: 12px;
   color: #3c5858;
   font:
-    10px/1.7 "Courier New",
+    12px/1.7 "Courier New",
     monospace;
   letter-spacing: 0.3px;
 }
@@ -218,7 +221,7 @@ img {
   align-items: center;
   justify-content: center;
   gap: 9px;
-  min-height: 44px;
+  min-height: 48px;
   padding: 7px 23px;
   border: 1px solid #626e6e;
   box-shadow: var(--bevel);
@@ -226,7 +229,7 @@ img {
   background: #deded8;
   text-decoration: none;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 16px;
 }
 .primary-nav > a:hover {
   background: #f4f4ed;
@@ -241,20 +244,20 @@ img {
 }
 .nav-index {
   font:
-    10px "Courier New",
+    12px "Courier New",
     monospace;
   opacity: 0.8;
 }
 .nav-note {
   margin: auto 8px auto auto;
-  font-size: 10px;
+  font-size: 12px;
   color: #364c4c;
 }
 .site-columns {
   display: grid;
-  grid-template-columns: 220px minmax(0, 1fr);
-  gap: 12px;
-  padding: 12px 0;
+  grid-template-columns: 248px minmax(0, 1fr);
+  gap: 16px;
+  padding: 16px 0;
   align-items: start;
 }
 .site-content {
@@ -271,14 +274,14 @@ img {
   min-width: 0;
 }
 .sidebar-box {
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   border: 1px solid #7b8989;
   background: #f5f5ed;
 }
 .sidebar-box h2 {
-  font-size: 14px;
+  font-size: 17px;
   margin: 0;
-  padding: 8px 11px;
+  padding: 10px 13px;
   background: #006666;
   color: white;
   border-bottom: 1px solid #004848;
@@ -289,7 +292,7 @@ img {
 .sidebar-links {
   list-style: none;
   margin: 0;
-  padding: 4px 9px;
+  padding: 4px 11px;
 }
 .sidebar-links li + li {
   border-top: 1px dotted #a6b1ab;
@@ -298,22 +301,26 @@ img {
   display: flex;
   align-items: center;
   gap: 8px;
-  min-height: 44px;
-  padding: 8px 3px;
-  font-size: 12px;
+  min-height: 48px;
+  padding: 10px 3px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.sidebar-links a:hover {
+  background: #e6efea;
 }
 .sidebar-links a > span:first-child {
   color: #496464;
 }
 .sidebar-links small {
   display: block;
-  font-size: 10px;
+  font-size: 13px;
   color: #526465;
   margin-top: 2px;
   text-decoration: none;
 }
 .sidebar-footnote {
-  font-size: 11px;
+  font-size: 13px;
   color: #4f6262;
   border-top: 1px solid #bec7bd;
   margin: 0;
@@ -325,30 +332,30 @@ img {
   min-height: 44px;
   padding: 10px 12px;
   border-top: 1px solid #bec7bd;
-  font-size: 11px;
+  font-size: 14px;
 }
 .about-workshop > p {
-  font-size: 12px;
+  font-size: 14px;
   padding: 12px 12px 0;
 }
 .about-workshop > a {
   display: block;
   min-height: 44px;
-  padding: 0 12px 12px;
-  font-size: 11px;
+  padding: 5px 12px 12px;
+  font-size: 14px;
 }
 .sidebar-note {
   background: #fff6c7;
   border: 1px solid #8e885e;
   padding: 12px;
-  font-size: 12px;
+  font-size: 14px;
   box-shadow: inset 1px 1px #fff;
 }
 .sidebar-note strong {
   display: block;
   color: #514c20;
   font-family: Arial, sans-serif;
-  font-size: 15px;
+  font-size: 17px;
 }
 .sidebar-note p {
   margin: 6px 0;
@@ -363,12 +370,12 @@ img {
   margin: 0 12px;
   padding: 10px 0;
   min-height: 44px;
-  font-size: 12px;
+  font-size: 14px;
 }
 .sidebar-colophon {
   margin: 15px 5px 0;
   color: #344d4d;
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.8;
   text-align: center;
 }
@@ -378,8 +385,8 @@ img {
   margin-inline: auto;
 }
 .section {
-  padding: 20px;
-  margin-bottom: 12px;
+  padding: 24px;
+  margin-bottom: 20px;
   background: white;
   border: 1px solid #849191;
 }
@@ -390,7 +397,7 @@ img {
   margin: 0 0 10px;
   color: #3d6060;
   font:
-    11px/1.6 "Courier New",
+    13px/1.6 "Courier New",
     monospace;
   text-transform: uppercase;
   letter-spacing: 0.4px;
@@ -415,7 +422,7 @@ img {
   gap: 18px;
 }
 .button {
-  min-height: 44px;
+  min-height: 48px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -425,7 +432,7 @@ img {
   background: #d6d6cf;
   box-shadow: var(--bevel);
   color: #00334d;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: bold;
   line-height: 1.5;
   text-decoration: none;
@@ -481,8 +488,8 @@ img {
   gap: 10px;
 }
 .web-badge {
-  width: 132px;
-  height: 46px;
+  width: 156px;
+  height: 54px;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -508,13 +515,13 @@ img {
 .web-badge small {
   display: block;
   font:
-    8px/1.2 "Courier New",
+    10px/1.2 "Courier New",
     monospace;
   letter-spacing: 0.5px;
 }
 .web-badge strong {
   display: block;
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.3;
 }
 .badge-navy {
@@ -528,7 +535,7 @@ img {
 .footer-motto {
   margin: 10px 0 13px;
   font:
-    11px/1.6 "Courier New",
+    13px/1.6 "Courier New",
     monospace;
   color: #445b5b;
 }
@@ -540,7 +547,7 @@ img {
   gap: 5px 15px;
   padding-top: 7px;
   border-top: 1px solid #a1adaa;
-  font-size: 10px;
+  font-size: 13px;
 }
 .footer-bottom p {
   margin: 0;
@@ -609,13 +616,11 @@ img {
   .section-topline {
     flex-direction: column;
   }
-  .service-card h3 a,
-  .project-card h3 a {
+  .service-card h3 a {
     display: inline-flex;
     min-height: 44px;
     align-items: center;
   }
-  .project-details,
   .directory-bottom a {
     display: inline-flex;
     min-height: 44px;
@@ -623,9 +628,6 @@ img {
   }
 }
 @media (max-width: 479px) {
-  body {
-    font-size: 15px;
-  }
   .masthead {
     padding: 13px 10px;
     gap: 8px;
@@ -644,18 +646,26 @@ img {
   }
   .masthead-tagline {
     margin-left: 59px;
-    font-size: 10px;
+    font-size: 13px;
   }
   .masthead-stamp {
     display: none;
   }
   .primary-nav > a {
-    font-size: 12px;
+    font-size: 15px;
     gap: 5px;
     padding-inline: 10px;
+    grid-column: span 2;
+  }
+  .primary-nav {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+  .primary-nav > a:nth-child(n + 4) {
+    grid-column: span 3;
   }
   .nav-index {
-    font-size: 9px;
+    display: none;
   }
   .site-sidebar {
     grid-template-columns: minmax(0, 1fr);
