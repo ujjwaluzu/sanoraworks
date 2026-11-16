@@ -193,6 +193,7 @@ img {
 .masthead-tagline {
   margin: -1px 0 0 84px;
   color: #3b5555;
+  text-wrap: balance;
   font:
     14px/1.5 "Courier New",
     monospace;
@@ -357,13 +358,6 @@ img {
   min-height: 44px;
   font-size: 14px;
 }
-.sidebar-colophon {
-  margin: 15px 5px 0;
-  color: #344d4d;
-  font-size: 12px;
-  line-height: 1.8;
-  text-align: center;
-}
 .container {
   width: 100%;
   min-width: 0;
@@ -515,9 +509,6 @@ img {
   }
   .sidebar-box {
     margin: 0;
-  }
-  .sidebar-colophon {
-    grid-column: 1/-1;
   }
   .masthead {
     min-height: 110px;

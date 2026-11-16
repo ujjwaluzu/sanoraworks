@@ -28,10 +28,8 @@ export default function AboutPage() {
         <div className="container">
           <div className="about-intro">
             <div>
-              <p className="eyebrow">Engineering the next.</p>
-              <h2>
-                Technology that moves things forward.
-              </h2>
+              <p className="eyebrow">{site.tagline}</p>
+              <h2>Technology that moves things forward.</h2>
               <p>
                 SANORA WORKS develops digital solutions, software products, and
                 intelligent systems. Our approach brings research, architecture,
@@ -52,9 +50,7 @@ export default function AboutPage() {
           <div className="mission-grid">
             <article>
               <p className="eyebrow">01 / Our mission</p>
-              <h2>
-                Turn meaningful challenges into useful technology.
-              </h2>
+              <h2>Turn meaningful challenges into useful technology.</h2>
               <p>
                 To design and engineer practical digital solutions that help
                 people and businesses move forward, with clear thinking,
@@ -63,9 +59,7 @@ export default function AboutPage() {
             </article>
             <article>
               <p className="eyebrow">02 / Our vision</p>
-              <h2>
-                Build for what’s next. Keep purpose at the centre.
-              </h2>
+              <h2>Build for what’s next. Keep purpose at the centre.</h2>
               <p>
                 To grow an independent engineering company recognised for
                 thoughtful products, intelligent systems, and a lasting

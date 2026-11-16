@@ -78,11 +78,6 @@ export function Sidebar() {
           )}
         </section>
       )}
-      <p className="sidebar-colophon mono">
-        THOUGHTFULLY BUILT.
-        <br />
-        ALWAYS A WORK IN PROGRESS.
-      </p>
     </aside>
   );
 }

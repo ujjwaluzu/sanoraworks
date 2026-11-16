@@ -7,14 +7,15 @@ import { AboutPreview } from "@/components/home/AboutPreview";
 import { BrandPhilosophy } from "@/components/home/BrandPhilosophy";
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { pageMetadata } from "@/lib/metadata";
+import { site } from "@/data/site";
 
 export const metadata = {
   ...pageMetadata(
-    "Engineering the next.",
+    site.tagline,
     "Sanora Works engineers ideas into meaningful digital solutions. Explore our software development, product engineering, AI automation, and cloud capabilities.",
     "/",
   ),
-  title: { absolute: "Sanora Works — Engineering the next." },
+  title: { absolute: `Sanora Works — ${site.tagline}` },
 };
 
 export default function Home() {

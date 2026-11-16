@@ -13,7 +13,7 @@ const email = process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim();
 export const site = {
   name: "SANORA WORKS",
   url: "https://sanoraworks.com",
-  tagline: "Engineering the next.",
+  tagline: "Practical technology. Built for your business.",
   email: email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? email : null,
   linkedin: httpsUrl(process.env.NEXT_PUBLIC_LINKEDIN_URL),
   github: httpsUrl(process.env.NEXT_PUBLIC_GITHUB_URL),

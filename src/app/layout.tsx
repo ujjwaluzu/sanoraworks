@@ -8,13 +8,13 @@ import { pageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = {
   ...pageMetadata(
-    "Engineering the next.",
+    site.tagline,
     "Sanora Works is an independent technology and engineering company building digital products, software solutions, intelligent systems, and scalable infrastructure.",
     "/",
   ),
   metadataBase: new URL(site.url),
   title: {
-    default: "Sanora Works — Engineering the next.",
+    default: `Sanora Works — ${site.tagline}`,
     template: "%s | Sanora Works",
   },
   applicationName: "Sanora Works",

@@ -27,8 +27,7 @@ export type EnquiryErrors = Partial<Record<keyof Enquiry, string>>;
 export function validateEnquiry(
   input: unknown,
 ):
-  | { success: true; data: Enquiry }
-  | { success: false; errors: EnquiryErrors } {
+  { success: true; data: Enquiry } | { success: false; errors: EnquiryErrors } {
   const source =
     input && typeof input === "object" && !Array.isArray(input)
       ? (input as Record<string, unknown>)
@@ -78,7 +77,7 @@ export function formatProjectBrief(data: Enquiry) {
     "PROJECT DESCRIPTION",
     data.description,
     "",
-    "Engineering the next.",
+    "Practical technology. Built for your business.",
     "https://sanoraworks.com",
   ].join("\n");
 }

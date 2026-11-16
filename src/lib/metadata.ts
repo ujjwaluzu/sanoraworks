@@ -22,7 +22,7 @@ export function pageMetadata(
           url: "/opengraph-image",
           width: 1200,
           height: 630,
-          alt: "Sanora Works — Engineering the next.",
+          alt: `Sanora Works — ${site.tagline}`,
         },
       ],
     },

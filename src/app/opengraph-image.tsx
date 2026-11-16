@@ -1,9 +1,9 @@
 ﻿import { ImageResponse } from "next/og";
 import { BrandMark } from "@/components/ui/Logo";
 import { brandLettering } from "@/lib/brand-paths";
+import { site } from "@/data/site";
 
-export const alt =
-  "SanoraWorks — Engineering the next. An independent technology and engineering workshop.";
+export const alt = `SanoraWorks — ${site.tagline} An independent technology and engineering workshop.`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -80,12 +80,13 @@ export default function OpenGraphImage() {
             style={{
               display: "flex",
               marginTop: 28,
-              fontSize: 52,
+              fontSize: 40,
+              lineHeight: 1.2,
               fontWeight: 700,
               letterSpacing: -1,
             }}
           >
-            Engineering the next.
+            {site.tagline}
           </div>
           <div
             style={{
