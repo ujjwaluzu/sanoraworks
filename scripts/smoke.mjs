@@ -16,6 +16,11 @@ const pages = [
 ];
 const documents = new Map();
 const titles = new Set();
+const socialUrls = [
+  "https://x.com/sanoraworks",
+  "https://www.instagram.com/sanoraworks/",
+  "https://www.youtube.com/@sanoraworks",
+];
 
 for (const path of pages) {
   const response = await fetch(new URL(path, base));
@@ -47,6 +52,16 @@ for (const path of pages) {
     `${path}: Twitter card`,
   );
   assert.match(html, /application\/ld\+json/, `${path}: structured data`);
+  const organization = JSON.parse(
+    html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1],
+  );
+  for (const url of socialUrls) {
+    assert.ok(organization.sameAs.includes(url), `${path}: social identity ${url}`);
+    assert.ok(
+      html.split(`href="${url}"`).length - 1 >= 2,
+      `${path}: social profile visible in shared sidebar and footer: ${url}`,
+    );
+  }
   assert.equal(response.headers.get("x-content-type-options"), "nosniff");
   const title = html.match(/<title>(.*?)<\/title>/s)?.[1];
   assert.ok(title && !titles.has(title), `${path}: unique page title`);

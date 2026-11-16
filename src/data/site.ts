@@ -17,8 +17,20 @@ export const site = {
   email: email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? email : null,
   linkedin: httpsUrl(process.env.NEXT_PUBLIC_LINKEDIN_URL),
   github: httpsUrl(process.env.NEXT_PUBLIC_GITHUB_URL),
+  x: "https://x.com/sanoraworks",
+  instagram: "https://www.instagram.com/sanoraworks/",
+  youtube: "https://www.youtube.com/@sanoraworks",
   founders: [] as { name: string; role: string; bio: string }[],
 };
+
+/** Shared by the page chrome, contact page, and Organization metadata. */
+export const socialProfiles = [
+  { label: "X", url: site.x },
+  { label: "Instagram", url: site.instagram },
+  { label: "YouTube", url: site.youtube },
+  ...(site.github ? [{ label: "GitHub", url: site.github }] : []),
+  ...(site.linkedin ? [{ label: "LinkedIn", url: site.linkedin }] : []),
+];
 
 export const navigation = [
   { label: "Home", href: "/" },

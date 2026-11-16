@@ -335,6 +335,23 @@ img {
   min-height: 44px;
   font-size: 14px;
 }
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 16px;
+}
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 44px;
+  font-size: 14px;
+}
+.sidebar-connect .social-links {
+  flex-direction: column;
+  gap: 0;
+  padding: 0 12px;
+}
 .container {
   width: 100%;
   min-width: 0;

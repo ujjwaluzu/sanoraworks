@@ -2,6 +2,7 @@ import Link from "next/link";
 import { services } from "@/data/services";
 import { projects } from "@/data/projects";
 import { site } from "@/data/site";
+import { SocialLinks } from "@/components/ui/SocialLinks";
 
 export function Sidebar() {
   return (
@@ -60,24 +61,13 @@ export function Sidebar() {
         <p>Have a problem to solve or an idea to explore?</p>
         <Link href="/contact">Tell us about your project →</Link>
       </div>
-      {(site.email || site.github || site.linkedin) && (
-        <section className="sidebar-box sidebar-connect">
-          <h2>Connect</h2>
-          {site.email && (
-            <a href={`mailto:${site.email}`}>Email the workshop</a>
-          )}
-          {site.github && (
-            <a href={site.github} target="_blank" rel="noopener noreferrer">
-              GitHub ↗
-            </a>
-          )}
-          {site.linkedin && (
-            <a href={site.linkedin} target="_blank" rel="noopener noreferrer">
-              LinkedIn ↗
-            </a>
-          )}
-        </section>
-      )}
+      <section className="sidebar-box sidebar-connect">
+        <h2>Connect</h2>
+        {site.email && (
+          <a href={`mailto:${site.email}`}>Email the workshop</a>
+        )}
+        <SocialLinks label="Workshop social media" />
+      </section>
     </aside>
   );
 }

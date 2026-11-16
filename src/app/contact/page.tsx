@@ -5,6 +5,7 @@ import { pageMetadata } from "@/lib/metadata";
 import { getContactEndpoint } from "@/lib/contact-server";
 import { PageHero } from "@/components/ui/PageHero";
 import { ContactForm } from "@/components/contact/ContactForm";
+import { SocialLinks } from "@/components/ui/SocialLinks";
 
 export const metadata = pageMetadata(
   "Start a Project",
@@ -58,6 +59,10 @@ export default async function ContactPage({
                   </span>
                 </>
               )}
+            </div>
+            <div className="contact-email-block">
+              <span className="eyebrow">Follow SanoraWorks</span>
+              <SocialLinks label="Contact social media" />
             </div>
             <div className="contact-next">
               <span className="eyebrow">A considered beginning</span>

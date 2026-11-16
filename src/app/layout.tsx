@@ -4,7 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Sidebar } from "@/components/layout/Sidebar";
-import { site } from "@/data/site";
+import { site, socialProfiles } from "@/data/site";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = {
@@ -39,9 +39,7 @@ const organization = {
   description:
     "An independent technology and engineering company building digital products, software solutions, intelligent systems, and scalable infrastructure.",
   ...(site.email ? { email: site.email } : {}),
-  ...([site.linkedin, site.github].some(Boolean)
-    ? { sameAs: [site.linkedin, site.github].filter(Boolean) }
-    : {}),
+  sameAs: socialProfiles.map((profile) => profile.url),
 };
 
 export default function RootLayout({

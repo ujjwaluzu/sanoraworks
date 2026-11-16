@@ -55,6 +55,8 @@ Copy `.env.example` to `.env.local`; never commit private environment files.
 
 Public environment values are read at build time. Rebuild after changing them. The private enquiry endpoint is read on the server. Set production environment variables in your hosting provider; `.env.local` is only for local development.
 
+X, Instagram, and YouTube use the `sanoraworks` handle configured in `src/data/site.ts` (YouTube uses `/@sanoraworks`). The shared social profile list supplies the sidebar, footer, contact page, and Organization `sameAs` metadata. Optional GitHub and LinkedIn profiles join that same list when configured.
+
 - `src/data/site.ts`: company details, founders, navigation, principles, and process.
 - `src/data/services.ts`: services, capabilities, deliverables, and FAQs.
 - `src/data/projects.ts`: project descriptions, verified technology stacks, and live/repository URLs.
