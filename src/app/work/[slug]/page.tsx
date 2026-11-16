@@ -133,7 +133,6 @@ export default async function ProjectPage({
               <ProjectCard
                 key={item.slug}
                 project={item}
-                index={projects.indexOf(item)}
               />
             ))}
           </div>

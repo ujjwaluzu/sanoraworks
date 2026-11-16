@@ -41,7 +41,6 @@ export function ProjectGallery() {
           <ProjectCard
             key={project.slug}
             project={project}
-            index={projects.indexOf(project)}
             featured={visible.length === 1 || project.slug === projects[0].slug}
           />
         ))}

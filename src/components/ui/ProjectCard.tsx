@@ -3,11 +3,9 @@ import type { Project } from "@/data/projects";
 import { ProjectPreview } from "./ProjectPreview";
 export function ProjectCard({
   project,
-  index,
   featured = false,
 }: {
   project: Project;
-  index: number;
   featured?: boolean;
 }) {
   return (
@@ -23,9 +21,7 @@ export function ProjectCard({
         </div>
         <div className="project-card-info">
           <p className="project-meta mono">
-            <span>
-              0{index + 1} / {project.category}
-            </span>
+            <span>{project.category}</span>
             <span>Independent project</span>
           </p>
           <h3 id={`project-title-${project.slug}`}>{project.name}</h3>

@@ -13,8 +13,8 @@ export function SelectedWork() {
         Ideas we’re exploring, and the products taking shape.
       </p>
       <div className="selected-work-grid">
-        {projects.map((project, index) => (
-          <ProjectCard key={project.slug} project={project} index={index} />
+        {projects.map((project) => (
+          <ProjectCard key={project.slug} project={project} />
         ))}
       </div>
       <p className="directory-bottom">
