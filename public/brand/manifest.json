@@ -1,0 +1,177 @@
+[
+  {
+    "file": "colors.json"
+  },
+  {
+    "file": "sanoraworks-monogram.svg",
+    "variant": "color",
+    "outlined": true
+  },
+  {
+    "file": "sanoraworks-monogram-2048.png",
+    "width": 2048,
+    "height": 2048,
+    "transparent": true
+  },
+  {
+    "file": "sanoraworks-monogram-black.svg",
+    "variant": "black",
+    "outlined": true
+  },
+  {
+    "file": "sanoraworks-monogram-black-2048.png",
+    "width": 2048,
+    "height": 2048,
+    "transparent": true
+  },
+  {
+    "file": "sanoraworks-monogram-white.svg",
+    "variant": "white",
+    "outlined": true
+  },
+  {
+    "file": "sanoraworks-monogram-white-2048.png",
+    "width": 2048,
+    "height": 2048,
+    "transparent": true
+  },
+  {
+    "file": "sanoraworks-horizontal.svg",
+    "variant": "color",
+    "outlined": true
+  },
+  {
+    "file": "sanoraworks-horizontal-2048.png",
+    "width": 2048,
+    "height": 464,
+    "transparent": true
+  },
+  {
+    "file": "sanoraworks-horizontal-black.svg",
+    "variant": "black",
+    "outlined": true
+  },
+  {
+    "file": "sanoraworks-horizontal-black-2048.png",
+    "width": 2048,
+    "height": 464,
+    "transparent": true
+  },
+  {
+    "file": "sanoraworks-horizontal-white.svg",
+    "variant": "white",
+    "outlined": true
+  },
+  {
+    "file": "sanoraworks-horizontal-white-2048.png",
+    "width": 2048,
+    "height": 464,
+    "transparent": true
+  },
+  {
+    "file": "sanoraworks-stacked.svg",
+    "variant": "color",
+    "outlined": true
+  },
+  {
+    "file": "sanoraworks-stacked-black.svg",
+    "variant": "black",
+    "outlined": true
+  },
+  {
+    "file": "sanoraworks-stacked-white.svg",
+    "variant": "white",
+    "outlined": true
+  },
+  {
+    "file": "sanoraworks-emblem.svg",
+    "alias": true
+  },
+  {
+    "file": "sanoraworks-emblem-light.svg",
+    "alias": true
+  },
+  {
+    "file": "sanoraworks-emblem-mono.svg",
+    "alias": true
+  },
+  {
+    "file": "sanoraworks-wordmark.svg",
+    "alias": true
+  },
+  {
+    "file": "sanoraworks-wordmark-light.svg",
+    "alias": true
+  },
+  {
+    "file": "sanoraworks-wordmark-mono.svg",
+    "alias": true
+  },
+  {
+    "file": "sanoraworks-avatar-white-on-cobalt.png",
+    "width": 1024,
+    "height": 1024,
+    "transparent": false
+  },
+  {
+    "file": "sanoraworks-avatar-cobalt-on-white.png",
+    "width": 1024,
+    "height": 1024,
+    "transparent": false
+  },
+  {
+    "file": "sanoraworks-social-cover.png",
+    "width": 1500,
+    "height": 500,
+    "transparent": false
+  },
+  {
+    "file": "sanoraworks-share.png",
+    "width": 1200,
+    "height": 630,
+    "transparent": false
+  },
+  {
+    "file": "sanoraworks-apple-icon.png",
+    "width": 180,
+    "height": 180,
+    "transparent": false
+  },
+  {
+    "file": "sanoraworks-favicon.svg",
+    "outlined": true
+  },
+  {
+    "file": "sanoraworks-favicon-16.png",
+    "width": 16,
+    "height": 16,
+    "transparent": false
+  },
+  {
+    "file": "sanoraworks-favicon-32.png",
+    "width": 32,
+    "height": 32,
+    "transparent": false
+  },
+  {
+    "file": "sanoraworks-favicon-48.png",
+    "width": 48,
+    "height": 48,
+    "transparent": false
+  },
+  {
+    "file": "sanoraworks-favicon-128.png",
+    "width": 128,
+    "height": 128,
+    "transparent": false
+  },
+  {
+    "file": "sanoraworks-preview.svg"
+  },
+  {
+    "file": "sanoraworks-preview.png",
+    "width": 1600,
+    "height": 2120,
+    "transparent": false
+  }
+]

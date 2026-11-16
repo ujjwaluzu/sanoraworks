@@ -1,11 +1,11 @@
-﻿.selected-work-grid {
+.selected-work-grid {
   display: flex;
   flex-direction: column;
   gap: 0;
-  border: 1px solid #a2afaf;
+  border: 1px solid var(--line);
 }
 .project-card {
-  background: #fff;
+  background: var(--white);
   min-width: 0;
 }
 .project-card-link {
@@ -21,17 +21,17 @@
   color: var(--ink);
 }
 .project-card-link:visited h3 {
-  color: #49358b;
+  color: var(--cobalt-hover);
 }
 .project-card-link:hover {
-  background: #eaf3f1;
+  background: var(--cobalt-soft);
   color: var(--ink);
 }
 .project-card + .project-card {
-  border-top: 1px dotted #91a3a3;
+  border-top: 1px dotted var(--line-strong);
 }
 .project-card:nth-child(even) {
-  background: #f5f7f6;
+  background: var(--surface);
 }
 .project-visual-link {
   display: block;
@@ -40,7 +40,7 @@
   min-width: 0;
 }
 .project-card-link:hover .project-preview {
-  border-color: #006666;
+  border-color: var(--cobalt);
 }
 .project-card-info {
   min-width: 0;
@@ -52,10 +52,10 @@
   font-size: 13px;
   line-height: 1.6;
   margin: 0 0 6px;
-  color: #53696c;
+  color: var(--muted);
 }
 .project-meta > span:last-child {
-  color: #486653;
+  color: var(--muted);
 }
 .project-card h3 {
   font:
@@ -69,7 +69,7 @@
 .project-card-info > p:not(.project-meta) {
   font-size: 16px;
   line-height: 1.75;
-  color: #3c494b;
+  color: var(--muted);
   margin: 0 0 9px;
   max-width: var(--reading-width);
 }
@@ -93,22 +93,22 @@
     13px "Courier New",
     monospace;
   padding: 3px 5px;
-  border: 1px solid #a9b5b5;
-  background: #edf2f1;
-  color: #365154;
+  border: 1px solid var(--line);
+  background: var(--silver);
+  color: var(--muted);
 }
 .project-preview {
   position: relative;
   overflow: hidden;
   padding: 13px 13px 26px;
-  border: 1px solid #9dacaf;
-  background: #d8e8e7;
+  border: 1px solid var(--line);
+  background: var(--silver);
   min-width: 0;
 }
 .concept-window {
-  border: 1px solid #475d64;
-  box-shadow: 2px 2px 0 #45626745;
-  background: #fff;
+  border: 1px solid var(--muted);
+  box-shadow: 2px 2px 0 var(--brand-shadow);
+  background: var(--white);
 }
 .concept-title {
   font:
@@ -117,24 +117,24 @@
   display: flex;
   justify-content: space-between;
   gap: 5px;
-  background: #006666;
-  color: white;
+  background: var(--cobalt);
+  color: var(--white);
   padding: 4px 5px;
 }
 .concept-title > span:last-child {
   font:
     8px "Courier New",
     monospace;
-  color: #dcf3ed;
+  color: var(--cobalt-soft);
 }
 .concept-toolbar {
   font:
     7px "Courier New",
     monospace;
-  background: #d6d6d0;
-  color: #2c3f44;
+  background: var(--silver);
+  color: var(--muted);
   padding: 3px 5px;
-  border-bottom: 1px solid #8c9899;
+  border-bottom: 1px solid var(--line-strong);
   display: flex;
   gap: 11px;
 }
@@ -143,7 +143,7 @@
   bottom: 7px;
   left: 13px;
   font-size: 7px;
-  color: #486369;
+  color: var(--muted);
   letter-spacing: 0.05em;
 }
 .concept-entertainment {
@@ -151,8 +151,8 @@
   height: 105px;
   overflow: hidden;
   padding: 25px 13px 0;
-  background: #16284e;
-  color: #fff;
+  background: var(--ink);
+  color: var(--white);
 }
 .concept-entertainment > strong {
   font:
@@ -162,7 +162,7 @@
   z-index: 2;
 }
 .concept-entertainment > strong > span {
-  color: #ffdf6e;
+  color: var(--line);
   font-size: 12px;
 }
 .concept-planet {
@@ -170,17 +170,17 @@
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  background: #e7ac68;
+  background: var(--cobalt-line);
   right: 17px;
   top: 12px;
-  box-shadow: inset -18px -7px #aa6976;
+  box-shadow: inset -18px -7px var(--cobalt);
 }
 .concept-planet::after {
   content: "";
   position: absolute;
   width: 105px;
   height: 18px;
-  border: 2px solid #dedba7;
+  border: 2px solid var(--silver);
   border-radius: 50%;
   left: -20px;
   top: 24px;
@@ -189,7 +189,7 @@
 .concept-star {
   position: absolute;
   font-size: 12px;
-  color: #fff4ac;
+  color: var(--white);
 }
 .star-one {
   top: 8px;
@@ -214,32 +214,32 @@
   right: 0;
   gap: 4px;
   padding: 6px;
-  background: #0c1934;
+  background: var(--ink);
 }
 .concept-filmstrip i {
   display: block;
   height: 13px;
   flex: 1;
-  background: #537086;
-  border: 1px solid #7496a0;
+  background: var(--line-strong);
+  border: 1px solid var(--line-strong);
 }
 .concept-filmstrip i:nth-child(2) {
-  background: #987963;
+  background: var(--line-strong);
 }
 .concept-filmstrip i:nth-child(3) {
-  background: #67785f;
+  background: var(--line-strong);
 }
 .preview-repo {
-  background: #dde4ef;
+  background: var(--silver);
 }
 .preview-repo .concept-title {
-  background: #304e70;
+  background: var(--cobalt);
 }
 .concept-repo {
   display: flex;
   height: 105px;
-  background: #f5f7f8;
-  color: #304658;
+  background: var(--surface);
+  color: var(--muted);
 }
 .concept-repo-side {
   width: 32px;
@@ -247,12 +247,12 @@
   font:
     700 14px "Courier New",
     monospace;
-  background: #dbe3e8;
-  border-right: 1px solid #b5c3cb;
+  background: var(--silver);
+  border-right: 1px solid var(--line);
 }
 .concept-repo-side i {
   display: block;
-  background: #849eac;
+  background: var(--line-strong);
   height: 3px;
   margin-top: 10px;
 }
@@ -273,33 +273,33 @@
     monospace;
   display: block;
   padding: 4px 0;
-  border-top: 1px solid #cad3da;
+  border-top: 1px solid var(--line);
   white-space: nowrap;
 }
 .concept-code b {
   font-size: 7px;
-  color: #006666;
+  color: var(--cobalt);
   margin-right: 4px;
 }
 .concept-code small {
   font:
     6px "Courier New",
     monospace;
-  color: #506b7c;
+  color: var(--muted);
   margin-top: 3px;
   display: block;
 }
 .preview-crew {
-  background: #e9e7d2;
+  background: var(--silver);
 }
 .preview-crew .concept-title {
-  background: #566c44;
+  background: var(--cobalt);
 }
 .concept-crew {
   height: 105px;
-  background: #f4f1dd;
+  background: var(--silver);
   padding: 9px 10px;
-  color: #435638;
+  color: var(--muted);
 }
 .concept-crew > strong {
   font:
@@ -314,9 +314,9 @@
   justify-content: center;
 }
 .concept-notes > div {
-  background: #e1e7ac;
-  border: 1px solid #bec88c;
-  box-shadow: 2px 2px 0 #a6aa7b50;
+  background: var(--silver);
+  border: 1px solid var(--line);
+  box-shadow: 2px 2px 0 var(--brand-shadow);
   transform: rotate(-4deg);
   width: 63px;
   height: 60px;
@@ -324,8 +324,8 @@
 }
 .concept-notes > div + div {
   transform: rotate(5deg);
-  background: #eed59f;
-  border-color: #cdb880;
+  background: var(--cobalt-line);
+  border-color: var(--line);
 }
 .concept-notes span {
   font:
@@ -344,7 +344,7 @@
   display: block;
   height: 3px;
   width: 70%;
-  background: #95a46a;
+  background: var(--line-strong);
   margin-top: 8px;
 }
 .preview-large {
@@ -388,7 +388,7 @@
   height: 150px;
   right: 40px;
   top: 30px;
-  box-shadow: inset -40px -20px #aa6976;
+  box-shadow: inset -40px -20px var(--cobalt);
 }
 .preview-large .concept-planet::after {
   width: 230px;
@@ -642,7 +642,7 @@
     height: 85px;
     top: 25px;
     right: 22px;
-    box-shadow: inset -22px -12px #aa6976;
+    box-shadow: inset -22px -12px var(--cobalt);
   }
   .preview-large .concept-planet::after {
     width: 135px;

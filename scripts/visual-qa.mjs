@@ -33,7 +33,7 @@ const routes = [
 ];
 const report = [];
 try {
-  for (const width of [375, 768, 1440]) {
+  for (const width of [375, 768, 1440, 1920]) {
     await page.setViewportSize({ width, height: 1000 });
     for (const route of routes) {
       const response = await page.goto(base + route, {

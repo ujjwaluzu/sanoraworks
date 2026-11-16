@@ -1,29 +1,25 @@
 @import "tailwindcss";
+@import "./brand-tokens.css";
 @import "./work.css";
 @import "./home.css";
 @import "./pages.css";
 @import "./contact.css";
 
 @theme inline {
-  --color-background: #c0c0c0;
-  --color-surface: #ffffff;
-  --color-foreground: #20282b;
-  --color-muted: #505f63;
-  --color-line: #8b9696;
+  --color-background: var(--silver);
+  --color-surface: var(--white);
+  --color-foreground: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line-strong);
   --font-sans: Verdana, Tahoma, Arial, sans-serif;
 }
 
 :root {
   color-scheme: light;
-  --teal: #006666;
-  --navy: #00334d;
-  --silver: #c0c0c0;
-  --paper: #ffffff;
-  --ink: #20282b;
-  --muted: #505f63;
-  --link: #0000bb;
+  --paper: var(--white);
+  --link: var(--cobalt);
   --reading-width: 68ch;
-  --bevel: inset 1px 1px #fff, inset -1px -1px #737c7c;
+  --bevel: inset 1px 1px var(--white), inset -1px -1px var(--line-strong);
 }
 * {
   box-sizing: border-box;
@@ -50,7 +46,7 @@ h4 {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 700;
   line-height: 1.25;
-  color: var(--navy);
+  color: var(--ink);
   text-wrap: balance;
 }
 h1 {
@@ -72,10 +68,10 @@ a {
   text-decoration-thickness: 1px;
 }
 a:visited {
-  color: #49358b;
+  color: var(--cobalt-hover);
 }
 a:hover {
-  color: #006666;
+  color: var(--cobalt-hover);
 }
 a,
 button {
@@ -105,16 +101,16 @@ img {
   height: auto;
 }
 :focus-visible {
-  outline: 3px solid #b84c00;
+  outline: 3px solid var(--ink);
   outline-offset: 3px;
-  box-shadow: 0 0 0 3px #fff;
+  box-shadow: 0 0 0 3px var(--white);
 }
 [id] {
   scroll-margin-top: 18px;
 }
 ::selection {
-  background: #fff2a0;
-  color: #00334d;
+  background: var(--cobalt-soft);
+  color: var(--ink);
 }
 .mono {
   font-family: "Courier New", Courier, monospace;
@@ -136,8 +132,8 @@ img {
   left: 8px;
   z-index: 100;
   padding: 10px 16px;
-  background: #fff6ba;
-  color: #00334d;
+  background: var(--white);
+  color: var(--ink);
   transform: translateY(-200%);
 }
 .skip-link:focus {
@@ -146,16 +142,16 @@ img {
 .site-frame {
   width: 100%;
   min-height: 100dvh;
-  border: 1px solid #263f3f;
-  background: #c0c0c0;
+  border: 1px solid var(--ink);
+  background: var(--silver);
   padding: 7px;
   box-shadow:
-    inset 1px 1px #fff,
-    inset -1px -1px #6a7777;
+    inset 1px 1px var(--white),
+    inset -1px -1px var(--line-strong);
 }
 .site-header {
-  border: 1px solid #7d8989;
-  background: #e5e8e5;
+  border: 1px solid var(--line-strong);
+  background: var(--silver);
 }
 .masthead {
   min-height: 126px;
@@ -164,35 +160,37 @@ img {
   justify-content: space-between;
   gap: 20px;
   padding: 20px 25px;
-  background: linear-gradient(90deg, #f7f8f2, #e6edeb);
+  background: linear-gradient(90deg, var(--surface), var(--silver));
 }
 .brand {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  color: #00334d;
+  color: var(--ink);
   text-decoration: none;
 }
 .brand:visited {
-  color: #00334d;
+  color: var(--ink);
 }
 .brand-mark {
   width: 74px;
+  height: 65px;
+}
+.brand-lettering {
+  width: 290px;
   height: 60px;
 }
-.brand > span {
-  font:
-    700 39px/1 Arial,
-    Helvetica,
-    sans-serif;
-  letter-spacing: -1.5px;
+.brand-light,
+.brand-light:visited {
+  color: var(--white);
 }
-.brand-light {
-  color: #006666;
+.brand-mono,
+.brand-mono:visited {
+  color: var(--ink);
 }
 .masthead-tagline {
   margin: -1px 0 0 84px;
-  color: #3b5555;
+  color: var(--muted);
   text-wrap: balance;
   font:
     14px/1.5 "Courier New",
@@ -204,8 +202,8 @@ img {
   flex-wrap: wrap;
   gap: 5px;
   padding: 7px;
-  border-top: 1px solid #8e9a9a;
-  background: #c0c0c0;
+  border-top: 1px solid var(--line-strong);
+  background: var(--silver);
 }
 .primary-nav > a {
   display: inline-flex;
@@ -214,24 +212,24 @@ img {
   gap: 9px;
   min-height: 48px;
   padding: 7px 23px;
-  border: 1px solid #626e6e;
+  border: 1px solid var(--line-strong);
   box-shadow: var(--bevel);
-  color: #162f38;
-  background: #deded8;
+  color: var(--ink);
+  background: var(--silver);
   text-decoration: none;
   font-weight: bold;
   font-size: 16px;
 }
 .primary-nav > a:hover {
-  background: #f4f4ed;
+  background: var(--surface);
 }
 .primary-nav > a[aria-current="page"] {
-  color: white;
-  background: #006666;
-  border-color: #003e3e;
+  color: var(--white);
+  background: var(--cobalt);
+  border-color: var(--cobalt-hover);
   box-shadow:
-    inset 1px 1px #003d3d,
-    inset -1px -1px #4a9292;
+    inset 1px 1px var(--cobalt-hover),
+    inset -1px -1px var(--cobalt-line);
 }
 .nav-index {
   font:
@@ -261,16 +259,16 @@ img {
 }
 .sidebar-box {
   margin-bottom: 16px;
-  border: 1px solid #7b8989;
-  background: #f5f5ed;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
 }
 .sidebar-box h2 {
   font-size: 17px;
   margin: 0;
   padding: 10px 13px;
-  background: #006666;
-  color: white;
-  border-bottom: 1px solid #004848;
+  background: var(--cobalt);
+  color: var(--white);
+  border-bottom: 1px solid var(--ink);
 }
 .sidebar-box h2 > span {
   margin-right: 4px;
@@ -281,7 +279,7 @@ img {
   padding: 4px 11px;
 }
 .sidebar-links li + li {
-  border-top: 1px dotted #a6b1ab;
+  border-top: 1px dotted var(--line);
 }
 .sidebar-links a {
   display: flex;
@@ -293,22 +291,22 @@ img {
   line-height: 1.6;
 }
 .sidebar-links a:hover {
-  background: #e6efea;
+  background: var(--cobalt-soft);
 }
 .sidebar-links a > span:first-child {
-  color: #496464;
+  color: var(--muted);
 }
 .sidebar-links small {
   display: block;
   font-size: 13px;
-  color: #526465;
+  color: var(--muted);
   margin-top: 2px;
   text-decoration: none;
 }
 .sidebar-footnote {
   font-size: 13px;
-  color: #4f6262;
-  border-top: 1px solid #bec7bd;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
   margin: 0;
   padding: 9px 12px;
   line-height: 1.6;
@@ -317,7 +315,7 @@ img {
   display: block;
   min-height: 44px;
   padding: 10px 12px;
-  border-top: 1px solid #bec7bd;
+  border-top: 1px solid var(--line);
   font-size: 14px;
 }
 .about-workshop > p {
@@ -331,15 +329,15 @@ img {
   font-size: 14px;
 }
 .sidebar-note {
-  background: #fff6c7;
-  border: 1px solid #8e885e;
+  background: var(--cobalt-soft);
+  border: 1px solid var(--line-strong);
   padding: 12px;
   font-size: 14px;
-  box-shadow: inset 1px 1px #fff;
+  box-shadow: inset 1px 1px var(--white);
 }
 .sidebar-note strong {
   display: block;
-  color: #514c20;
+  color: var(--muted);
   font-family: Arial, sans-serif;
   font-size: 17px;
 }
@@ -366,15 +364,15 @@ img {
 .section {
   padding: 24px;
   margin-bottom: 20px;
-  background: white;
-  border: 1px solid #849191;
+  background: var(--white);
+  border: 1px solid var(--line-strong);
 }
 .eyebrow {
   display: flex;
   align-items: center;
   gap: 8px;
   margin: 0 0 10px;
-  color: #3d6060;
+  color: var(--muted);
   font:
     13px/1.6 "Courier New",
     monospace;
@@ -382,7 +380,7 @@ img {
   letter-spacing: 0.4px;
 }
 .section-number {
-  color: #506363;
+  color: var(--muted);
 }
 .section-heading {
   margin-bottom: 18px;
@@ -391,7 +389,7 @@ img {
   margin: 0 0 10px;
 }
 .section-description {
-  color: #4a5b5e;
+  color: var(--muted);
   margin-bottom: 0;
 }
 .section-topline {
@@ -407,57 +405,57 @@ img {
   justify-content: center;
   gap: 15px;
   padding: 9px 16px;
-  border: 1px solid #626e6e;
-  background: #d6d6cf;
+  border: 1px solid var(--line-strong);
+  background: var(--silver);
   box-shadow: var(--bevel);
-  color: #00334d;
+  color: var(--ink);
   font-size: 15px;
   font-weight: bold;
   line-height: 1.5;
   text-decoration: none;
 }
 .button:visited {
-  color: #00334d;
+  color: var(--ink);
 }
 .button:hover {
-  background: #efefe5;
-  color: #00334d;
+  background: var(--surface);
+  color: var(--ink);
 }
 .button:active {
-  box-shadow: inset 1px 1px #737c7c;
+  box-shadow: inset 1px 1px var(--line-strong);
 }
 .button-primary {
-  background: #006666;
-  color: white;
+  background: var(--cobalt);
+  color: var(--white);
   box-shadow:
-    inset 1px 1px #529999,
-    inset -1px -1px #003636;
+    inset 1px 1px var(--cobalt-line),
+    inset -1px -1px var(--cobalt-hover);
 }
 .button-primary:visited {
-  color: white;
+  color: var(--white);
 }
 .button-primary:hover {
-  background: #004e4e;
-  color: white;
+  background: var(--cobalt-hover);
+  color: var(--white);
 }
 .button-text {
   background: transparent;
   box-shadow: none;
   border-color: transparent;
   text-decoration: underline;
-  color: #0000bb;
+  color: var(--cobalt);
 }
 .status-dot {
   display: inline-block;
   width: 7px;
   height: 7px;
-  background: #006666;
+  background: var(--cobalt);
   flex-shrink: 0;
 }
 .site-footer {
-  border: 1px solid #7b8989;
+  border: 1px solid var(--line-strong);
   padding: 8px 18px;
-  background: #e3e5dd;
+  background: var(--silver);
   text-align: center;
 }
 .footer-bottom {
@@ -551,9 +549,9 @@ img {
     width: 55px;
     height: 46px;
   }
-  .brand > span {
-    font-size: 28px;
-    letter-spacing: -1px;
+  .brand-lettering {
+    width: 218px;
+    height: 46px;
   }
   .masthead-tagline {
     margin-left: 59px;

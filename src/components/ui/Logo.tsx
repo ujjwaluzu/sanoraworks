@@ -1,77 +1,42 @@
 import Link from "next/link";
+import { brandColors } from "@/lib/brand-colors";
+import { brandSymbol } from "@/lib/brand-symbol";
+import { brandLettering } from "@/lib/brand-paths";
 
 type BrandVariant = "default" | "light" | "mono";
 
-/** The static orbital emblem, shared by the masthead and metadata images. */
+/** Shared original SW geometry; the existing component interface is retained. */
 export function BrandMark({
-  className = "",
-  variant = "default",
-  width = 80,
-  height = 64,
+  className = "", variant = "default", width = 80, height = 64,
 }: {
   className?: string;
   variant?: BrandVariant;
   width?: number;
   height?: number;
 }) {
-  const ink =
-    variant === "light"
-      ? "#ffffff"
-      : variant === "mono"
-        ? "currentColor"
-        : "#002f49";
-  const teal =
-    variant === "light"
-      ? "#a8e4df"
-      : variant === "mono"
-        ? "currentColor"
-        : "#006666";
+  const fill = variant === "light" ? brandColors.white
+    : variant === "mono" ? "currentColor" : brandColors.cobalt;
   return (
-    <svg
-      width={width}
-      height={height}
-      viewBox="0 0 80 64"
-      fill="none"
-      className={className}
-      aria-hidden="true"
-    >
-      <circle cx="40" cy="32" r="25" stroke={teal} strokeWidth="2" />
-      <ellipse
-        cx="40"
-        cy="32"
-        rx="12"
-        ry="25"
-        stroke={teal}
-        strokeWidth="1"
-        opacity=".5"
-      />
-      <path d="M17 23h46M15 40h50" stroke={teal} strokeWidth="1" opacity=".5" />
-      <path d="M51 17H34l-9 10v9h20v4H26v8h20l9-10v-9H35v-4h16z" fill={ink} />
-      <ellipse
-        cx="40"
-        cy="33"
-        rx="38"
-        ry="11"
-        transform="rotate(-25 40 33)"
-        stroke={teal}
-        strokeWidth="2.5"
-      />
-      <path d="m65 8 7 3-3 7-7-3z" fill={ink} />
+    <svg width={width} height={height} viewBox={brandSymbol.viewBox}
+      fill={fill} className={className} aria-hidden="true" focusable="false">
+      <path d={brandSymbol.s} />
+      <path d={brandSymbol.w} />
     </svg>
   );
 }
 
 export function Logo({ variant = "default" }: { variant?: BrandVariant }) {
+  const ink = variant === "light" ? brandColors.white
+    : variant === "mono" ? "currentColor" : brandColors.ink;
   return (
-    <Link
-      href="/"
-      aria-label="Sanora Works home"
-      className={`brand brand-${variant}`}
-    >
+    <Link href="/" aria-label="Sanora Works home" className={`brand brand-${variant}`}>
       <BrandMark className="brand-mark" variant={variant} />
-      <span>
-        Sanora<span className="brand-light">Works</span>
-      </span>
+      <svg className="brand-lettering" viewBox={`0 0 ${brandLettering.Sanora.width + brandLettering.Works.width} 60`}
+        aria-hidden="true" focusable="false" fill={ink}>
+        <path d={brandLettering.Sanora.path} />
+        <path d={brandLettering.Works.path} transform={`translate(${brandLettering.Sanora.width} 0)`}
+          fill={variant === "default" ? brandColors.cobalt : ink} />
+      </svg>
     </Link>
   );
 }

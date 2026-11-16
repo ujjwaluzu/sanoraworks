@@ -1,7 +1,7 @@
-﻿/* Compact document and directory pages within the shared workshop frame. */
+/* Compact document and directory pages within the shared workshop frame. */
 .page-hero {
-  background: #fff;
-  border: 1px solid #808080;
+  background: var(--white);
+  border: 1px solid var(--line-strong);
   margin-bottom: 16px;
 }
 .page-hero > .container {
@@ -13,9 +13,9 @@
   gap: 16px;
   align-items: center;
   padding: 10px 20px;
-  background: #006666;
-  color: #fff;
-  border-bottom: 1px solid #004343;
+  background: var(--cobalt);
+  color: var(--white);
+  border-bottom: 1px solid var(--ink);
 }
 .page-hero-top .eyebrow {
   color: inherit;
@@ -29,7 +29,7 @@
   font-size: clamp(28px, 2.5vw, 36px);
   line-height: 1.2;
   margin: 24px 24px 12px;
-  color: #003f45;
+  color: var(--ink);
 }
 .page-hero-description {
   margin: 0 24px 24px;
@@ -40,9 +40,9 @@
 .service-jump-links {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border: 1px solid #808080;
+  border: 1px solid var(--line-strong);
   margin-bottom: 16px;
-  background: #fff;
+  background: var(--white);
 }
 .service-jump-links > a {
   display: flex;
@@ -51,16 +51,16 @@
   padding: 14px 18px;
   min-height: 48px;
   font-size: 16px;
-  border-bottom: 1px solid #c0c0c0;
+  border-bottom: 1px solid var(--silver);
 }
 .service-jump-links > a:nth-child(odd) {
-  border-right: 1px solid #c0c0c0;
+  border-right: 1px solid var(--silver);
 }
 .service-jump-links > a:nth-last-child(-n + 2) {
   border-bottom: 0;
 }
 .service-jump-links > a .mono {
-  color: #436161;
+  color: var(--muted);
   font-size: 12px;
 }
 .service-jump-links > a svg {
@@ -68,23 +68,23 @@
   flex-shrink: 0;
 }
 .service-detail {
-  border: 1px solid #808080;
-  background: #fff;
+  border: 1px solid var(--line-strong);
+  background: var(--white);
   margin-bottom: 18px;
   scroll-margin-top: 16px;
 }
 .service-detail-title {
   padding: 22px 24px;
-  border-bottom: 1px solid #a6baba;
-  background: #eff5f5;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
 }
 .service-index {
-  color: #526565;
+  color: var(--muted);
   font-size: 12px;
 }
 .service-detail-title h2 {
   font-size: 26px;
-  color: #004c4c;
+  color: var(--ink);
   margin: 4px 0 10px;
 }
 .service-detail-title p {
@@ -105,7 +105,7 @@
   gap: 24px 40px;
 }
 .service-detail-columns .eyebrow {
-  color: #004f4f;
+  color: var(--ink);
   font-family: Arial, Helvetica, sans-serif;
   font-size: 18px;
   font-weight: bold;
@@ -127,18 +127,18 @@
 }
 .capability-list svg {
   flex-shrink: 0;
-  color: #006666;
+  color: var(--cobalt);
   margin-top: 5px;
 }
 .technology-note {
   padding: 16px 18px;
-  border: 1px solid #c5c19c;
-  background: #ffffdf;
+  border: 1px solid var(--line);
+  background: var(--cobalt-soft);
   margin-top: 16px;
 }
 .technology-note .eyebrow {
   font-size: 12px;
-  color: #555126;
+  color: var(--muted);
 }
 .technology-note p {
   max-width: var(--reading-width, 68ch);
@@ -146,13 +146,13 @@
   margin: 7px 0 0;
 }
 .faq-layout {
-  background: #fff;
-  border: 1px solid #808080;
+  background: var(--white);
+  border: 1px solid var(--line-strong);
 }
 .faq-layout .section-heading {
   padding: 20px 24px;
-  border-bottom: 1px solid #808080;
-  background: #eff5f5;
+  border-bottom: 1px solid var(--line-strong);
+  background: var(--surface);
 }
 .faq-layout .section-heading h2 {
   font-size: 23px;
@@ -162,7 +162,7 @@
   margin: 0;
 }
 .faq {
-  border-bottom: 1px solid #c0c0c0;
+  border-bottom: 1px solid var(--silver);
 }
 .faq:last-child {
   border-bottom: 0;
@@ -178,7 +178,7 @@
   font-weight: bold;
   cursor: pointer;
   list-style: none;
-  color: #0000a8;
+  color: var(--cobalt);
   text-decoration: underline;
 }
 .faq summary::-webkit-details-marker {
@@ -188,8 +188,8 @@
   flex-shrink: 0;
 }
 .faq[open] summary {
-  color: #004f4f;
-  background: #f4f7f7;
+  color: var(--ink);
+  background: var(--surface);
 }
 .faq[open] summary > svg {
   transform: rotate(45deg);
@@ -204,8 +204,8 @@
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
-  background: #c0c0c0;
-  border: 1px solid #808080;
+  background: var(--silver);
+  border: 1px solid var(--line-strong);
   padding: 10px;
   margin-bottom: 14px;
 }
@@ -215,37 +215,37 @@
   font:
     bold 15px Verdana,
     sans-serif;
-  color: #142c36;
-  background: #d4d0c8;
+  color: var(--ink);
+  background: var(--silver);
   border: 2px solid;
-  border-color: #fff #555 #555 #fff;
+  border-color: var(--white) var(--line-strong) var(--line-strong) var(--white);
   cursor: pointer;
 }
 .work-filters button[aria-pressed="true"] {
-  border-color: #555 #fff #fff #555;
-  background: #006666;
-  color: #fff;
+  border-color: var(--line-strong) var(--white) var(--white) var(--line-strong);
+  background: var(--cobalt);
+  color: var(--white);
 }
 .work-filters button:hover {
-  background: #e8eeee;
-  color: #004646;
+  background: var(--silver);
+  color: var(--ink);
 }
 .work-filters button[aria-pressed="true"]:hover {
-  background: #005252;
-  color: #fff;
+  background: var(--cobalt-hover);
+  color: var(--white);
 }
 .work-count {
   margin-left: auto;
   font-size: 14px;
-  color: #182d2d;
+  color: var(--ink);
   padding: 7px 0;
 }
 .work-note {
   display: flex;
   gap: 10px;
   align-items: flex-start;
-  background: #ffffdf;
-  border: 1px solid #b7b28c;
+  background: var(--cobalt-soft);
+  border: 1px solid var(--line);
   padding: 12px;
   margin: 16px 0 0;
   font-size: 14px;
@@ -272,8 +272,8 @@
 }
 .project-detail-visual {
   padding: 12px;
-  background: #fff;
-  border: 1px solid #808080;
+  background: var(--white);
+  border: 1px solid var(--line-strong);
   margin-bottom: 16px;
 }
 .back-link {
@@ -287,14 +287,14 @@
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
   gap: 24px;
-  border: 1px solid #808080;
-  background: #fff;
+  border: 1px solid var(--line-strong);
+  background: var(--white);
   padding: 24px;
 }
 .project-detail-layout h2 {
   font-size: 24px;
   margin: 8px 0 12px;
-  color: #004f4f;
+  color: var(--ink);
 }
 .project-detail-layout p {
   max-width: var(--reading-width, 68ch);
@@ -304,12 +304,12 @@
   margin: 0;
   padding: 0;
   align-self: start;
-  border: 1px solid #a6baba;
+  border: 1px solid var(--line);
 }
 .project-facts > div {
   padding: 14px;
-  border-bottom: 1px solid #c0c0c0;
-  background: #f4f7f7;
+  border-bottom: 1px solid var(--silver);
+  background: var(--surface);
 }
 .project-facts > div:last-child {
   border: 0;
@@ -318,7 +318,7 @@
   font:
     bold 12px "Courier New",
     monospace;
-  color: #415858;
+  color: var(--muted);
   margin-bottom: 4px;
 }
 .project-facts dd {
@@ -336,13 +336,13 @@
   display: grid;
   grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
   gap: 24px;
-  border: 1px solid #808080;
-  background: #fff;
+  border: 1px solid var(--line-strong);
+  background: var(--white);
 }
 .about-intro h2 {
   font-size: 26px;
   line-height: 1.25;
-  color: #004f4f;
+  color: var(--ink);
   margin: 9px 0 14px;
 }
 .about-intro p {
@@ -358,25 +358,25 @@
   gap: 18px;
   padding: 16px;
   border: 2px solid;
-  border-color: #808080 #fff #fff #808080;
+  border-color: var(--line-strong) var(--white) var(--white) var(--line-strong);
   min-height: 240px;
-  background-color: #e1eeee;
+  background-color: var(--silver);
   background-image:
-    linear-gradient(#b5cccc 1px, transparent 1px),
-    linear-gradient(90deg, #b5cccc 1px, transparent 1px);
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
   background-size: 20px 20px;
 }
 .brand-object > svg {
   width: 140px;
   height: 140px;
-  color: #006666;
+  color: var(--cobalt);
 }
 .brand-object > .mono {
   text-align: center;
   font-size: 12px;
   font-weight: bold;
-  color: #234848;
-  background: #e1eeee;
+  color: var(--muted);
+  background: var(--silver);
   padding: 4px;
 }
 .mission-grid {
@@ -387,11 +387,11 @@
 }
 .mission-grid article {
   padding: 24px;
-  background: #fff;
-  border: 1px solid #808080;
+  background: var(--white);
+  border: 1px solid var(--line-strong);
 }
 .mission-grid .eyebrow {
-  color: #006666;
+  color: var(--cobalt);
   margin: 0;
 }
 .mission-grid h2 {
@@ -403,8 +403,8 @@
   margin-bottom: 0;
 }
 .founders-layout {
-  background: #fff;
-  border: 1px solid #808080;
+  background: var(--white);
+  border: 1px solid var(--line-strong);
   padding: 24px;
 }
 .founders-layout .section-heading h2 {
@@ -414,7 +414,7 @@
   display: flex;
   gap: 16px;
   padding: 16px 0;
-  border-top: 1px solid #c0c0c0;
+  border-top: 1px solid var(--silver);
 }
 .founder-avatar {
   width: 64px;
@@ -422,9 +422,9 @@
   flex-shrink: 0;
   display: grid;
   place-items: center;
-  background: #e2eeee;
-  border: 1px solid #8aa3a3;
-  color: #006666;
+  background: var(--silver);
+  border: 1px solid var(--line-strong);
+  color: var(--cobalt);
 }
 .founder-card h3 {
   font-size: 19px;
@@ -439,15 +439,15 @@
   margin: 12px 0 0;
 }
 .legal {
-  background: #fff;
-  border: 1px solid #808080;
+  background: var(--white);
+  border: 1px solid var(--line-strong);
   padding: clamp(20px, 3vw, 40px);
 }
 .legal h2 {
   max-width: 44rem;
   font-size: 25px;
-  color: #004f4f;
-  border-bottom: 1px solid #b0c3c3;
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
   padding-bottom: 7px;
   margin: 36px 0 16px;
 }
@@ -461,18 +461,18 @@
   font:
     12px "Courier New",
     monospace;
-  color: #4e6060;
+  color: var(--muted);
 }
 .not-found {
   padding: 28px;
-  border: 1px solid #808080;
-  background: #fff;
+  border: 1px solid var(--line-strong);
+  background: var(--white);
 }
 .not-found h1 {
   font-size: 30px;
   line-height: 1.25;
   margin: 12px 0 18px;
-  color: #004f4f;
+  color: var(--ink);
 }
 .not-found p:not(.eyebrow) {
   max-width: var(--reading-width, 68ch);
@@ -505,7 +505,7 @@
     border-right: 0;
   }
   .service-jump-links > a:nth-last-child(2) {
-    border-bottom: 1px solid #c0c0c0;
+    border-bottom: 1px solid var(--silver);
   }
   .service-detail-title,
   .service-detail-body {

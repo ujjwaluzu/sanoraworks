@@ -1,0 +1,18 @@
+{
+  "cobalt": "#2457FF",
+  "ink": "#101828",
+  "silver": "#E7ECF3",
+  "white": "#FFFFFF",
+  "black": "#000000",
+  "cobalt-hover": "#1942CC",
+  "cobalt-soft": "#EEF2FF",
+  "cobalt-line": "#A7B9FF",
+  "muted": "#475467",
+  "line": "#B8C3D4",
+  "line-strong": "#66758C",
+  "surface": "#F7F9FC",
+  "error": "#A32332",
+  "error-soft": "#FFF1F3",
+  "brand-shadow": "#10182820",
+  "brand-pattern": "#2457FF25"
+}
