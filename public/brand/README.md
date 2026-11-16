@@ -17,8 +17,8 @@ This identity uses the user's supplied SW orbit logo, with only the small four-p
 - `sanoraworks-apple-icon.png`: 180 x 180, matching `/apple-icon`.
 - `sanoraworks-favicon.svg` and `sanoraworks-favicon-{16,32,48,128}.png`: matching white SW/orbit on cobalt tiles.
 - `sanoraworks-preview.svg` and `.png`: applications on light, dark, monochrome, avatar, website, and social surfaces.
-- `colors.json`, `manifest.json`, and `index.html`: interface palette, export dimensions, and preview page.
-- `sanoraworks-brand-kit.zip`: current assets and notes. Legacy `-emblem` and `-wordmark` SVG URLs also show this supplied logo.
+- `colors.json` and `manifest.json`: interface palette and export dimensions.
+- The internal ZIP is generated under `artifacts/brand/`, outside the published website. The site has no brand kit preview page or ZIP download. Legacy `-emblem` and `-wordmark` SVG URLs also show this supplied logo.
 
 ## Color and placement
 
@@ -28,6 +28,6 @@ Preserve proportions and keep at least one main SW stroke of clear space around 
 
 ## Regeneration
 
-Run `npm run brand:build` to crop and export the committed star-free master, regenerate CSS tokens, rebuild SVG containers and social assets, and package the ZIP. Run `npm run brand:check` to check dimensions, transparency, embedded raster logos, crop safety, matching app icons, and interface contrast. Normal export does not use ImageGen or need network access.
+Run `npm run brand:build` to crop and export the committed star-free master, regenerate CSS tokens, rebuild SVG containers and social assets, and package an internal ZIP in `artifacts/brand/`. Run `npm run brand:check` to check dimensions, transparency, embedded raster logos, crop safety, matching app icons, and interface contrast. Normal export does not use ImageGen or need network access.
 
 The full editing prompt and preservation method are recorded in `docs/logo-edit.md`. Historical Manrope licensing is retained in `OFL.txt`; this supplied raster logo does not load or depend on that font. SanoraWorks branding: all rights reserved.

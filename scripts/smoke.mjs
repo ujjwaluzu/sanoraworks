@@ -27,6 +27,7 @@ for (const path of pages) {
   assert.equal(response.status, 200, path);
   const html = await response.text();
   documents.set(path, html);
+  assert.doesNotMatch(html, /href="\/brand\/(?:index\.html|sanoraworks-brand-kit\.zip)"/, `${path}: no public brand kit link`);
   assert.equal(
     (html.match(/<h1\b/g) || []).length,
     1,
@@ -95,7 +96,7 @@ for (const href of links) {
     );
 }
 
-for (const path of ["/does-not-exist", "/work/does-not-exist", "/insights"]) {
+for (const path of ["/does-not-exist", "/work/does-not-exist", "/insights", "/brand/index.html", "/brand/sanoraworks-brand-kit.zip"]) {
   assert.equal(
     (await fetch(new URL(path, base))).status,
     404,

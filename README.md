@@ -67,8 +67,8 @@ X, Instagram, and YouTube use the `sanoraworks` handle configured in `src/data/s
 - `src/components/layout/`: shared full-viewport frame navigation, 248px directory sidebar, and compact footer. The sidebar follows the main content below 800px; mobile navigation uses two clear rows.
 - `src/components/ui/Panel.tsx`: reusable titled content panels.
 - `public/brand/`: the supplied SW orbit logo with its star removed, native transparent PNGs, monochrome derivatives, embedded-raster SVG containers, social exports, favicon, and usage notes.
-- `src/lib/brand-artwork.ts`, `brand-server.ts`, and `brand-colors.ts`: shared raster compositions, metadata asset loading, and interface palette. Run `npm run brand:build` to regenerate crops, exports, CSS tokens, and ZIP; `npm run brand:check` validates them.
-- `/brand/index.html`: preview and downloadable kit. `public/brand/README.md` documents source resolution, spacing, and variants; `docs/logo-edit.md` records the image edit.
+- `src/lib/brand-artwork.ts`, `brand-server.ts`, and `brand-colors.ts`: shared raster compositions, metadata asset loading, and interface palette. Run `npm run brand:build` to regenerate crops, exports, CSS tokens, and an internal ZIP under ignored `artifacts/brand/`; `npm run brand:check` validates the assets.
+- The site has no public brand kit page or ZIP download. `public/brand/README.md` documents source resolution, spacing, and variants; `docs/logo-edit.md` records the image edit.
 
 Reading text starts at 16px with generous line spacing, and long paragraphs use a 68-character measure while the site frame fills the screen. Homepage shortcuts jump directly to services, projects, and process. Project entries have one full-row link each, and service rows offer a larger click target. The contact form comes before supporting information, keeps help text associated with validation errors, and displays a description character count without repeatedly announcing every keystroke.
 
