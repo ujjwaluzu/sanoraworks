@@ -15,13 +15,7 @@ export default function PrivacyPage() {
       <PageHero
         eyebrow="Website information"
         index="PRIVACY"
-        title={
-          <>
-            Your information.
-            <br />
-            <span>Handled with purpose.</span>
-          </>
-        }
+        title="Privacy Policy"
         description="An explanation of the information this website uses and what happens when you prepare or send a project enquiry."
       />
       <article className="container legal">

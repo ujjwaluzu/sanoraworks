@@ -21,13 +21,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="The company behind the work"
         index="03"
-        title={
-          <>
-            Independent thinking.
-            <br />
-            <span>Purposeful engineering.</span>
-          </>
-        }
+        title="About SanoraWorks"
         description="We are Sanora Works. An independent technology and engineering company with a simple belief: the most useful technology starts with a real purpose."
       />
       <section className="section">
@@ -36,11 +30,7 @@ export default function AboutPage() {
             <div>
               <p className="eyebrow">Engineering the next.</p>
               <h2>
-                Building technology
-                <br />
-                that moves things
-                <br />
-                forward.
+                Technology that moves things forward.
               </h2>
               <p>
                 SANORA WORKS develops digital solutions, software products, and
@@ -63,9 +53,7 @@ export default function AboutPage() {
             <article>
               <p className="eyebrow">01 / Our mission</p>
               <h2>
-                Turn meaningful challenges
-                <br />
-                into useful technology.
+                Turn meaningful challenges into useful technology.
               </h2>
               <p>
                 To design and engineer practical digital solutions that help
@@ -76,9 +64,7 @@ export default function AboutPage() {
             <article>
               <p className="eyebrow">02 / Our vision</p>
               <h2>
-                Build for what’s next.
-                <br />
-                Keep purpose at the centre.
+                Build for what’s next. Keep purpose at the centre.
               </h2>
               <p>
                 To grow an independent engineering company recognised for
@@ -95,8 +81,7 @@ export default function AboutPage() {
       <section className="section">
         <div className="container founders-layout">
           <SectionHeading eyebrow="The people behind the thinking">
-            Independent minds.
-            <br />A shared direction.
+            The people behind SanoraWorks
           </SectionHeading>
           <div>
             {site.founders.length ? (

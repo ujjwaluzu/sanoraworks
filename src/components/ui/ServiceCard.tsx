@@ -1,14 +1,12 @@
-import Link from "next/link";
-import { ArrowUpRight, Braces, Layers3, Workflow, Cloud } from "lucide-react";
+﻿import Link from "next/link";
+import { Braces, Layers3, Workflow, Cloud } from "lucide-react";
 import { services } from "@/data/services";
-
 const icons = {
   code: Braces,
   layers: Layers3,
   workflow: Workflow,
   cloud: Cloud,
 };
-
 export function ServiceCard({
   service,
 }: {
@@ -16,22 +14,19 @@ export function ServiceCard({
 }) {
   const Icon = icons[service.icon];
   return (
-    <Link href={`/services#${service.slug}`} className="service-card">
-      <div className="service-card-top">
-        <span className="mono">{service.number}</span>
-        <Icon size={26} strokeWidth={1.2} aria-hidden="true" />
+    <article className="service-card">
+      <div className="service-directory-icon" aria-hidden="true">
+        <Icon size={25} strokeWidth={1.7} />
       </div>
-      <h3>{service.title}</h3>
-      <p>{service.description}</p>
-      <ul>
-        {service.capabilities.slice(0, 3).map((item) => (
-          <li key={item}>{item}</li>
-        ))}
-      </ul>
-      <span className="service-card-link">
-        Explore service
-        <ArrowUpRight size={16} aria-hidden="true" />
+      <div>
+        <h3>
+          <Link href={`/services#${service.slug}`}>{service.title}</Link>
+        </h3>
+        <p>{service.description}</p>
+      </div>
+      <span className="service-directory-number mono" aria-hidden="true">
+        {service.number}
       </span>
-    </Link>
+    </article>
   );
 }

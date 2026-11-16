@@ -1,83 +1,121 @@
-import { ImageResponse } from "next/og";
+﻿import { ImageResponse } from "next/og";
+import { BrandMark } from "@/components/ui/Logo";
+import { brandLettering } from "@/lib/brand-paths";
 
 export const alt =
-  "Sanora Works — Engineering the next. Independent technology and engineering.";
+  "SanoraWorks — Engineering the next. An independent technology and engineering workshop.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default function OpenGraphImage() {
   return new ImageResponse(
-    (
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        padding: 38,
+        background: "#004f52",
+        color: "#17232c",
+        fontFamily: "sans-serif",
+      }}
+    >
       <div
         style={{
-          width: "100%",
-          height: "100%",
           display: "flex",
           flexDirection: "column",
-          padding: "58px 68px",
-          background: "#101312",
-          color: "#edeee7",
-          backgroundImage:
-            "radial-gradient(ellipse at 90% 30%, #2d382a, #101312 65%)",
+          width: "100%",
+          background: "#c0c0c0",
+          border: "3px solid #ffffff",
+          padding: 12,
+          boxShadow: "8px 8px 0 #002f3b",
         }}
       >
         <div
           style={{
             display: "flex",
+            justifyContent: "space-between",
             alignItems: "center",
-            gap: 15,
-            fontSize: 26,
-            letterSpacing: -1,
+            background: "#006666",
+            padding: "12px 18px",
+            color: "white",
+            fontSize: 19,
+            fontWeight: 700,
           }}
         >
-          <svg width="42" height="42" viewBox="0 0 40 40">
-            <path
-              d="M10 5h23L16 22H4L21 5M30 35H7l17-17h12L19 35"
-              fill="#d1dbc7"
-            />
-          </svg>
-          <span style={{ fontWeight: 700 }}>SANORA WORKS</span>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            marginTop: 70,
-            fontSize: 13,
-            letterSpacing: 3,
-            color: "#a7b69b",
-          }}
-        >
-          INDEPENDENT TECHNOLOGY & ENGINEERING
+          <span>SanoraWorks / Independent engineering workshop</span>
+          <div
+            style={{
+              display: "flex",
+              width: 14,
+              height: 14,
+              background: "#c0c0c0",
+              border: "2px solid #ffffff",
+            }}
+          />
         </div>
         <div
           style={{
             display: "flex",
             flexDirection: "column",
-            fontSize: 88,
-            lineHeight: 1.08,
-            letterSpacing: -5,
-            marginTop: 22,
+            flex: 1,
+            marginTop: 12,
+            padding: "34px 42px",
+            background: "#ffffff",
+            border: "2px solid #808080",
           }}
         >
-          <span>Engineering</span>
-          <span style={{ color: "#a5b199" }}>the next.</span>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            borderTop: "1px solid #46523e",
-            paddingTop: 22,
-            marginTop: "auto",
-            fontSize: 14,
-            color: "#a9b79e",
-          }}
-        >
-          <span>Ideas. Architecture. Purposeful execution.</span>
-          <span>sanoraworks.com ↗</span>
+          <div style={{ display: "flex", alignItems: "center", gap: 22 }}>
+            <BrandMark width={130} height={104} />
+            <svg width="470" height="96" viewBox="0 0 300 60">
+              <path fill="#002f49" d={brandLettering.Sanora.path} />
+              <path
+                fill="#006666"
+                transform={`translate(${brandLettering.Sanora.width} 0)`}
+                d={brandLettering.Works.path}
+              />
+            </svg>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              marginTop: 28,
+              fontSize: 52,
+              fontWeight: 700,
+              letterSpacing: -1,
+            }}
+          >
+            Engineering the next.
+          </div>
+          <div
+            style={{
+              display: "flex",
+              marginTop: 16,
+              fontSize: 24,
+              lineHeight: 1.5,
+            }}
+          >
+            Thoughtful software. Sound systems. Purposeful execution.
+          </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              marginTop: "auto",
+              paddingTop: 26,
+              borderTop: "1px solid #a7b7b7",
+              fontSize: 18,
+            }}
+          >
+            <span style={{ color: "#006666", fontWeight: 700 }}>
+              PRODUCTS · PLATFORMS · ENGINEERING
+            </span>
+            <span style={{ color: "#0000ee" }}>sanoraworks.com →</span>
+          </div>
         </div>
       </div>
-    ),
+    </div>,
     size,
   );
 }

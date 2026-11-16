@@ -24,13 +24,7 @@ export default async function ContactPage({
       <PageHero
         eyebrow="Let’s start a conversation"
         index="04"
-        title={
-          <>
-            Every good build
-            <br />
-            <span>starts with an idea.</span>
-          </>
-        }
+        title="Start a project"
         description="A new product, a complex challenge, or a possibility you’d like to explore. Tell us what you’re thinking, and let’s find a useful way forward."
       />
       <section className="section contact-section">
@@ -38,9 +32,7 @@ export default async function ContactPage({
           <aside className="contact-aside">
             <MessageSquare size={27} strokeWidth={1} aria-hidden="true" />
             <h2>
-              What’s next
-              <br />
-              starts here.
+              Every good build starts with an idea.
             </h2>
             <p>
               You don’t need all the answers. A clear starting point, a rough

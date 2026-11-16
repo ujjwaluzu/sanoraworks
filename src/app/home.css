@@ -1,436 +1,508 @@
-.section-approach {
-  background: #171a17;
+﻿.home-welcome {
+  padding: 22px 22px 0;
+  background: #fff;
+  border: 1px solid #8b9696;
+  margin-bottom: 16px;
 }
-.approach-intro {
-  color: #a4ada0;
+.welcome-kicker {
   font-size: 11px;
-  margin: 0 0 5px;
+  color: #526367;
+  margin: 0 0 7px;
+  letter-spacing: 0.05em;
 }
-.approach-timeline {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  padding: 0;
-  list-style: none;
-  margin: 55px 0 0;
+.home-welcome h1 {
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1.15;
+  color: #003d4e;
+  margin: 0 0 12px;
+  letter-spacing: -0.8px;
 }
-.approach-timeline > li {
-  padding-right: 40px;
+.welcome-intro {
+  max-width: 720px;
+  margin: 0 0 17px;
+  line-height: 1.7;
 }
-.approach-timeline > li:last-child {
-  padding-right: 0;
+.hero-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
 }
-.timeline-marker {
-  position: relative;
+.workshop-banner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin: 0 -40px 30px 0;
-  height: 35px;
-  border-bottom: 1px solid #485140;
-  padding-bottom: 23px;
+  gap: 22px;
+  position: relative;
+  background: #e5eeee;
+  border: 1px solid #8da4a4;
+  box-shadow: inset 1px 1px #fff;
+  padding: 20px 22px;
+  min-height: 170px;
+  overflow: hidden;
 }
-.timeline-marker > .mono {
-  font-size: 10px;
-  color: #b6c2ac;
-}
-.timeline-dot {
+.workshop-banner::after {
+  content: "";
   position: absolute;
-  bottom: -3px;
-  left: 0;
-  width: 5px;
-  height: 5px;
-  background: #bfcdb2;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(#00666625 0.7px, transparent 0.7px);
+  background-size: 4px 4px;
+  mask-image: linear-gradient(90deg, transparent 40%, #000);
 }
-.approach-timeline > li:last-child .timeline-marker {
-  margin-right: 0;
+.pixel-computer {
+  flex: 0 0 150px;
+  position: relative;
+  z-index: 1;
+  align-self: center;
 }
-.approach-timeline h3 {
-  font-size: 18px;
-  font-weight: 400;
-  letter-spacing: -0.04em;
-  margin: 0 0 15px;
+.pixel-computer svg {
+  width: 150px;
+  height: 114px;
+  display: block;
+  filter: drop-shadow(3px 4px 0 #002f4920);
 }
-.approach-timeline p {
-  font-size: 11px;
-  color: #a8b1a3;
-  line-height: 1.9;
-  margin: 0;
-  max-width: 230px;
+.workshop-banner-copy {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  flex: 1;
 }
-.approach-timeline p.stage-detail {
-  margin-top: 16px;
-  color: #a5b09e;
-}
-.stage-output {
-  margin-top: 23px;
-  padding-top: 18px;
-  border-top: 1px solid #394132;
+.workshop-banner-copy > .mono {
   font-size: 10px;
-  color: #c4cebc;
+  letter-spacing: 0.08em;
+  color: #436369;
 }
-.stage-output .eyebrow {
-  font-size: 7px;
-  margin-bottom: 8px;
+.workshop-banner-copy > strong {
+  font-family: Arial, sans-serif;
+  font-size: 25px;
+  letter-spacing: -0.5px;
+  line-height: 1.18;
+  display: block;
+  color: #003d4e;
+  margin: 8px 0 13px;
 }
-.principles-layout {
+.capability-labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.capability-labels > span {
+  font:
+    9px "Courier New",
+    monospace;
+  color: #174f53;
+  border: 1px solid #8ba9a8;
+  background: #f2f6f4;
+  padding: 2px 5px;
+}
+.banner-orbit {
+  width: 80px;
+  opacity: 0.65;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+.banner-orbit svg {
+  width: 100%;
+  height: auto;
+}
+.welcome-footnote {
+  font:
+    10px "Courier New",
+    monospace;
+  color: #47565b;
+  margin: 12px 0;
+  padding-bottom: 12px;
+}
+.welcome-footnote > span {
+  color: #006666;
+  font-size: 9px;
+}
+.workshop-panel {
+  margin-bottom: 16px;
+  background: #fff;
+  border: 1px solid #869595;
+  min-width: 0;
+  box-shadow: 1px 1px 0 #fff;
+}
+.panel-titlebar {
+  background: #006666;
+  color: #fff;
+  padding: 7px 11px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  box-shadow: inset 0 1px #4e9999;
+}
+.panel-titlebar h2 {
+  font:
+    700 17px/1.35 Arial,
+    sans-serif;
+  margin: 0;
+  color: #fff;
+}
+.panel-titlebar > .mono {
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  color: #d6eceb;
+  text-align: right;
+}
+.panel-body {
+  padding: 17px;
+}
+.panel-body > p:first-child {
+  margin-top: 0;
+}
+.panel-body > p:last-child {
+  margin-bottom: 0;
+}
+.panel-intro {
+  margin: 0 0 14px;
+  font-size: 14px;
+  color: #4b5558;
+}
+.service-directory {
+  border: 1px solid #a3afaf;
+}
+.service-card {
+  display: flex;
+  position: relative;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 15px;
+  background: #fff;
+  min-width: 0;
+}
+.service-card + .service-card {
+  border-top: 1px dotted #9daaaa;
+}
+.service-card:nth-child(even) {
+  background: #f4f7f6;
+}
+.service-directory-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid #9db0b0;
+  box-shadow: inset 1px 1px #fff;
+  background: #e1ebeb;
+  color: #006666;
+}
+.service-card h3 {
+  font:
+    700 16px/1.4 Arial,
+    sans-serif;
+  margin: 0 0 4px;
+}
+.service-card p {
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0;
+  color: #3e4a4d;
+}
+.service-directory-number {
+  font-size: 10px;
+  color: #5f777b;
+  margin-left: auto;
+}
+.directory-bottom {
+  padding-top: 11px;
+  margin: 0;
+  font-size: 12px;
+  text-align: right;
+}
+.approach-directory {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 100px;
+  gap: 17px;
 }
-.principles-intro .section-description {
-  max-width: 350px;
+.approach-directory > li {
+  display: flex;
+  gap: 11px;
+  align-items: flex-start;
+  min-width: 0;
+}
+.stage-number {
+  font-size: 13px;
+  font-weight: 700;
+  min-width: 31px;
+  padding: 4px;
+  background: #e8eeee;
+  border: 1px solid #a4b4b4;
+  color: #006666;
+  text-align: center;
+}
+.approach-directory h3,
+.principle-list h3 {
+  font:
+    700 16px/1.4 Arial,
+    sans-serif;
+  color: #004d58;
+  margin: 2px 0 5px;
+}
+.approach-directory p,
+.principle-list p {
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0;
+}
+.approach-detailed {
+  grid-template-columns: 1fr;
+}
+.approach-detailed > li + li {
+  border-top: 1px dotted #a1b0b0;
+  padding-top: 15px;
+}
+.approach-detailed p + p {
+  margin-top: 8px;
+}
+.stage-output {
+  background: #f1f4ec;
+  padding: 8px 10px;
+  border-left: 3px solid #758b5f;
 }
 .principle-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 35px 35px;
-  padding-top: 6px;
+  gap: 17px;
 }
 .principle-list article {
-  border-top: 1px solid #3b4337;
-  padding-top: 20px;
+  padding-left: 12px;
+  border-left: 3px solid #a6c0be;
 }
-.principle-number {
-  font-size: 8px;
-  color: #a7b39d;
-}
-.principle-list h3 {
-  font-size: 17px;
-  line-height: 1.5;
-  font-weight: 400;
-  letter-spacing: -0.03em;
-  margin: 15px 0 10px;
-}
-.principle-list p {
-  color: #a3ad9d;
-  font-size: 12px;
-  line-height: 1.9;
-  margin: 0;
-}
-.principles-signature {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  margin-top: 45px;
-  color: #83917b;
-}
-.principles-signature > svg {
-  width: 55px;
-  height: 55px;
-}
-.principles-signature > span {
-  font-size: 8px;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  line-height: 2;
-}
-.section-about {
-  background: #181b18;
-}
-.about-preview-layout {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 120px;
-  align-items: start;
-}
-.about-preview-layout h2 {
-  font-size: clamp(32px, 3.45vw, 49px);
-  max-width: 550px;
-}
-.about-preview-copy {
-  padding-top: 43px;
-}
-.about-preview-copy p {
+.section-about .panel-body {
   font-size: 14px;
-  color: #acb4a7;
-  line-height: 1.95;
-  margin: 0 0 20px;
 }
-.about-preview-copy .button {
-  margin-top: 15px;
-  font-size: 10px;
-  gap: 50px;
-}
-.section-philosophy {
-  background: #c9ceca;
-  color: #29312b;
-  border-top: 0;
-  padding: 65px 0 52px;
-}
-.philosophy-top {
-  display: flex;
-  justify-content: space-between;
+.section-about .panel-body > a {
+  font-size: 13px;
+  display: inline-flex;
   align-items: center;
-  gap: 30px;
-  margin-bottom: 50px;
+  min-height: 44px;
 }
-.section-philosophy .eyebrow {
-  color: #48523e;
-  font-size: 8px;
+.philosophy-rows {
+  margin: 0;
 }
-.philosophy-top > span {
-  font-size: 9px;
-  color: #4f5946;
-}
-.philosophy-letters {
+.philosophy-rows > div {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-}
-.philosophy-letter {
-  padding: 0 22px;
-  border-right: 1px solid #29312530;
-}
-.philosophy-letter:first-child {
-  padding-left: 0;
-}
-.philosophy-letter:last-child {
-  border-right: 0;
-}
-.philosophy-letter > span {
-  display: block;
-  font-size: clamp(65px, 10.3vw, 149px);
-  font-weight: 400;
-  letter-spacing: -0.075em;
-  line-height: 1;
-  margin-bottom: 27px;
-  transition: transform 0.3s;
-}
-.philosophy-letter:hover > span {
-  transform: translateY(-6px);
-}
-.philosophy-letter h3 {
-  margin: 0;
-  font-size: 10px;
-  font-weight: 550;
-  letter-spacing: -0.015em;
-}
-.philosophy-letter p {
-  max-width: 150px;
-  font-size: 8px;
-  color: #535e49;
-  line-height: 1.9;
-  margin: 10px 0 0;
-}
-.philosophy-bottom {
-  margin-top: 45px;
-  border-top: 1px solid #29312535;
-  padding-top: 25px;
-  display: flex;
-  justify-content: space-between;
-  gap: 30px;
+  grid-template-columns: 175px 1fr;
+  gap: 16px;
   align-items: center;
+  padding: 8px 0;
 }
-.philosophy-bottom h2 {
-  font-size: 17px;
-  font-weight: 450;
-  line-height: 1.5;
-  letter-spacing: -0.03em;
-  max-width: 500px;
+.philosophy-rows > div + div {
+  border-top: 1px dotted #a1b0b0;
+}
+.philosophy-rows dt {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font:
+    700 15px Arial,
+    sans-serif;
+  color: #004b57;
+}
+.philosophy-rows dd {
   margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
 }
-.philosophy-bottom > span {
-  font-size: 8px;
-  white-space: nowrap;
-  color: #4e5b43;
+.philosophy-initial {
+  font:
+    700 17px "Courier New",
+    monospace;
+  color: #fff;
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  background: #006666;
+  box-shadow: inset 1px 1px #57a6a6;
 }
 .final-cta {
-  position: relative;
-  padding: 110px 0;
-  overflow: hidden;
-}
-.cta-top {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 35px;
+  gap: 22px;
+  justify-content: space-between;
+  background: #fffbd6;
+  border: 1px solid #aca369;
+  padding: 20px;
+  margin-bottom: 0;
+  box-shadow: inset 1px 1px #fff;
 }
-.cta-top > span:last-child {
-  font-size: 8px;
-  color: #98a58c;
+.final-cta .eyebrow {
+  font:
+    10px "Courier New",
+    monospace;
+  color: #685c26;
+  margin: 0 0 6px;
 }
 .final-cta h2 {
-  font-size: clamp(43px, 6vw, 86px);
-  font-weight: 400;
-  line-height: 1.15;
-  letter-spacing: -0.065em;
+  font:
+    700 23px/1.2 Arial,
+    sans-serif;
+  color: #333d33;
+  margin: 0 0 9px;
+}
+.final-cta p:last-child {
+  font-size: 15px;
+  line-height: 1.7;
   margin: 0;
-  max-width: 850px;
+  max-width: 470px;
 }
-.final-cta h2 > span {
-  color: #929e89;
+.final-cta > .button {
+  flex-shrink: 0;
 }
-.cta-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 40px;
-  margin-top: 32px;
-}
-.cta-bottom p {
-  font-size: 12px;
-  color: #abb6a3;
-  max-width: 400px;
-  margin: 0;
-}
-.cta-bottom .button {
-  min-width: 230px;
-}
-@media (max-width: 959px) {
-  .principles-layout {
-    gap: 45px;
-    grid-template-columns: 0.9fr 1.1fr;
+@media (max-width: 1050px) and (min-width: 800px) {
+  .banner-orbit {
+    display: none;
   }
-  .principle-list {
-    gap: 28px 20px;
+  .workshop-banner {
+    padding: 15px;
+    gap: 15px;
   }
-  .about-preview-layout {
-    gap: 50px;
+  .pixel-computer {
+    flex-basis: 120px;
   }
-  .approach-timeline > li {
-    padding-right: 25px;
+  .pixel-computer svg {
+    width: 120px;
+    height: 92px;
   }
-  .timeline-marker {
-    margin-right: -25px;
-  }
-  .approach-timeline h3 {
-    font-size: 16px;
-  }
-  .approach-timeline p {
-    font-size: 10px;
-  }
-  .philosophy-letter {
-    padding-inline: 15px;
-  }
-  .philosophy-letter h3 {
-    font-size: 9px;
-  }
-  .philosophy-letter p {
-    font-size: 7px;
+  .workshop-banner-copy > strong {
+    font-size: 23px;
   }
   .final-cta {
-    padding-block: 80px;
+    display: block;
+  }
+  .final-cta > .button {
+    margin-top: 15px;
   }
 }
 @media (max-width: 599px) {
-  .approach-intro {
-    font-size: 11px;
+  .home-welcome {
+    padding: 18px 14px 0;
   }
-  .approach-timeline {
-    grid-template-columns: 1fr 1fr;
-    gap: 32px 0;
-    margin-top: 35px;
+  .home-welcome h1 {
+    font-size: 29px;
   }
-  .approach-timeline > li {
-    padding-right: 20px;
+  .welcome-intro {
+    font-size: 14px;
   }
-  .timeline-marker {
-    margin-right: -20px;
-    margin-bottom: 22px;
-  }
-  .approach-timeline > li:nth-child(2n) {
-    padding-right: 0;
-  }
-  .approach-timeline > li:nth-child(2n) .timeline-marker {
-    margin-right: 0;
-  }
-  .approach-timeline h3 {
-    font-size: 17px;
-  }
-  .approach-timeline p {
-    font-size: 11px;
-  }
-  .principles-layout {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-  .principles-signature {
-    display: none;
-  }
-  .principle-list {
-    gap: 28px 24px;
-  }
-  .principle-list h3 {
-    font-size: 16px;
-  }
-  .principle-list p {
-    font-size: 11px;
-  }
-  .about-preview-layout {
-    grid-template-columns: 1fr;
-    gap: 25px;
-  }
-  .about-preview-copy {
-    padding-top: 0;
-  }
-  .about-preview-layout h2 {
-    font-size: 35px;
-  }
-  .section-philosophy {
-    padding: 45px 0 35px;
-  }
-  .philosophy-top {
-    align-items: flex-start;
-    margin-bottom: 35px;
-  }
-  .philosophy-top > span {
-    font-size: 7px;
-    text-align: right;
-  }
-  .philosophy-letters {
-    grid-template-columns: repeat(3, 1fr);
-    row-gap: 30px;
-  }
-  .philosophy-letter {
-    padding-inline: 15px;
-  }
-  .philosophy-letter:nth-child(3) {
-    border-right: 0;
-  }
-  .philosophy-letter:nth-child(4) {
-    padding-left: 0;
-  }
-  .philosophy-letter > span {
-    font-size: 80px;
-    margin-bottom: 15px;
-  }
-  .philosophy-letter h3 {
-    font-size: 11px;
-  }
-  .philosophy-letter p {
+  .welcome-kicker {
     font-size: 9px;
   }
-  .philosophy-bottom {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-    margin-top: 30px;
+  .hero-actions {
+    gap: 8px;
   }
-  .philosophy-bottom h2 {
-    font-size: 18px;
+  .workshop-banner {
+    padding: 16px 12px;
+    gap: 12px;
+    min-height: 145px;
   }
-  .final-cta {
-    padding-block: 60px;
+  .pixel-computer {
+    flex-basis: 85px;
   }
-  .cta-top {
-    margin-bottom: 25px;
+  .pixel-computer svg {
+    width: 85px;
+    height: 65px;
   }
-  .cta-top .eyebrow {
+  .banner-orbit {
+    display: none;
+  }
+  .workshop-banner-copy > .mono {
     font-size: 8px;
   }
-  .cta-top > span:last-child {
-    font-size: 7px;
+  .workshop-banner-copy > strong {
+    font-size: 20px;
+  }
+  .capability-labels {
+    gap: 3px;
+  }
+  .capability-labels > span {
+    font-size: 8px;
+    padding: 1px 3px;
+  }
+  .welcome-footnote {
+    font-size: 9px;
+    line-height: 1.6;
+  }
+  .panel-titlebar {
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .panel-titlebar h2 {
+    font-size: 16px;
+  }
+  .panel-titlebar > .mono {
+    font-size: 8px;
+    max-width: 95px;
+    line-height: 1.5;
+  }
+  .panel-body {
+    padding: 13px;
+  }
+  .service-card {
+    gap: 10px;
+    padding: 12px;
+  }
+  .service-directory-icon {
+    width: 31px;
+    height: 31px;
+  }
+  .service-directory-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+  .service-directory-number {
+    display: none;
+  }
+  .service-card h3 {
+    font-size: 15px;
+  }
+  .service-card h3 a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-top: -8px;
+  }
+  .service-card p {
+    font-size: 15px;
+  }
+  .approach-directory,
+  .principle-list {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .philosophy-rows > div {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+  .philosophy-rows dd {
+    padding-left: 37px;
+  }
+  .directory-bottom {
+    text-align: left;
+  }
+  .directory-bottom a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .final-cta {
+    display: block;
+    padding: 18px 15px;
+  }
+  .final-cta > .button {
+    margin-top: 17px;
   }
   .final-cta h2 {
-    font-size: 44px;
-  }
-  .cta-bottom {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 27px;
-    margin-top: 25px;
-  }
-  .cta-bottom p {
-    font-size: 11px;
+    font-size: 22px;
   }
 }

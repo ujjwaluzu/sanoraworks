@@ -1,44 +1,33 @@
-import { approach } from "@/data/site";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-
+﻿import { approach } from "@/data/site";
+import { Panel } from "@/components/ui/Panel";
 export function Approach({ detailed = false }: { detailed?: boolean }) {
   return (
-    <section className="section section-approach">
-      <div className="container">
-        <div className="section-topline">
-          <SectionHeading eyebrow="How we work" number="03">
-            From concept
-            <br />
-            to execution.
-          </SectionHeading>
-          <p className="approach-intro">
-            A considered process.
-            <br />
-            Clear direction at every step.
-          </p>
-        </div>
-        <ol className="approach-timeline">
-          {approach.map((stage) => (
-            <li key={stage.number}>
-              <div className="timeline-marker">
-                <span className="mono">{stage.number}</span>
-                <span className="timeline-dot" />
-              </div>
+    <Panel
+      title="How we work"
+      label="FROM CONCEPT TO EXECUTION"
+      className="section-approach"
+    >
+      <ol
+        className={`approach-directory ${detailed ? "approach-detailed" : ""}`}
+      >
+        {approach.map((stage) => (
+          <li key={stage.number}>
+            <span className="stage-number mono">{stage.number}</span>
+            <div>
               <h3>{stage.name}</h3>
               <p>{stage.description}</p>
               {detailed && (
                 <>
-                  <p className="stage-detail">{stage.detail}</p>
-                  <div className="stage-output">
-                    <span className="eyebrow">The outcome</span>
-                    {stage.output}
-                  </div>
+                  <p>{stage.detail}</p>
+                  <p className="stage-output">
+                    <strong>The outcome:</strong> {stage.output}
+                  </p>
                 </>
               )}
-            </li>
-          ))}
-        </ol>
-      </div>
-    </section>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </Panel>
   );
 }

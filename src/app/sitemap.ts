@@ -15,7 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
   return routes.map((path) => ({
     url: `${site.url}${path || "/"}`,
-    lastModified: new Date("2026-11-15"),
+    lastModified: new Date("2026-11-16"),
     changeFrequency: "monthly",
     priority:
       path === "" ? 1 : ["/privacy", "/terms"].includes(path) ? 0.3 : 0.7,

@@ -17,18 +17,12 @@ export default function ServicesPage() {
   return (
     <main id="main-content">
       <PageHero
-        eyebrow="Our capabilities"
+        eyebrow="The service directory"
         index="01"
-        title={
-          <>
-            The right thinking.
-            <br />
-            <span>The right technology.</span>
-          </>
-        }
+        title="Engineering services"
         description="Connected capabilities, from the first question to the systems that keep your product moving. Built around what your business actually needs."
       />
-      <div
+      <nav
         className="container service-jump-links"
         aria-label="Explore service categories"
       >
@@ -39,7 +33,7 @@ export default function ServicesPage() {
             <ArrowDown size={13} aria-hidden="true" />
           </a>
         ))}
-      </div>
+      </nav>
       <div className="container service-details">
         {services.map((service) => (
           <section
@@ -97,9 +91,7 @@ export default function ServicesPage() {
       <section className="section">
         <div className="container faq-layout">
           <SectionHeading eyebrow="A few useful answers">
-            Before we
-            <br />
-            get started.
+            Frequently asked questions
           </SectionHeading>
           <div className="faq-list">
             {faqs.map((faq) => (

@@ -1,42 +1,28 @@
-import { ArrowDown } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+﻿import { Button } from "@/components/ui/Button";
 import { EngineeringForm } from "./EngineeringForm";
-
 export function Hero() {
   return (
-    <section className="hero">
-      <div className="container hero-main">
-        <div className="hero-content">
-          <p className="eyebrow hero-eyebrow">
-            <span className="status-dot" />
-            Independent technology & engineering company
-          </p>
-          <h1>
-            Engineering ideas into meaningful <span>digital solutions.</span>
-          </h1>
-          <p className="hero-description">
-            We design, develop and engineer digital products, intelligent
-            systems and technology solutions that help businesses move forward.
-          </p>
-          <div className="hero-actions">
-            <Button href="/work">Explore our work</Button>
-            <Button href="/contact" variant="text">
-              Start a project
-            </Button>
-          </div>
-        </div>
-        <EngineeringForm />
+    <section className="home-welcome">
+      <p className="welcome-kicker mono">
+        INDEPENDENT TECHNOLOGY & ENGINEERING
+      </p>
+      <h1>Welcome to SanoraWorks</h1>
+      <p className="welcome-intro">
+        A small workshop for big possibilities. We design and engineer digital
+        products, intelligent systems, and dependable software that helps
+        businesses move forward.
+      </p>
+      <div className="hero-actions">
+        <Button href="/work">Explore the projects</Button>
+        <Button href="/contact" variant="secondary">
+          Start a project
+        </Button>
       </div>
-      <div className="container hero-bottom">
-        <a href="#capabilities" className="scroll-link">
-          <ArrowDown size={14} aria-hidden="true" />
-          Scroll to explore
-        </a>
-        <span className="hero-bottom-note">
-          Built with purpose. Engineered for what’s next.
-        </span>
-        <span className="mono hero-index">01 — 06</span>
-      </div>
+      <EngineeringForm />
+      <p className="welcome-footnote">
+        <span aria-hidden="true">■</span> Independent thinking. Purposeful
+        engineering. A considered way forward.
+      </p>
     </section>
   );
 }

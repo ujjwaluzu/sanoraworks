@@ -1,109 +1,40 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
-import { Logo } from "@/components/ui/Logo";
-import { navigation, site } from "@/data/site";
-import { services } from "@/data/services";
+import { Badge } from "@/components/ui/Badge";
 
 export function Footer() {
   return (
     <footer className="site-footer">
-      <div className="container">
-        <div className="footer-grid">
-          <div className="footer-intro">
-            <Logo />
-            <p>
-              Independent thinking.
-              <br />
-              Purposeful engineering.
-              <br />
-              Technology that moves us forward.
-            </p>
-            <span className="eyebrow">Engineering the next.</span>
-          </div>
-          <div>
-            <h2 className="footer-title">Explore</h2>
-            <ul>
-              {navigation.map((item) => (
-                <li key={item.href}>
-                  <Link href={item.href}>{item.label}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h2 className="footer-title">Capabilities</h2>
-            <ul>
-              {services.map((item) => (
-                <li key={item.slug}>
-                  <Link href={`/services#${item.slug}`}>{item.shortTitle}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h2 className="footer-title">Connect</h2>
-            {site.email ? (
-              <a className="footer-email" href={`mailto:${site.email}`}>
-                {site.email}
-                <ArrowUpRight size={14} />
-              </a>
-            ) : (
-              <Link className="footer-email" href="/contact">
-                Let’s start a conversation
-                <ArrowUpRight size={14} />
-              </Link>
-            )}
-            <ul className="social-links">
-              {site.linkedin ? (
-                <li>
-                  <a
-                    href={site.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    LinkedIn
-                    <ArrowUpRight size={12} />
-                  </a>
-                </li>
-              ) : (
-                <li>
-                  <span aria-label="LinkedIn link coming soon">
-                    LinkedIn <span className="soon">Coming soon</span>
-                  </span>
-                </li>
-              )}
-              {site.github ? (
-                <li>
-                  <a
-                    href={site.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    GitHub
-                    <ArrowUpRight size={12} />
-                  </a>
-                </li>
-              ) : (
-                <li>
-                  <span aria-label="GitHub link coming soon">
-                    GitHub <span className="soon">Coming soon</span>
-                  </span>
-                </li>
-              )}
-            </ul>
-          </div>
-        </div>
-        <div className="footer-wordmark" aria-hidden="true">
-          SANORA WORKS<span>↗</span>
-        </div>
-        <div className="footer-bottom">
-          <p>© 2026 SANORA WORKS. All rights reserved.</p>
-          <div>
-            <Link href="/privacy">Privacy Policy</Link>
-            <Link href="/terms">Terms of Service</Link>
-            <a href="#top">Back to top ↑</a>
-          </div>
-        </div>
+      <div className="footer-badges" aria-label="Workshop badges">
+        <Badge
+          top="SANORAWORKS"
+          label="Independent Works"
+          symbol="✦"
+          href="/about"
+        />
+        <Badge
+          top="ENGINEERING"
+          label="Built with Purpose"
+          symbol="S"
+          tone="cream"
+        />
+        <Badge
+          top="STEP INSIDE"
+          label="Explore the Projects"
+          symbol="↗"
+          href="/work"
+          tone="navy"
+        />
+      </div>
+      <p className="footer-motto">
+        Independent thinking. Purposeful engineering.
+      </p>
+      <div className="footer-bottom">
+        <p>© 2026 SanoraWorks. All rights reserved.</p>
+        <nav aria-label="Footer navigation">
+          <Link href="/privacy">Privacy Policy</Link>
+          <Link href="/terms">Terms of Service</Link>
+          <a href="#top">Back to top ↑</a>
+        </nav>
       </div>
     </footer>
   );

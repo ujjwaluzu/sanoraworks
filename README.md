@@ -30,7 +30,16 @@ npm run start -- --port 3001
 npm run test:smoke
 ```
 
-`SMOKE_BASE_URL` overrides the smoke-test server URL. The smoke check avoids sending a valid test enquiry when delivery is enabled. Browser visual and keyboard QA should cover 375px mobile, 768px tablet, and 1440px desktop, including the mobile menu, filters, FAQs, and contact form. No browser is required for the other checks.
+`SMOKE_BASE_URL` overrides the smoke-test server URL. The smoke check avoids sending a valid test enquiry when delivery is enabled. Browser visual and keyboard QA should cover 375px mobile, 768px tablet, and 1440px desktop, including the wrapped navigation tabs, filters, FAQs, and contact form. No browser is required for the other checks. Restart the production server after rebuilding so its cached asset manifest matches the latest output.
+
+Optional headless browser review uses an existing Playwright installation and Chrome/Chromium without adding a production dependency:
+
+```sh
+node scripts/visual-qa.mjs <installed-playwright-path> <chrome-executable>
+node scripts/interaction-qa.mjs <installed-playwright-path> <chrome-executable>
+```
+
+`QA_BASE_URL` defaults to `http://localhost:3001`. The visual review saves full-page screenshots for every route at 375px, 768px, and 1440px, then checks 320px and the 720px effective viewport of a 1440px display at 200% zoom. The interaction review covers keyboard FAQs, filters, preselection, validation, actual local brief downloads, and a browser-intercepted delivery failure. The failure fixture never sends an external enquiry. Reports and screenshots are saved under ignored `artifacts/`.
 
 ## Content and configuration
 
@@ -49,7 +58,11 @@ Public environment values are read at build time. Rebuild after changing them. T
 - `src/data/site.ts`: company details, founders, navigation, principles, and process.
 - `src/data/services.ts`: services, capabilities, deliverables, and FAQs.
 - `src/data/projects.ts`: project descriptions, verified technology stacks, and live/repository URLs.
-- `src/app/globals.css`, `home.css`, `work.css`, `pages.css`, `contact.css`: design system and responsive layouts.
+- `src/app/globals.css`, `home.css`, `work.css`, `pages.css`, `contact.css`: teal-and-silver workshop design system and responsive layouts.
+- `src/components/layout/`: shared 1,120px frame navigation, 220px directory sidebar, and compact badge footer. The sidebar follows the main content below 800px.
+- `src/components/ui/Panel.tsx`, `Badge.tsx`: reusable titled panels and original web badges.
+- `public/brand/`: standalone, outlined SVG wordmarks and emblems in default, light, and monochrome variants, plus favicon and usage notes.
+- `src/lib/brand-paths.ts`: shared outlined wordmark geometry for metadata images.
 
 Project interfaces are explicitly illustrative concepts. No client results, founder credentials, live project URLs, or project technology stacks have been invented. Populate those fields with verified information. The manually maintained sitemap modification date should be updated with substantive site changes.
 
@@ -86,4 +99,4 @@ Deploy to a host that supports the Next.js Node.js runtime, such as Vercel or a 
 
 Work is committed and pushed incrementally to `main` in reviewable milestones. A scoped dependency override keeps the lint toolchain on a patched version of `minimatch`; rerun lint and audit when updating the toolchain.
 
-Manrope is self-hosted under the SIL Open Font License; its notice is in `src/app/fonts/OFL.txt`. All rights reserved for original Sanora Works branding and website content. This repository does not grant an open-source license.
+The workshop uses system Verdana/Tahoma for reading, Arial for headings, and Courier New for technical labels. The former Manrope font remains archived under the SIL Open Font License in `src/app/fonts/OFL.txt` and is no longer loaded. All rights reserved for original Sanora Works branding and website content. This repository does not grant an open-source license.

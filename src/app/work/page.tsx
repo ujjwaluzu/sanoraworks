@@ -16,13 +16,7 @@ export default function WorkPage() {
       <PageHero
         eyebrow="Independent projects"
         index="02"
-        title={
-          <>
-            Ideas made tangible.
-            <br />
-            <span>Purpose made visible.</span>
-          </>
-        }
+        title="The project directory"
         description="A growing collection of independently developed products. Different challenges, connected by a belief in thoughtful engineering."
       />
       <section className="section work-listing">

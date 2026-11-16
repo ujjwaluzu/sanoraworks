@@ -37,16 +37,17 @@ export default async function ProjectPage({
   const related = projects.filter((item) => item.slug !== slug);
   return (
     <main id="main-content">
+      <nav className="breadcrumb" aria-label="Breadcrumb">
+        <Link href="/">Home</Link>
+        <span aria-hidden="true"> / </span>
+        <Link href="/work">Project directory</Link>
+        <span aria-hidden="true"> / </span>
+        <span aria-current="page">{project.name}</span>
+      </nav>
       <PageHero
         eyebrow={`Independent project / ${project.category}`}
         index="WORK"
-        title={
-          <>
-            {project.name}
-            <br />
-            <span>{project.discipline}.</span>
-          </>
-        }
+        title={project.name}
         description={project.description}
       />
       <div className="container project-detail-visual">
@@ -61,8 +62,7 @@ export default async function ProjectPage({
           <div>
             <p className="eyebrow">An independent exploration</p>
             <h2>
-              {project.name}.<br />
-              Built with purpose.
+              {project.name}: built with purpose.
             </h2>
             <p>{project.overview}</p>
             <p>
@@ -122,9 +122,7 @@ export default async function ProjectPage({
         <div className="container">
           <div className="section-topline">
             <SectionHeading eyebrow="Keep exploring">
-              More from
-              <br />
-              the workshop.
+              More from the workshop
             </SectionHeading>
             <Button href="/work" variant="text">
               All projects

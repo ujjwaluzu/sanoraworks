@@ -2,16 +2,9 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import localFont from "next/font/local";
+import { Sidebar } from "@/components/layout/Sidebar";
 import { site } from "@/data/site";
 import { pageMetadata } from "@/lib/metadata";
-
-const manrope = localFont({
-  src: "./fonts/manrope-latin.woff2",
-  variable: "--font-manrope",
-  display: "swap",
-  weight: "200 800",
-});
 
 export const metadata: Metadata = {
   ...pageMetadata(
@@ -30,8 +23,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#101112",
-  colorScheme: "dark",
+  themeColor: "#006666",
+  colorScheme: "light",
 };
 
 const organization = {
@@ -54,7 +47,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={manrope.variable}>
+    <html lang="en">
       <body id="top">
         <script
           type="application/ld+json"
@@ -65,9 +58,14 @@ export default function RootLayout({
         <a href="#main-content" className="skip-link">
           Skip to content
         </a>
-        <Navbar />
-        {children}
-        <Footer />
+        <div className="site-frame">
+          <Navbar />
+          <div className="site-columns">
+            <div className="site-content">{children}</div>
+            <Sidebar />
+          </div>
+          <Footer />
+        </div>
       </body>
     </html>
   );

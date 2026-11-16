@@ -127,11 +127,11 @@ export function ContactForm({
     <form ref={formRef} className="enquiry-form" onSubmit={submit} noValidate>
       <div className="form-heading">
         <h2>Tell us what you have in mind.</h2>
-        <span className="mono">* REQUIRED</span>
+        <span className="mono">REQUIRED FIELDS ARE LABELED</span>
       </div>
       {!deliveryEnabled && (
         <div className="form-availability">
-          <span className="status-dot" />
+          <span className="status-dot" aria-hidden="true" />
           <p>
             Online enquiries are not open yet. Prepare and download your project
             brief below so it’s ready for a conversation.
@@ -160,7 +160,7 @@ export function ContactForm({
         <div className="form-row">
           <div className="field">
             <label htmlFor="name">
-              Your name <span>*</span>
+              Your name <span>(required)</span>
             </label>
             <input
               id="name"
@@ -176,7 +176,7 @@ export function ContactForm({
           </div>
           <div className="field">
             <label htmlFor="email">
-              Email address <span>*</span>
+              Email address <span>(required)</span>
             </label>
             <input
               id="email"
@@ -208,7 +208,7 @@ export function ContactForm({
         <div className="form-row">
           <div className="field">
             <label htmlFor="projectType">
-              Project type <span>*</span>
+              Project type <span>(required)</span>
             </label>
             <select
               id="projectType"
@@ -246,7 +246,7 @@ export function ContactForm({
         </div>
         <div className="field">
           <label htmlFor="description">
-            A little about your project <span>*</span>
+            A little about your project <span>(required)</span>
           </label>
           <textarea
             id="description"

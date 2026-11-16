@@ -14,13 +14,7 @@ export default function TermsPage() {
       <PageHero
         eyebrow="Website information"
         index="TERMS"
-        title={
-          <>
-            Clear expectations.
-            <br />
-            <span>A considered start.</span>
-          </>
-        }
+        title="Terms of Service"
         description="Information about the website, the work presented here, and the starting point for a project conversation."
       />
       <article className="container legal">

@@ -1,94 +1,60 @@
-function wirePaths() {
-  const paths: { d: string; depth: number }[] = [];
-  const project = (x: number, y: number, z: number) => {
-    const a = -0.7;
-    const b = 0.5;
-    const c = -0.4;
-    const y1 = y * Math.cos(a) - z * Math.sin(a);
-    const z1 = y * Math.sin(a) + z * Math.cos(a);
-    const x2 = x * Math.cos(b) + z1 * Math.sin(b);
-    const z2 = -x * Math.sin(b) + z1 * Math.cos(b);
-    return [
-      300 + x2 * Math.cos(c) - y1 * Math.sin(c),
-      300 + x2 * Math.sin(c) + y1 * Math.cos(c),
-      z2,
-    ];
-  };
-  for (let ring = 0; ring < 100; ring++) {
-    const u = (ring / 100) * Math.PI * 2;
-    let d = "";
-    let depth = 0;
-    for (let point = 0; point <= 64; point++) {
-      const v = (point / 64) * Math.PI * 2;
-      const r = 73 + 10 * Math.cos(3 * u);
-      const radial = 158 + r * Math.cos(v);
-      const p = project(
-        radial * Math.cos(u),
-        radial * Math.sin(u),
-        r * Math.sin(v),
-      );
-      depth += p[2];
-      d += `${point === 0 ? "M" : "L"}${p[0].toFixed(2)},${p[1].toFixed(2)} `;
-    }
-    paths.push({ d: d + "Z", depth: depth / 65 });
-  }
-  return paths.sort((a, b) => a.depth - b.depth);
-}
-
-const paths = wirePaths();
-
+﻿import { BrandMark } from "@/components/ui/Logo";
 export function EngineeringForm({ compact = false }: { compact?: boolean }) {
   return (
-    <div className={`engineering-form ${compact ? "form-compact" : ""}`}>
-      <div className="form-grid" aria-hidden="true" />
-      <span className="form-coordinate coord-top mono" aria-hidden="true">
-        SW—001 / CONTINUOUS EXPLORATION
-      </span>
-      <svg
-        className="wireform"
-        viewBox="0 0 600 600"
-        role="img"
-        aria-label="An intricate silver toroidal structure, formed from one hundred precisely aligned architectural loops"
-      >
-        <defs>
-          <linearGradient id="wire-metal" x1="10%" y1="0%" x2="85%" y2="100%">
-            <stop offset="0%" stopColor="#505958" />
-            <stop offset="32%" stopColor="#c4c9c5" />
-            <stop offset="52%" stopColor="#e8eae4" />
-            <stop offset="73%" stopColor="#787f7a" />
-            <stop offset="100%" stopColor="#3b4540" />
-          </linearGradient>
-          <radialGradient id="form-light">
-            <stop offset="0%" stopColor="#b4c1ac" stopOpacity=".08" />
-            <stop offset="100%" stopColor="#b4c1ac" stopOpacity="0" />
-          </radialGradient>
-        </defs>
-        <circle cx="300" cy="300" r="285" fill="url(#form-light)" />
-        <g fill="none" stroke="url(#wire-metal)" strokeWidth=".85">
-          {paths.map((path, index) => (
-            <path
-              key={index}
-              d={path.d}
-              opacity={0.35 + (path.depth + 180) / 560}
-            />
-          ))}
-        </g>
-      </svg>
-      <div className="form-axis" aria-hidden="true">
-        <span>Y</span>
-        <span>X</span>
-        <span>Z</span>
+    <div
+      className={`workshop-banner ${compact ? "banner-compact" : ""}`}
+      aria-hidden="true"
+    >
+      <div className="pixel-computer">
+        <svg
+          viewBox="0 0 160 120"
+          shapeRendering="crispEdges"
+          focusable="false"
+        >
+          <path d="M16 8h120v78H16z" fill="#777" />
+          <path d="M16 8h120v5H21v68h-5z" fill="#fff" />
+          <path d="M21 13h110v63H21z" fill="#bfbfbf" />
+          <path d="M28 20h96v50H28z" fill="#002f39" />
+          <path d="M28 20h96v3H31v47h-3z" fill="#080e21" />
+          <path
+            d="M40 33h15v4H40zm0 8h32v3H40zm0 8h48v3H40zm0 8h24v3H40z"
+            fill="#73d3c0"
+          />
+          <path
+            d="m94 33 9 9-9 9h-5l9-9-9-9zm-18 0-9 9 9 9h5l-9-9 9-9z"
+            fill="#fff"
+          />
+          <path d="M109 80h8v3h-8z" fill="#006666" />
+          <path d="M60 86h33v10H60z" fill="#999" />
+          <path d="M49 96h55v6H49z" fill="#eee" />
+          <path d="M14 107h119l13 9H2z" fill="#ddd" />
+          <path d="M2 116h144v4H2z" fill="#777" />
+          <path d="M22 109h99v2H22zm-9 4h120v2H13z" fill="#888" />
+          <path d="M142 91h10v15h-10z" fill="#eee" />
+          <path
+            d="M147 85v6m0-6h-9v-7"
+            stroke="#666"
+            fill="none"
+            strokeWidth="2"
+          />
+        </svg>
       </div>
-      <div className="form-caption">
-        <span className="form-cross" aria-hidden="true">
-          +
-        </span>
-        <span>
-          Complex thinking.
+      <div className="workshop-banner-copy">
+        <span className="mono">THE SANORAWORKS WORKSHOP</span>
+        <strong>
+          Thoughtfully built.
           <br />
-          <strong>Considered form.</strong>
-        </span>
-        <span className="mono">FIG. 01</span>
+          Ready for what’s next.
+        </strong>
+        <div className="capability-labels">
+          <span>SOFTWARE</span>
+          <span>PRODUCTS</span>
+          <span>AI & AUTOMATION</span>
+          <span>CLOUD</span>
+        </div>
+      </div>
+      <div className="banner-orbit">
+        <BrandMark />
       </div>
     </div>
   );
