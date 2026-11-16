@@ -2,11 +2,7 @@
 import { Panel } from "@/components/ui/Panel";
 export function BrandPhilosophy() {
   return (
-    <Panel
-      title="The SANORA philosophy"
-      label="SIX IDEAS. ONE DIRECTION."
-      className="section-philosophy"
-    >
+    <Panel title="The SANORA philosophy" className="section-philosophy">
       <dl className="philosophy-rows">
         {philosophy.map((item, index) => (
           <div key={index}>

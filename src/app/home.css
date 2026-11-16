@@ -4,12 +4,6 @@
   border: 1px solid #8b9696;
   margin-bottom: 20px;
 }
-.welcome-kicker {
-  font-size: 13px;
-  color: #526367;
-  margin: 0 0 7px;
-  letter-spacing: 0.05em;
-}
 .home-welcome h1 {
   font-family: Arial, sans-serif;
   font-weight: 700;
@@ -31,6 +25,7 @@
   margin-bottom: 22px;
 }
 .section-shortcuts {
+  margin-top: 20px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -128,18 +123,6 @@
   width: 100%;
   height: auto;
 }
-.welcome-footnote {
-  font:
-    13px "Courier New",
-    monospace;
-  color: #47565b;
-  margin: 12px 0;
-  padding-bottom: 12px;
-}
-.welcome-footnote > span {
-  color: #006666;
-  font-size: 9px;
-}
 .workshop-panel {
   margin-bottom: 20px;
   background: #fff;
@@ -163,12 +146,6 @@
     sans-serif;
   margin: 0;
   color: #fff;
-}
-.panel-titlebar > .mono {
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  color: #d6eceb;
-  text-align: right;
 }
 .panel-body {
   padding: 24px;
@@ -457,9 +434,6 @@
   .welcome-intro {
     font-size: 16px;
   }
-  .welcome-kicker {
-    font-size: 12px;
-  }
   .hero-actions {
     gap: 8px;
   }
@@ -494,19 +468,12 @@
     font-size: 10px;
     padding: 1px 3px;
   }
-  .welcome-footnote {
-    font-size: 12px;
-    line-height: 1.6;
-  }
   .panel-titlebar {
     align-items: flex-start;
     gap: 8px;
   }
   .panel-titlebar h2 {
     font-size: 20px;
-  }
-  .panel-titlebar > .mono {
-    display: none;
   }
   .panel-body {
     padding: 18px;

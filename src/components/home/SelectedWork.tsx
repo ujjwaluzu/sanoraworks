@@ -6,7 +6,6 @@ export function SelectedWork() {
   return (
     <Panel
       title="From the project directory"
-      label="03 INDEPENDENT PROJECTS"
       className="section-work"
       id="projects"
     >

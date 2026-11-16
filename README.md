@@ -59,8 +59,8 @@ Public environment values are read at build time. Rebuild after changing them. T
 - `src/data/services.ts`: services, capabilities, deliverables, and FAQs.
 - `src/data/projects.ts`: project descriptions, verified technology stacks, and live/repository URLs.
 - `src/app/globals.css`, `home.css`, `work.css`, `pages.css`, `contact.css`: teal-and-silver workshop design system and responsive layouts.
-- `src/components/layout/`: shared full-viewport frame navigation, 248px directory sidebar, and compact badge footer. The sidebar follows the main content below 800px; mobile navigation uses two clear rows.
-- `src/components/ui/Panel.tsx`, `Badge.tsx`: reusable titled panels and original web badges.
+- `src/components/layout/`: shared full-viewport frame navigation, 248px directory sidebar, and compact footer. The sidebar follows the main content below 800px; mobile navigation uses two clear rows.
+- `src/components/ui/Panel.tsx`: reusable titled content panels.
 - `public/brand/`: standalone, outlined SVG wordmarks and emblems in default, light, and monochrome variants, plus favicon and usage notes.
 - `src/lib/brand-paths.ts`: shared outlined wordmark geometry for metadata images.
 

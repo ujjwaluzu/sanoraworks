@@ -6,7 +6,6 @@ export function ServicesOverview() {
   return (
     <Panel
       title="What we can build together"
-      label="SERVICE DIRECTORY"
       id="capabilities"
       className="section-services"
     >

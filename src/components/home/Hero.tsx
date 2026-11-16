@@ -3,9 +3,6 @@ import { EngineeringForm } from "./EngineeringForm";
 export function Hero() {
   return (
     <section className="home-welcome">
-      <p className="welcome-kicker mono">
-        INDEPENDENT TECHNOLOGY & ENGINEERING
-      </p>
       <h1>Welcome to SanoraWorks</h1>
       <p className="welcome-intro">
         A small workshop for big possibilities. We design and engineer digital
@@ -19,10 +16,6 @@ export function Hero() {
         </Button>
       </div>
       <EngineeringForm />
-      <p className="welcome-footnote">
-        <span aria-hidden="true">■</span> Independent thinking. Purposeful
-        engineering. A considered way forward.
-      </p>
       <nav className="section-shortcuts" aria-label="On this page">
         <span>Jump to</span>
         <a href="#capabilities">Services</a>

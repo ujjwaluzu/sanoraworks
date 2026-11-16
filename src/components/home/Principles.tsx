@@ -4,7 +4,6 @@ export function Principles() {
   return (
     <Panel
       title="Built on engineering principles"
-      label="THE WAY WE THINK"
       className="section-principles"
     >
       <div className="principle-list">

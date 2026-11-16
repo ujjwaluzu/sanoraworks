@@ -4,7 +4,6 @@ export function Approach({ detailed = false }: { detailed?: boolean }) {
   return (
     <Panel
       title="How we work"
-      label="FROM CONCEPT TO EXECUTION"
       className="section-approach"
       id="process"
     >

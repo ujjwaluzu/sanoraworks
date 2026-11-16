@@ -4,7 +4,6 @@ export function AboutPreview() {
   return (
     <Panel
       title="Independent by design"
-      label="ABOUT THE WORKSHOP"
       className="section-about"
     >
       <p>
