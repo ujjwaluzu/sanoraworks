@@ -15,7 +15,7 @@ export function Navbar() {
         </div>
       </div>
       <nav className="primary-nav" aria-label="Main navigation">
-        {navigation.map((item, index) => {
+        {navigation.map((item) => {
           const active =
             item.href === "/"
               ? pathname === "/"
@@ -26,9 +26,6 @@ export function Navbar() {
               href={item.href}
               aria-current={active ? "page" : undefined}
             >
-              <span className="nav-index" aria-hidden="true">
-                0{index + 1}
-              </span>
               {item.label}
             </Link>
           );

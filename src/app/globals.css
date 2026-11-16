@@ -210,12 +210,6 @@ img {
     inset 1px 1px var(--cobalt-hover),
     inset -1px -1px var(--cobalt-line);
 }
-.nav-index {
-  font:
-    12px "Courier New",
-    monospace;
-  opacity: 0.8;
-}
 .site-columns {
   display: grid;
   grid-template-columns: 248px minmax(0, 1fr);
@@ -550,9 +544,6 @@ img {
   }
   .primary-nav > a:nth-child(n + 4) {
     grid-column: span 3;
-  }
-  .nav-index {
-    display: none;
   }
   .site-sidebar {
     grid-template-columns: minmax(0, 1fr);

@@ -91,7 +91,7 @@ try {
     await page.waitForURL("**/services");
     assert.equal(
       await page.locator(".primary-nav a[aria-current=page]").textContent(),
-      "02Services",
+      "Services",
     );
     assert.equal(
       await page.locator("h1").textContent(),
