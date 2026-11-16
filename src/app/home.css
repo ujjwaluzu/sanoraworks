@@ -46,16 +46,16 @@
   padding: 4px;
 }
 .workshop-banner {
-  display: flex;
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr) 144px;
+  grid-template-areas: "computer copy logo" "controls controls controls";
   align-items: center;
-  gap: 22px;
+  gap: 8px 26px;
   position: relative;
+  padding: 24px 26px 14px;
   background: var(--silver);
   border: 1px solid var(--line-strong);
   box-shadow: inset 1px 1px var(--white);
-  padding: 20px 22px;
-  min-height: 170px;
-  overflow: hidden;
 }
 .workshop-banner::after {
   content: "";
@@ -63,32 +63,18 @@
   inset: 0;
   pointer-events: none;
   background-image: radial-gradient(var(--brand-pattern) 0.7px, transparent 0.7px);
-  background-size: 4px 4px;
-  mask-image: linear-gradient(90deg, transparent 40%, var(--black));
-}
-.pixel-computer {
-  flex: 0 0 150px;
-  position: relative;
-  z-index: 1;
-  align-self: center;
-}
-.pixel-computer svg {
-  width: 150px;
-  height: 114px;
-  display: block;
-  filter: drop-shadow(3px 4px 0 var(--brand-shadow));
+  background-size: 5px 5px;
+  mask-image: linear-gradient(90deg, transparent 35%, var(--black));
 }
 .workshop-banner-copy {
+  grid-area: copy;
   position: relative;
   z-index: 1;
   min-width: 0;
-  flex: 1;
 }
 .workshop-banner-copy h2 {
-  font-family: Arial, sans-serif;
-  font-size: 25px;
+  font: 700 25px/1.3 Arial, sans-serif;
   letter-spacing: -0.5px;
-  line-height: 1.3;
   color: var(--ink);
   margin: 0 0 10px;
 }
@@ -99,17 +85,117 @@
   max-width: var(--reading-width);
   margin: 0;
 }
-.banner-monogram {
-  width: 80px;
-  opacity: 0.65;
-  flex-shrink: 0;
+.dns-computer {
+  grid-area: computer;
   position: relative;
   z-index: 1;
-}
-.banner-monogram img {
   width: 100%;
-  height: auto;
+  min-width: 0;
+  margin: 0;
 }
+.dns-figure-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font: 10px/1.4 "Courier New", monospace;
+  letter-spacing: 0.4px;
+}
+.dns-figure-heading span:first-child { color: var(--cobalt); }
+.dns-machine { display: block; width: 100%; height: auto; overflow: visible; }
+.dns-ground-shadow { fill: var(--brand-shadow); opacity: 0.45; filter: blur(6px); }
+.dns-solid {
+  --dns-face: var(--surface);
+  --dns-top: var(--white);
+  --dns-shade-0: #a6b2c4;
+  --dns-shade-1: #bac5d4;
+  --dns-shade-2: #ccd5e1;
+  --dns-shade-3: #dce3ed;
+}
+.dns-base { --dns-top: #d6dfeb; --dns-face: #bac7d9; }
+.dns-foot { --dns-face: var(--line-strong); --dns-top: #8997aa; }
+.dns-backplane { --dns-face: #aebdd2; --dns-top: #cbd5e4; }
+.dns-key { --dns-face: #c6d0df; --dns-top: #f8faff; }
+.dns-fill { fill: var(--dns-face); }
+.dns-top { fill: var(--dns-top); }
+.dns-shade-0 { fill: var(--dns-shade-0); }
+.dns-shade-1 { fill: var(--dns-shade-1); }
+.dns-shade-2 { fill: var(--dns-shade-2); }
+.dns-shade-3 { fill: var(--dns-shade-3); }
+.dns-edge { fill: none; stroke: var(--line-strong); stroke-width: 0.65; stroke-linejoin: round; }
+.dns-bevel { fill: none; stroke: var(--white); stroke-width: 0.65; opacity: 0.8; }
+.dns-groove { fill: none; stroke: var(--line); stroke-width: 0.7; }
+.dns-server-face { fill: #d9e2ee; stroke: var(--line-strong); stroke-width: 0.45; }
+.dns-vent, .dns-disk-slot { fill: var(--line-strong); }
+.dns-port { fill: #53647e; stroke: var(--white); stroke-width: 0.5; }
+.dns-mount { fill: #93a3bb; }
+.dns-server-light { fill: var(--cobalt); }
+.dns-signal-trace { fill: none; stroke: #9cacc4; stroke-width: 3; stroke-linejoin: round; }
+.dns-signal-core { fill: none; stroke: var(--surface); stroke-width: 0.7; stroke-linejoin: round; }
+.dns-packet { fill: var(--cobalt); stroke: var(--cobalt-soft); stroke-width: 1; opacity: 0; filter: drop-shadow(0 0 2px var(--cobalt)); }
+.dns-bezel { fill: #8191a8; stroke: var(--line-strong); stroke-width: 0.8; }
+.dns-glass { fill: var(--ink); stroke: var(--black); stroke-width: 1.5; }
+.dns-screen-tint { fill: #14273f; }
+.dns-browser-bar { fill: #263d5c; }
+.dns-screen-domain { fill: var(--cobalt-line); font: 6px "Courier New", monospace; }
+.dns-screen-ip { fill: #e0e9ff; font: 8px "Courier New", monospace; letter-spacing: -0.4px; }
+.dns-screen-line { fill: none; stroke: var(--cobalt-line); stroke-width: 1.7; stroke-linecap: round; opacity: 0.7; }
+.dns-screen-cursor { fill: var(--cobalt-line); }
+.dns-screen-check { fill: none; stroke: var(--cobalt-line); stroke-width: 2; stroke-linejoin: round; }
+.dns-screen-pending { opacity: 0; }
+.dns-glass-reflection { fill: var(--white); opacity: 0.035; }
+.dns-computer-light { fill: var(--cobalt); }
+.dns-power-switch { fill: #94a5bd; }
+.dns-keyboard-well { fill: #afbbcd; stroke: var(--line-strong); stroke-width: 0.7; }
+.dns-readout {
+  min-height: 35px;
+  padding-top: 6px;
+  border-top: 1px solid var(--line);
+  position: relative;
+  font: 10px/1.5 "Courier New", monospace;
+  letter-spacing: -0.3px;
+  color: var(--muted);
+}
+.dns-readout strong { display: block; font-weight: 400; color: var(--ink); overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.dns-readout span span { display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.dns-live-readouts { display: none; }
+.dns-live-readouts > span { position: absolute; inset: 6px 0 auto; opacity: 0; }
+.banner-monogram {
+  grid-area: logo;
+  width: 144px;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+.orbit-logo-art { position: relative; aspect-ratio: 437 / 299; }
+.banner-monogram .banner-logo-source { display: block; width: 100%; height: 100%; object-fit: contain; }
+.orbit-logo-layers { display: none; position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.orbit-curve, .orbit-letters { transform-box: view-box; transform-origin: 218.5px 149.5px; }
+.banner-illustration-label { display: block; margin-top: 18px; font: 10px/1.5 "Courier New", monospace; color: var(--muted); }
+.banner-motion-controls { grid-area: controls; position: relative; z-index: 1; justify-self: end; min-height: 44px; }
+.banner-motion-toggle {
+  visibility: hidden;
+  min-width: 176px;
+  min-height: 44px;
+  padding: 7px 12px;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: inset 1px 1px var(--white);
+  font-size: 14px;
+}
+.banner-motion-toggle:hover { background: var(--cobalt-soft); }
+.banner-motion-toggle:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+@media (prefers-reduced-motion: no-preference) {
+  .workshop-banner[data-motion="true"] .banner-motion-toggle { visibility: visible; }
+  .workshop-banner[data-motion="true"] .banner-logo-source { visibility: hidden; }
+  .workshop-banner[data-motion="true"] .orbit-logo-layers { display: block; }
+  .workshop-banner[data-motion="true"] .dns-static-readout { visibility: hidden; }
+  .workshop-banner[data-motion="true"] .dns-live-readouts { display: block; }
+}
+
 .workshop-panel {
   margin-bottom: 20px;
   background: var(--white);
@@ -386,24 +472,32 @@
     border-right: 1px dotted var(--line);
   }
 }
-@media (max-width: 1050px) and (min-width: 800px) {
+@media (max-width: 1279px) and (min-width: 600px) {
   .banner-monogram {
-    display: none;
+    width: 80px;
   }
   .workshop-banner {
+    grid-template-columns: 160px minmax(0, 1fr) 80px;
     padding: 15px;
-    gap: 15px;
+    gap: 12px;
   }
-  .pixel-computer {
-    flex-basis: 120px;
-  }
-  .pixel-computer svg {
-    width: 120px;
-    height: 92px;
+  .dns-readout {
+    font-size: 9px;
   }
   .workshop-banner-copy h2 {
     font-size: 23px;
   }
+}
+@media (max-width: 1050px) and (min-width: 800px) {
+  .workshop-banner {
+    grid-template-columns: 128px minmax(0, 1fr) 64px;
+  }
+  .banner-monogram { width: 64px; }
+  .dns-figure-heading { font-size: 8px; }
+  .dns-readout { font-size: 8px; }
+  .banner-illustration-label { font-size: 8px; }
+}
+@media (max-width: 1050px) and (min-width: 800px) {
   .final-cta {
     display: block;
   }
@@ -428,15 +522,23 @@
     width: 100%;
   }
   .workshop-banner {
+    grid-template-columns: minmax(0, 160px) minmax(0, 1fr) 80px;
+    grid-template-areas:
+      "computer . logo"
+      "copy copy copy"
+      "controls controls controls";
     padding: 16px 12px;
     gap: 12px;
     min-height: 145px;
   }
-  .pixel-computer {
-    display: none;
+  .dns-readout {
+    font-size: 9px;
+  }
+  .dns-figure-heading {
+    font-size: 8px;
   }
   .banner-monogram {
-    display: none;
+    width: 80px;
   }
   .workshop-banner-copy h2 {
     font-size: 21px;

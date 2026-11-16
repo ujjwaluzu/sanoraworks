@@ -1,6 +1,6 @@
 # SANORA WORKS
 
-The independent technology and engineering company website. Next.js 16 App Router, React 19, strict TypeScript, Tailwind CSS 4, and Lucide icons. Server Components render the site; client JavaScript is limited to navigation, project filtering, and the enquiry form.
+The independent technology and engineering company website. Next.js 16 App Router, React 19, strict TypeScript, Tailwind CSS 4, and Lucide icons. Server Components render the site; client JavaScript handles navigation, project filtering, the enquiry form, and banner animation playback.
 
 ## Run locally
 
@@ -37,9 +37,12 @@ Optional headless browser review uses an existing Playwright installation and Ch
 ```sh
 node scripts/visual-qa.mjs <installed-playwright-path> <chrome-executable>
 node scripts/interaction-qa.mjs <installed-playwright-path> <chrome-executable>
+node scripts/banner-motion-qa.mjs <installed-playwright-path> <chrome-executable>
 ```
 
 `QA_BASE_URL` defaults to `http://localhost:3001`. The visual review saves full-page screenshots for every route at 375px, 768px, 1440px, and 1920px, then checks 320px and the 720px effective viewport of a 1440px display at 200% zoom. The interaction review covers keyboard FAQs, filters, preselection, validation, actual local brief downloads, and a browser-intercepted delivery failure. The failure fixture never sends an external enquiry. Reports and screenshots are saved under ignored `artifacts/`.
+
+The banner review checks both illustrations at 320, 375, 600, 768, 800, 1024, 1050, 1100, 1280, 1440, and 1920px, the shared twelve-second animation phases, pixel equality with the original logo, keyboard pause/resume, offscreen suspension, a hidden-document visibility-event fixture, delayed logo loading, reduced motion, and disabled JavaScript. The Anatomy-based isometric computer illustrates an uncached DNS lookup, using the documentation address `192.0.2.1`. The supplied logo's two orbit curves start together and move to their final positions as SW appears. The banner keeps static artwork until it can start in view with its logo loaded. Its single playback button pauses both illustrations; reduced motion and disabled JavaScript keep completed artwork with the control hidden. See `docs/banner-motion.md` for the figure's design and source.
 
 ## Content and configuration
 
