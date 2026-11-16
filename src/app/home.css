@@ -48,11 +48,11 @@
 .workshop-banner {
   display: grid;
   grid-template-columns: 260px minmax(0, 1fr) 144px;
-  grid-template-areas: "computer copy logo" "controls controls controls";
+  grid-template-areas: "computer copy logo";
   align-items: center;
   gap: 8px 26px;
   position: relative;
-  padding: 24px 26px 14px;
+  padding: 24px 26px;
   background: var(--silver);
   border: 1px solid var(--line-strong);
   box-shadow: inset 1px 1px var(--white);
@@ -93,17 +93,6 @@
   min-width: 0;
   margin: 0;
 }
-.dns-figure-heading {
-  display: flex;
-  justify-content: space-between;
-  gap: 6px;
-  padding-bottom: 5px;
-  border-bottom: 1px solid var(--line);
-  color: var(--muted);
-  font: 10px/1.4 "Courier New", monospace;
-  letter-spacing: 0.4px;
-}
-.dns-figure-heading span:first-child { color: var(--cobalt); }
 .dns-machine { display: block; width: 100%; height: auto; overflow: visible; }
 .dns-ground-shadow { fill: var(--brand-shadow); opacity: 0.45; filter: blur(6px); }
 .dns-solid {
@@ -149,19 +138,6 @@
 .dns-computer-light { fill: var(--cobalt); }
 .dns-power-switch { fill: #94a5bd; }
 .dns-keyboard-well { fill: #afbbcd; stroke: var(--line-strong); stroke-width: 0.7; }
-.dns-readout {
-  min-height: 35px;
-  padding-top: 6px;
-  border-top: 1px solid var(--line);
-  position: relative;
-  font: 10px/1.5 "Courier New", monospace;
-  letter-spacing: -0.3px;
-  color: var(--muted);
-}
-.dns-readout strong { display: block; font-weight: 400; color: var(--ink); overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-.dns-readout span span { display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-.dns-live-readouts { display: none; }
-.dns-live-readouts > span { position: absolute; inset: 6px 0 auto; opacity: 0; }
 .banner-monogram {
   grid-area: logo;
   width: 144px;
@@ -173,27 +149,9 @@
 .banner-monogram .banner-logo-source { display: block; width: 100%; height: 100%; object-fit: contain; }
 .orbit-logo-layers { display: none; position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .orbit-curve, .orbit-letters { transform-box: view-box; transform-origin: 218.5px 149.5px; }
-.banner-illustration-label { display: block; margin-top: 18px; font: 10px/1.5 "Courier New", monospace; color: var(--muted); }
-.banner-motion-controls { grid-area: controls; position: relative; z-index: 1; justify-self: end; min-height: 44px; }
-.banner-motion-toggle {
-  visibility: hidden;
-  min-width: 176px;
-  min-height: 44px;
-  padding: 7px 12px;
-  border: 1px solid var(--line-strong);
-  background: var(--surface);
-  color: var(--ink);
-  box-shadow: inset 1px 1px var(--white);
-  font-size: 14px;
-}
-.banner-motion-toggle:hover { background: var(--cobalt-soft); }
-.banner-motion-toggle:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
 @media (prefers-reduced-motion: no-preference) {
-  .workshop-banner[data-motion="true"] .banner-motion-toggle { visibility: visible; }
   .workshop-banner[data-motion="true"] .banner-logo-source { visibility: hidden; }
   .workshop-banner[data-motion="true"] .orbit-logo-layers { display: block; }
-  .workshop-banner[data-motion="true"] .dns-static-readout { visibility: hidden; }
-  .workshop-banner[data-motion="true"] .dns-live-readouts { display: block; }
 }
 
 .workshop-panel {
@@ -481,9 +439,6 @@
     padding: 15px;
     gap: 12px;
   }
-  .dns-readout {
-    font-size: 9px;
-  }
   .workshop-banner-copy h2 {
     font-size: 23px;
   }
@@ -493,9 +448,6 @@
     grid-template-columns: 128px minmax(0, 1fr) 64px;
   }
   .banner-monogram { width: 64px; }
-  .dns-figure-heading { font-size: 8px; }
-  .dns-readout { font-size: 8px; }
-  .banner-illustration-label { font-size: 8px; }
 }
 @media (max-width: 1050px) and (min-width: 800px) {
   .final-cta {
@@ -525,17 +477,10 @@
     grid-template-columns: minmax(0, 160px) minmax(0, 1fr) 80px;
     grid-template-areas:
       "computer . logo"
-      "copy copy copy"
-      "controls controls controls";
+      "copy copy copy";
     padding: 16px 12px;
     gap: 12px;
     min-height: 145px;
-  }
-  .dns-readout {
-    font-size: 9px;
-  }
-  .dns-figure-heading {
-    font-size: 8px;
   }
   .banner-monogram {
     width: 80px;

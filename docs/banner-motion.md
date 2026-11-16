@@ -21,9 +21,10 @@ separate and settle into their original positions as the letters appear.
 The masthead and downloadable brand assets remain unchanged.
 
 One twelve-second Web Animations timeline drives the orbit, DNS signals, lights,
-screen and captions. Visibility, tab state and the single pause button suspend
-every track together. Reduced motion and JavaScript-disabled rendering show the
-finished original logo and a completed DNS lookup.
+screen. Visibility and tab state suspend every track together. Reduced motion
+and JavaScript-disabled rendering show the finished original logo and a completed
+DNS lookup. The banner has no figure labels, step captions, illustration tagline,
+or playback button; only its main heading and business description remain.
 
 DNS sequence reference: https://www.cloudflare.com/learning/dns/what-is-dns/
 

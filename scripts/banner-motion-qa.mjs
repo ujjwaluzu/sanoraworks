@@ -34,7 +34,7 @@ const times = () => banner.evaluate((el) => el.getAnimations({ subtree: true }).
 async function frozen() {
   await page.waitForTimeout(60);
   const before = await times();
-  assert.ok(before.length > 30);
+  assert.ok(before.length > 20);
   await page.waitForTimeout(150);
   assert.deepEqual(await times(), before);
   return before;
@@ -66,10 +66,12 @@ try {
       }
       assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `Overflow at ${width}`);
       assert.equal(await page.getByRole("heading", { level: 2, name: "Websites, business tools, and automation.", exact: true }).count(), 1);
+      assert.equal(await banner.locator("button, figcaption, .dns-figure-heading, .banner-illustration-label").count(), 0);
+      assert.doesNotMatch(await banner.innerText(), /FIG\. 01|DNS, in motion|A name, not a number|Looking up|Ask the resolver|Name resolved|Ideas into orbit|Pause animations/);
       await banner.screenshot({ path: path.join(output, `banner-${width}.png`) });
     }
   });
-  await check("Joined curves open to reveal SW; DNS captions, packets and screen follow the same twelve-second model", async () => {
+  await check("Joined curves open to reveal SW; DNS packets and screen follow the same twelve-second model", async () => {
     await page.setViewportSize({ width: 1440, height: 1100 });
     await open();
     await running();
@@ -83,12 +85,10 @@ try {
       await seek(cycle + 3000);
       assert.equal(await page.locator('[data-orbit="letters"]').evaluate((el) => getComputedStyle(el).opacity), "1");
       assert.equal(await page.locator('[data-orbit="upper"]').evaluate((el) => getComputedStyle(el).transform), "matrix(1, 0, 0, 1, 0, 0)");
-      assert.equal(await page.locator('[data-dns-caption="2"]').evaluate((el) => getComputedStyle(el).opacity), "1");
       assert.equal(await page.locator('[data-dns-packet="2"]').evaluate((el) => getComputedStyle(el).opacity), "1");
       await seek(cycle + 9500);
       assert.equal(await page.locator('[data-orbit="letters"]').evaluate((el) => getComputedStyle(el).opacity), "1");
       assert.equal(await page.locator('[data-dns-screen="answer"]').evaluate((el) => getComputedStyle(el).opacity), "1");
-      assert.equal(await page.locator('[data-dns-caption="9"]').evaluate((el) => getComputedStyle(el).opacity), "1");
       await seek(cycle + 11600);
       assert.ok(Number(await page.locator('[data-orbit="letters"]').evaluate((el) => getComputedStyle(el).opacity)) < 0.1);
     }
@@ -98,7 +98,7 @@ try {
     }
     // 4× review of the machine's physical detail and source-pixel logo masks.
     await seek(9500);
-    await page.locator(".workshop-banner-copy, .banner-monogram, .banner-motion-controls").evaluateAll((elements) => elements.forEach((el) => { el.style.visibility = "hidden"; }));
+    await page.locator(".workshop-banner-copy, .banner-monogram").evaluateAll((elements) => elements.forEach((el) => { el.style.visibility = "hidden"; }));
     await page.locator(".dns-computer").evaluate((el) => { el.style.width = "800px"; });
     await page.locator(".dns-computer").screenshot({ path: path.join(output, "computer-closeup.png") });
     await page.locator(".dns-computer").evaluate((el) => { el.style.width = ""; });
@@ -127,29 +127,19 @@ try {
     for (let i = 0; i < assembled.length; i++) if (assembled[i] !== original[i]) differences++;
     assert.equal(differences, 0, "Original gradients, orbit, letterforms and proportions are unchanged at rest");
   });
-  await check("Keyboard pause, visible focus and synchronized resume across a real loop", async () => {
+  await check("Both illustrations run automatically and stay synchronized across a real loop", async () => {
     await open();
     await running();
-    const button = page.locator(".banner-motion-toggle");
-    const box = await button.boundingBox();
-    assert.ok(box.width >= 44 && box.height >= 44);
-    await button.focus();
-    await page.keyboard.press("Tab");
-    await page.keyboard.press("Shift+Tab");
-    assert.ok(await button.evaluate((el) => el.matches(":focus-visible") && getComputedStyle(el).outlineWidth === "3px"));
-    await page.keyboard.press("Enter");
-    const paused = await frozen();
-    assert.equal(await button.textContent(), "Resume animations");
-    await page.keyboard.press("Space");
+    const before = await times();
     await page.waitForTimeout(200);
     const resumed = await times();
-    assert.ok(resumed.every((time, i) => time > paused[i] && time < paused[i] + 400));
+    assert.ok(resumed.every((time, i) => time > before[i] && time < before[i] + 400));
     await page.waitForTimeout(12100);
     const looped = await times();
     assert.ok(looped[0] > resumed[0] + 12000);
     assert.ok(Math.max(...looped) - Math.min(...looped) < 1);
   });
-  await check("Offscreen and hidden-tab suspension retain position and manual pause", async () => {
+  await check("Offscreen and hidden-tab suspension retain position", async () => {
     await page.evaluate(() => window.scrollTo({ top: document.body.scrollHeight, behavior: "instant" }));
     await page.waitForSelector('.workshop-banner[data-playing="false"]');
     const paused = await frozen();
@@ -168,13 +158,8 @@ try {
       document.dispatchEvent(new Event("visibilitychange"));
     });
     await running();
-    await page.getByRole("button", { name: "Pause animations", exact: true }).click();
-    await page.evaluate(() => window.scrollTo({ top: document.body.scrollHeight, behavior: "instant" }));
-    await page.waitForSelector('.workshop-banner[data-playing="false"]');
-    await banner.scrollIntoViewIfNeeded();
-    await frozen();
-    assert.equal(await banner.getAttribute("data-paused"), "true");
-    assert.equal(await banner.getAttribute("data-playing"), "false");
+    await page.waitForTimeout(100);
+    assert.ok((await times()).every((time, i) => time > paused[i]));
   });
   await check("Logo loading gates startup even when the banner scrolls out of view", async () => {
     const delayed = await context.newPage();
@@ -202,7 +187,7 @@ try {
       await open(noJs);
       for (const target of [page, noJs]) {
         assert.equal(await target.locator(".workshop-banner").evaluate((el) => el.getAnimations({ subtree: true }).length), 0);
-        assert.equal(await target.locator(".banner-motion-toggle").isVisible(), false);
+        assert.equal(await target.locator(".banner-motion-toggle").count(), 0);
         assert.ok(await target.locator(".banner-logo-source").isVisible());
         assert.equal(await target.locator('[data-dns-screen="answer"]').evaluate((el) => getComputedStyle(el).opacity), "1");
         await target.locator(".workshop-banner").screenshot({ path: path.join(output, target === page ? "reduced-motion.png" : "no-javascript.png") });

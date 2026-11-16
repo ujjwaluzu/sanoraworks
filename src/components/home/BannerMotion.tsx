@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import { BANNER_DURATION, dnsSteps, orbitFrames, phaseFrames } from "@/lib/banner-motion";
 
 export function BannerMotion({
@@ -11,8 +11,6 @@ export function BannerMotion({
   compact?: boolean;
 }) {
   const bannerRef = useRef<HTMLDivElement>(null);
-  const manuallyPaused = useRef(false);
-  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
     const banner = bannerRef.current;
@@ -39,7 +37,6 @@ export function BannerMotion({
         track(banner.querySelector(`[data-orbit="${part}"]`), frames, "cubic-bezier(0.22, 1, 0.36, 1)");
       }
       dnsSteps.forEach((step, index) => {
-        track(banner.querySelector(`[data-dns-caption="${index}"]`), phaseFrames(step.at, step.until));
         if (!step.route) return;
         const path = banner.querySelector<SVGPathElement>(`[data-dns-route="${step.route}"]`);
         if (!path) return;
@@ -86,7 +83,7 @@ export function BannerMotion({
       } else if (!animations.length && canPlay && logo?.complete && logo.naturalWidth > 0) {
         createTracks();
       }
-      const playing = canPlay && !manuallyPaused.current;
+      const playing = canPlay;
       animations.forEach((animation) => {
         if (playing && animation.playState !== "running") animation.play();
         if (!playing && animation.playState !== "paused") animation.pause();
@@ -104,7 +101,6 @@ export function BannerMotion({
     logo?.addEventListener("load", updatePlayback);
     document.addEventListener("visibilitychange", updatePlayback);
     motionPreference.addEventListener("change", updatePlayback);
-    banner.addEventListener("bannerpausechange", updatePlayback);
 
     return () => {
       observer.disconnect();
@@ -112,7 +108,6 @@ export function BannerMotion({
       logo?.removeEventListener("load", updatePlayback);
       document.removeEventListener("visibilitychange", updatePlayback);
       motionPreference.removeEventListener("change", updatePlayback);
-      banner.removeEventListener("bannerpausechange", updatePlayback);
     };
   }, []);
 
@@ -120,22 +115,8 @@ export function BannerMotion({
     <div
       ref={bannerRef}
       className={`workshop-banner ${compact ? "banner-compact" : ""}`}
-      data-paused={paused}
     >
       {children}
-      <div className="banner-motion-controls">
-        <button
-          type="button"
-          className="banner-motion-toggle"
-          onClick={() => {
-            manuallyPaused.current = !manuallyPaused.current;
-            setPaused(manuallyPaused.current);
-            bannerRef.current?.dispatchEvent(new Event("bannerpausechange"));
-          }}
-        >
-          {paused ? "Resume animations" : "Pause animations"}
-        </button>
-      </div>
     </div>
   );
 }

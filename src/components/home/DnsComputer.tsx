@@ -43,7 +43,6 @@ const keys = Array.from({ length: 24 }, (_, i) => solid({
 export function DnsComputer() {
   return (
     <figure className="dns-computer">
-      <div className="dns-figure-heading" aria-hidden="true"><span>FIG. 01</span><span>DNS, in motion</span></div>
       <svg className="dns-machine" viewBox="0 0 400 300" role="img" aria-label="A miniature computer and DNS server rack. An uncached lookup travels from the browser to a recursive resolver, which queries root, .com, and authoritative nameservers before returning an example IP address." focusable="false">
         <ellipse cx="207" cy="249" rx="158" ry="27" className="dns-ground-shadow" />
         {feet.map((paths, i) => <Solid key={i} paths={paths} tone="foot" />)}
@@ -113,13 +112,6 @@ export function DnsComputer() {
         {keys.map((paths, i) => <Solid key={i} paths={paths} tone="key" />)}
         <Solid paths={solid({ x: -88, y: 114, w: 43, d: 5, r: 1 }, 5, 2.5)} tone="key" />
       </svg>
-      <figcaption className="dns-readout">
-        <span className="sr-only">Illustrative uncached DNS lookup: example.com resolves to the documentation address 192.0.2.1.</span>
-        <span className="dns-static-readout" aria-hidden="true"><strong>Name resolved.</strong><span>example.com → 192.0.2.1</span></span>
-        <span className="dns-live-readouts" aria-hidden="true">
-          {dnsSteps.map((step, i) => <span key={i} data-dns-caption={i}><strong>{step.label}</strong><span>{step.detail}</span></span>)}
-        </span>
-      </figcaption>
     </figure>
   );
 }

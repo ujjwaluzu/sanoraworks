@@ -2,16 +2,16 @@ export const BANNER_DURATION = 12_000;
 
 // An uncached lookup: the resolver follows referrals, never the browser.
 export const dnsSteps = [
-  { at: 0, until: 1_000, label: "01 / A name, not a number", detail: "Looking up example.com", route: null },
-  { at: 1_000, until: 2_200, label: "02 / Ask the resolver", detail: "Browser → recursive resolver", route: "browser", reverse: false },
-  { at: 2_200, until: 3_150, label: "03 / Find the root", detail: "Resolver → root nameserver", route: "root", reverse: false },
-  { at: 3_150, until: 4_100, label: "04 / Follow the referral", detail: "Root → resolver: ask .com", route: "root", reverse: true },
-  { at: 4_100, until: 5_050, label: "05 / Ask .com", detail: "Resolver → .com nameserver", route: "tld", reverse: false },
-  { at: 5_050, until: 6_000, label: "06 / Find the authority", detail: ".com → resolver: nameserver", route: "tld", reverse: true },
-  { at: 6_000, until: 6_950, label: "07 / Get the record", detail: "Resolver → authoritative server", route: "authority", reverse: false },
-  { at: 6_950, until: 7_900, label: "08 / An address comes back", detail: "Authoritative server → resolver", route: "authority", reverse: true },
-  { at: 7_900, until: 9_100, label: "09 / Back to the browser", detail: "Resolver → browser: 192.0.2.1", route: "browser", reverse: true },
-  { at: 9_100, until: 12_000, label: "10 / Name resolved", detail: "example.com → 192.0.2.1", route: null },
+  { at: 0, until: 1_000, route: null },
+  { at: 1_000, until: 2_200, route: "browser", reverse: false },
+  { at: 2_200, until: 3_150, route: "root", reverse: false },
+  { at: 3_150, until: 4_100, route: "root", reverse: true },
+  { at: 4_100, until: 5_050, route: "tld", reverse: false },
+  { at: 5_050, until: 6_000, route: "tld", reverse: true },
+  { at: 6_000, until: 6_950, route: "authority", reverse: false },
+  { at: 6_950, until: 7_900, route: "authority", reverse: true },
+  { at: 7_900, until: 9_100, route: "browser", reverse: true },
+  { at: 9_100, until: 12_000, route: null },
 ] as const;
 
 export function phaseFrames(from: number, until: number): Keyframe[] {

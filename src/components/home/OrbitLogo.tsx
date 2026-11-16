@@ -31,7 +31,6 @@ export function OrbitLogo() {
           </g>
         </svg>
       </div>
-      <span className="banner-illustration-label">Ideas into orbit.</span>
     </div>
   );
 }
