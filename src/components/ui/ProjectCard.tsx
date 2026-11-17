@@ -10,14 +10,14 @@ export function ProjectCard({
   featured?: boolean;
 }) {
   return (
-    <article className={`project-card ${featured ? "project-featured" : ""}`}>
+    <article className={`project-card ${styles.card} ${featured ? "project-featured" : ""}`}>
       <Link
         href={`/work/${project.slug}`}
-        className="project-card-link"
+        className={`project-card-link ${styles.cardLink}`}
         aria-labelledby={`project-title-${project.slug}`}
         aria-describedby={`project-summary-${project.slug}`}
       >
-        <div className="project-visual-link">
+        <div className={`project-visual-link ${styles.visual}`}>
           <ProjectPreview project={project} />
         </div>
         <div className="project-card-info">
