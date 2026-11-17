@@ -1,0 +1,11 @@
+.figure {
+  position: relative;
+  min-width: 0;
+  margin: 8px 0 0;
+  overflow: hidden;
+}
+.scene { display: block; width: 100%; height: auto; max-height: 360px; }
+.scene :global([data-motion]) { transform-box: view-box; }
+@media (width < 600px) {
+  .scene { width: 112%; max-width: none; margin-left: -6%; }
+}

@@ -52,6 +52,11 @@
   min-height: 48px;
   font-size: 16px;
   border-bottom: 1px solid var(--silver);
+  text-decoration: none;
+  transition: background-color 160ms ease;
+}
+.service-jump-links > a:hover {
+  background: var(--cobalt-soft);
 }
 .service-jump-links > a:nth-child(odd) {
   border-right: 1px solid var(--silver);
@@ -66,44 +71,96 @@
 .service-detail {
   border: 1px solid var(--line-strong);
   background: var(--white);
-  margin-bottom: 18px;
+  margin-bottom: 24px;
   scroll-margin-top: 16px;
 }
 .service-detail-title {
-  padding: 22px 24px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px;
   border-bottom: 1px solid var(--line);
+  border-top: 3px solid var(--cobalt);
   background: var(--surface);
 }
+.service-detail-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  min-width: 0;
+}
+.service-detail-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  color: var(--cobalt);
+  background: var(--white);
+  border: 1px solid var(--cobalt-line);
+}
 .service-detail-title h2 {
-  font-size: 26px;
+  font-size: clamp(23px, 2.2vw, 30px);
+  line-height: 1.2;
   color: var(--ink);
-  margin: 4px 0 10px;
+  margin: 0 0 12px;
 }
 .service-detail-title p {
-  max-width: var(--reading-width, 68ch);
-  margin: 0 0 14px;
+  max-width: 62ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.7;
+}
+.service-project-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  gap: 10px;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid var(--cobalt-line);
+  background: var(--white);
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+.service-project-link:hover {
+  border-color: var(--cobalt);
+  background: var(--cobalt-soft);
 }
 .service-detail-body {
-  padding: 24px;
+  padding: 28px;
 }
 .service-detail-lead {
-  max-width: var(--reading-width, 68ch);
+  max-width: 80ch;
   margin: 0 0 24px;
+  line-height: 1.85;
 }
 .service-detail-columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  max-width: 96ch;
-  gap: 24px 40px;
+  gap: 16px;
 }
-.service-detail-columns .eyebrow {
+.service-detail-panel {
+  padding: 20px;
+  border: 1px solid var(--silver);
+  background: var(--surface);
+}
+.service-deliverables {
+  background: var(--white);
+}
+.service-detail-panel h3 {
   color: var(--ink);
   font-family: Arial, Helvetica, sans-serif;
   font-size: 18px;
   font-weight: bold;
   text-transform: none;
   letter-spacing: 0;
-  margin: 0 0 14px;
+  margin: 0 0 18px;
 }
 .capability-list {
   list-style: none;
@@ -113,9 +170,11 @@
 .capability-list li {
   display: flex;
   align-items: flex-start;
-  gap: 8px;
-  margin-bottom: 12px;
-  font-size: 16px;
+  gap: 10px;
+  padding: 10px 0;
+  border-top: 1px solid var(--silver);
+  font-size: 15px;
+  line-height: 1.65;
 }
 .capability-list svg {
   flex-shrink: 0;
@@ -123,18 +182,27 @@
   margin-top: 5px;
 }
 .technology-note {
-  padding: 16px 18px;
-  border: 1px solid var(--line);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 18px 20px;
+  border-left: 2px solid var(--cobalt-line);
   background: var(--cobalt-soft);
-  margin-top: 16px;
+  margin-top: 20px;
 }
-.technology-note .eyebrow {
-  font-size: 12px;
-  color: var(--muted);
+.technology-note > svg {
+  margin-top: 2px;
+  color: var(--cobalt);
+}
+.technology-note h3 {
+  font-size: 15px;
+  margin: 0;
 }
 .technology-note p {
-  max-width: var(--reading-width, 68ch);
-  font-size: 16px;
+  max-width: 86ch;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
   margin: 7px 0 0;
 }
 .faq-layout {
@@ -470,6 +538,15 @@
   max-width: var(--reading-width, 68ch);
   margin-bottom: 22px;
 }
+@media (min-width: 800px) and (max-width: 1150px) {
+  .service-detail-title {
+    flex-direction: column;
+    gap: 18px;
+  }
+  .service-project-link {
+    margin-left: 70px;
+  }
+}
 @media (max-width: 600px) {
   .page-hero-top {
     align-items: flex-start;
@@ -502,6 +579,23 @@
   .service-detail-title,
   .service-detail-body {
     padding: 18px;
+  }
+  .service-detail-title {
+    flex-direction: column;
+    gap: 18px;
+  }
+  .service-detail-heading {
+    gap: 12px;
+  }
+  .service-detail-icon {
+    width: 42px;
+    height: 42px;
+  }
+  .service-detail-panel {
+    padding: 16px;
+  }
+  .service-project-link {
+    width: 100%;
   }
   .service-detail-title h2 {
     font-size: 22px;

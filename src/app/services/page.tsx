@@ -1,5 +1,16 @@
-import { ArrowDown, ArrowUpRight, Check, Plus } from "lucide-react";
+import {
+  ArrowDown,
+  ArrowUpRight,
+  Braces,
+  Check,
+  Cloud,
+  Layers3,
+  Plus,
+  Settings2,
+  Workflow,
+} from "lucide-react";
 import Link from "next/link";
+import { ServiceExplainer } from "@/components/services/ServiceExplainer";
 import { services, faqs } from "@/data/services";
 import { pageMetadata } from "@/lib/metadata";
 import { PageHero } from "@/components/ui/PageHero";
@@ -13,12 +24,18 @@ export const metadata = pageMetadata(
   "/services",
 );
 
+const serviceIcons = {
+  code: Braces,
+  layers: Layers3,
+  workflow: Workflow,
+  cloud: Cloud,
+};
+
 export default function ServicesPage() {
   return (
     <main id="main-content">
       <PageHero
         eyebrow="The service directory"
-        index="01"
         title="Engineering services"
         description="Connected capabilities, from the first question to the systems that keep your product moving. Built around what your business actually needs."
       />
@@ -34,56 +51,72 @@ export default function ServicesPage() {
         ))}
       </nav>
       <div className="container service-details">
-        {services.map((service) => (
-          <section
-            className="service-detail"
-            id={service.slug}
-            key={service.slug}
-          >
-            <div className="service-detail-title">
-              <h2>{service.title}</h2>
-              <p>{service.fit}</p>
-              <Link
-                href={`/contact?service=${service.slug}`}
-                className="button button-text"
-              >
-                Discuss your project
-                <ArrowUpRight size={15} aria-hidden="true" />
-              </Link>
-            </div>
-            <div className="service-detail-body">
-              <p className="service-detail-lead">{service.detail}</p>
-              <div className="service-detail-columns">
-                <div>
-                  <h3 className="eyebrow">What we can build</h3>
-                  <ul className="capability-list">
-                    {service.capabilities.map((item) => (
-                      <li key={item}>
-                        <Plus size={12} aria-hidden="true" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
+        {services.map((service) => {
+          const Icon = serviceIcons[service.icon];
+          return (
+            <section
+              className="service-detail"
+              id={service.slug}
+              aria-labelledby={`${service.slug}-title`}
+              key={service.slug}
+            >
+              <div className="service-detail-title">
+                <div className="service-detail-heading">
+                  <span className="service-detail-icon" aria-hidden="true">
+                    <Icon size={26} strokeWidth={1.6} />
+                  </span>
+                  <div>
+                    <h2 id={`${service.slug}-title`}>{service.title}</h2>
+                    <p>{service.fit}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="eyebrow">Typical deliverables</h3>
-                  <ul className="capability-list">
-                    {service.deliverables.map((item) => (
-                      <li key={item}>
-                        <Check size={12} aria-hidden="true" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
+                <Link
+                  href={`/contact?service=${service.slug}`}
+                  className="service-project-link"
+                  aria-label={`Discuss your ${service.shortTitle.toLowerCase()} project`}
+                >
+                  Discuss your project
+                  <ArrowUpRight size={15} aria-hidden="true" />
+                </Link>
+              </div>
+              <div className="service-detail-body">
+                <p className="service-detail-lead">{service.detail}</p>
+                <div className="service-detail-columns">
+                  <div className="service-detail-panel">
+                    <h3>What we can build</h3>
+                    <ul className="capability-list">
+                      {service.capabilities.map((item) => (
+                        <li key={item}>
+                          <Plus size={14} aria-hidden="true" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="service-detail-panel service-deliverables">
+                    <h3>Typical deliverables</h3>
+                    <ul className="capability-list">
+                      {service.deliverables.map((item) => (
+                        <li key={item}>
+                          <Check size={14} aria-hidden="true" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
+                <div className="technology-note">
+                  <Settings2 size={18} aria-hidden="true" />
+                  <div>
+                    <h3>A considered toolkit</h3>
+                    <p>{service.tools}</p>
+                  </div>
+                </div>
+                <ServiceExplainer slug={service.slug} />
               </div>
-              <div className="technology-note">
-                <span className="eyebrow">A considered toolkit</span>
-                <p>{service.tools}</p>
-              </div>
-            </div>
-          </section>
-        ))}
+            </section>
+          );
+        })}
       </div>
       <Approach detailed />
       <section className="section">

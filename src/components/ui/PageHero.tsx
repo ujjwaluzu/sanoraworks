@@ -10,14 +10,14 @@ export function PageHero({
   eyebrow: string;
   title: ReactNode;
   description: string;
-  index: string;
+  index?: string;
 }) {
   return (
     <section className="page-hero">
       <div className="container">
         <div className="page-hero-top">
           <Eyebrow>{eyebrow}</Eyebrow>
-          <span className="mono">SANORA WORKS / {index}</span>
+          {index && <span className="mono">SANORA WORKS / {index}</span>}
         </div>
         <h1>{title}</h1>
         <p className="page-hero-description">{description}</p>
