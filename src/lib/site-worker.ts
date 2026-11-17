@@ -7,7 +7,7 @@ import {
   mergeVary,
   prefersMarkdown,
 } from "./public-http.ts";
-import { handleMcp, type McpBindings } from "./public-mcp.ts";
+import type { McpBindings } from "./public-mcp.ts";
 
 export function createSiteWorker(openNext: {
   fetch(request: Request, env: McpBindings, ctx: unknown): Promise<Response>;
@@ -33,12 +33,15 @@ export function createSiteWorker(openNext: {
           url.hostname = "sanoraworks.com";
         return finishPublicResponse(Response.redirect(url.href, 308), request);
       }
-      if (url.hostname === "mcp.sanoraworks.com")
+      if (url.hostname === "mcp.sanoraworks.com") {
+        // Public pages do not need to initialize the MCP SDK or its validators.
+        const { handleMcp } = await import("./public-mcp.ts");
         return finishPublicResponse(
           await handleMcp(request, env),
           request,
           true,
         );
+      }
       if (url.hostname === "agents.sanoraworks.com") {
         const response =
           url.pathname !== "/" || url.search
