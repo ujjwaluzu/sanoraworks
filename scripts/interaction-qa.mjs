@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, writeFile } from "node:fs/promises";
 import { createRequire } from "node:module";
 import path from "node:path";
 
@@ -27,10 +27,7 @@ const report = {
   base,
   checks: [],
   pageErrors: [],
-  limits: [
-    "Delivery failure uses a browser-only fixture that sets the built ContactForm deliveryEnabled prop to true; all enquiry POSTs are fulfilled locally with 502. No external enquiry is sent.",
-    "The delivery fixture can cause React hydration recovery because server-rendered markup originally reflects disabled delivery.",
-  ],
+  limits: ["Email responses are intercepted in the browser. No real enquiry is sent."],
 };
 page.on("pageerror", (error) => report.pageErrors.push(error.message));
 async function check(name, run) {
@@ -67,7 +64,7 @@ try {
       ["Projects", "projects"],
       ["Our process", "process"],
     ]) {
-      await page.goto(base, { waitUntil: "networkidle" });
+      await page.goto(base, { waitUntil: "load" });
       await page
         .getByRole("navigation", { name: "On this page", exact: true })
         .getByRole("link", { name, exact: true })
@@ -83,7 +80,7 @@ try {
     }
   });
   await check("Primary navigation and current page", async () => {
-    await page.goto(base, { waitUntil: "networkidle" });
+    await page.goto(base, { waitUntil: "load" });
     await page
       .getByRole("navigation", { name: "Main navigation", exact: true })
       .getByRole("link", { name: /Services/ })
@@ -107,7 +104,7 @@ try {
     assert.ok(await page.locator("#product-engineering").isVisible());
     await page
       .locator("#product-engineering")
-      .getByRole("link", { name: /Discuss your project/ })
+      .getByRole("link", { name: /Discuss your .* project/ })
       .click();
     await page.waitForURL("**/contact?service=product-engineering");
     assert.equal(
@@ -117,7 +114,7 @@ try {
   });
   await check("Required validation and error summary focus", async () => {
     await page
-      .getByRole("button", { name: "Download project brief", exact: true })
+      .getByRole("button", { name: "Send project enquiry", exact: true })
       .click();
     await page.locator(".form-error-summary").waitFor();
     assert.ok(
@@ -174,30 +171,22 @@ try {
       );
     },
   );
-  await check("Local brief download clearly remains unsent", async () => {
+  await check("Successful email submission confirms delivery and resets fields", async () => {
+    await page.route("**/api/enquiry", async (route) => {
+      const payload = route.request().postDataJSON();
+      assert.equal(payload.email, "qa@example.com");
+      await route.fulfill({ status: 202, contentType: "application/json", body: JSON.stringify({ message: "Your enquiry has been sent. Thank you for sharing your idea." }) });
+    });
     await fillBrief(page);
-    const downloadPromise = page.waitForEvent("download");
-    await page
-      .getByRole("button", { name: "Download project brief", exact: true })
-      .click();
-    const download = await downloadPromise;
-    assert.equal(
-      download.suggestedFilename(),
-      "sanora-works-project-brief.txt",
-    );
-    const file = path.join(output, "project-brief.txt");
-    await download.saveAs(file);
-    assert.match(
-      await readFile(file, "utf8"),
-      /Prepared locally\. This brief has not been sent\./,
-    );
-    await page
-      .getByRole("status")
-      .filter({ hasText: "It has not been sent to Sanora Works" })
-      .waitFor();
+    assert.equal(await page.getByRole("button", { name: /download/i }).count(), 0);
+    await page.getByRole("button", { name: "Send project enquiry", exact: true }).click();
+    await page.getByRole("status").filter({ hasText: "Your enquiry has been sent" }).waitFor();
+    assert.equal(await page.locator("#name").inputValue(), "");
+    assert.equal(await page.locator("#description").inputValue(), "");
+    await page.unroute("**/api/enquiry");
   });
   await check("Expandable FAQs support pointer and keyboard", async () => {
-    await page.goto(`${base}/services`, { waitUntil: "networkidle" });
+    await page.goto(`${base}/services`, { waitUntil: "load" });
     const faq = page.locator("details.faq").first();
     await faq.locator("summary").click();
     assert.equal(await faq.getAttribute("open"), "");
@@ -208,7 +197,7 @@ try {
   await check(
     "Project filters update entries, pressed state and result count",
     async () => {
-      await page.goto(`${base}/work`, { waitUntil: "networkidle" });
+      await page.goto(`${base}/work`, { waitUntil: "load" });
       assert.equal(await page.locator(".project-card").count(), 3);
       for (const card of await page.locator(".project-card").all()) {
         assert.equal(
@@ -260,13 +249,11 @@ try {
       );
     },
   );
-  await check("Mobile navigation keeps all tabs usable", async () => {
+  await check("Mobile navigation keeps all links usable", async () => {
     await page.setViewportSize({ width: 375, height: 812 });
-    await page.goto(base, { waitUntil: "networkidle" });
-    const nav = page.getByRole("navigation", {
-      name: "Main navigation",
-      exact: true,
-    });
+    await page.goto(base, { waitUntil: "load" });
+    await page.locator(".mobile-navigation summary").click();
+    const nav = page.locator(".mobile-nav-links");
     assert.equal(await nav.getByRole("link").count(), 5);
     for (const link of await nav.getByRole("link").all()) {
       assert.ok(await link.isVisible());
@@ -276,7 +263,7 @@ try {
     await page.waitForURL("**/contact");
   });
   await check(
-    "Delivery failure retains fields and supports download fallback (browser fixture)",
+    "Delivery failure retains fields and supports retry (browser fixture)",
     async () => {
       const failureContext = await browser.newContext({
         viewport: { width: 375, height: 812 },
@@ -284,22 +271,6 @@ try {
       });
       const failurePage = await failureContext.newPage();
       let blockedPosts = 0;
-      await failurePage.route("**/contact", async (route) => {
-        if (route.request().resourceType() !== "document")
-          return route.continue();
-        const response = await route.fetch();
-        const original = await response.text();
-        const body = original.replaceAll(
-          '\\"deliveryEnabled\\":false',
-          '\\"deliveryEnabled\\":true',
-        );
-        assert.notEqual(
-          body,
-          original,
-          "Serialized ContactForm fixture was applied",
-        );
-        await route.fulfill({ response, body });
-      });
       await failurePage.route("**/api/enquiry", async (route) => {
         blockedPosts++;
         await route.fulfill({
@@ -307,11 +278,11 @@ try {
           contentType: "application/json",
           body: JSON.stringify({
             error:
-              "Local QA: delivery could not be confirmed. Your brief has not been sent.",
+              "Local QA: delivery could not be confirmed. Please try again.",
           }),
         });
       });
-      await failurePage.goto(`${base}/contact`, { waitUntil: "networkidle" });
+      await failurePage.goto(`${base}/contact`, { waitUntil: "load" });
       await failurePage
         .getByRole("button", { name: "Send project enquiry", exact: true })
         .waitFor();
@@ -345,20 +316,7 @@ try {
         path: path.join(output, "contact-delivery-failure-mobile.png"),
         fullPage: true,
       });
-      const downloadPromise = failurePage.waitForEvent("download");
-      await failurePage
-        .getByRole("button", {
-          name: "Or download a copy of your brief",
-          exact: true,
-        })
-        .click();
-      await (
-        await downloadPromise
-      ).saveAs(path.join(output, "failure-fallback-brief.txt"));
-      assert.match(
-        await readFile(path.join(output, "failure-fallback-brief.txt"), "utf8"),
-        /Local QA Person/,
-      );
+      assert.equal(await failurePage.getByRole("button", { name: /download/i }).count(), 0);
       await failureContext.close();
     },
   );

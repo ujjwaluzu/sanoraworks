@@ -148,29 +148,8 @@ assert.equal(
   (await post(JSON.stringify({ description: "a".repeat(40_000) }))).status,
   413,
 );
-if (documents.get("/contact").includes("Online enquiries are not open yet")) {
-  const response = await post(
-    JSON.stringify({
-      name: "Test Person",
-      email: "test@example.com",
-      company: "",
-      projectType: "Product Engineering",
-      budget: "",
-      description: "A local verification of the unconfigured enquiry service.",
-      website: "",
-    }),
-  );
-  assert.equal(
-    response.status,
-    503,
-    "unconfigured delivery must not claim success",
-  );
-  assert.match((await response.json()).error, /not been sent/);
-} else {
-  console.log(
-    "Skipping valid enquiry POST: delivery is configured; no test message sent.",
-  );
-}
+// Valid submissions are covered with a stub email binding in unit tests.
+// Never send a real enquiry as part of a routine smoke check.
 
 const serviceEnquiry = await (
   await fetch(new URL("/contact?service=product-engineering", base))

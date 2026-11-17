@@ -62,22 +62,3 @@ export function validateEnquiry(
     ? { success: false, errors }
     : { success: true, data };
 }
-
-export function formatProjectBrief(data: Enquiry) {
-  return [
-    "SANORA WORKS: PROJECT BRIEF",
-    "Prepared locally. This brief has not been sent.",
-    "",
-    `Name: ${data.name}`,
-    `Email: ${data.email}`,
-    `Company: ${data.company || "Not provided"}`,
-    `Project type: ${data.projectType}`,
-    `Estimated budget: ${data.budget || "Not provided"}`,
-    "",
-    "PROJECT DESCRIPTION",
-    data.description,
-    "",
-    "Practical technology. Built for your business.",
-    "https://sanoraworks.com",
-  ].join("\n");
-}

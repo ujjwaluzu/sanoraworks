@@ -13,6 +13,12 @@
     { "binding": "WORKER_SELF_REFERENCE", "service": "sanoraworks" }
   ],
   "observability": { "enabled": true },
+  "send_email": [
+    { "name": "ENQUIRY_EMAIL", "destination_address": "sanoraworks@gmail.com" }
+  ],
+  "ratelimits": [
+    { "name": "ENQUIRY_RATE_LIMIT", "namespace_id": "1001", "simple": { "limit": 5, "period": 60 } }
+  ],
   "routes": [
     { "pattern": "sanoraworks.com/*", "zone_id": "0b6408c915adf319c1d443305f1bd86a" }
   ],

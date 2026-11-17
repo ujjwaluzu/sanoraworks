@@ -1,4 +1,4 @@
-/* Enquiries retain their existing download and delivery states. */
+/* Email enquiry form and supporting contact information. */
 .contact-layout {
   display: grid;
   gap: 24px;
@@ -305,24 +305,6 @@
   padding: 6px 0;
   text-decoration: underline;
 }
-.download-alternative {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 14px 0 0 auto;
-  padding: 12px 14px;
-  min-height: 44px;
-  background: var(--silver);
-  border: 2px solid;
-  border-color: var(--white) var(--line-strong) var(--line-strong) var(--white);
-  color: var(--cobalt);
-  font:
-    15px Verdana,
-    Tahoma,
-    sans-serif;
-  text-decoration: underline;
-  cursor: pointer;
-}
 .spin {
   animation: spin 1s linear infinite;
 }
@@ -397,10 +379,6 @@
     gap: 14px;
   }
   .form-submit-row .button {
-    width: 100%;
-    justify-content: center;
-  }
-  .download-alternative {
     width: 100%;
     justify-content: center;
   }

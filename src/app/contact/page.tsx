@@ -2,7 +2,6 @@ import { ArrowUpRight, MessageSquare, MoveRight } from "lucide-react";
 import { site } from "@/data/site";
 import { services } from "@/data/services";
 import { pageMetadata } from "@/lib/metadata";
-import { getContactEndpoint } from "@/lib/contact-server";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { SocialLinks } from "@/components/ui/SocialLinks";
 
@@ -24,7 +23,6 @@ export default async function ContactPage({
       <section className="section contact-section">
         <div className="container contact-layout">
           <ContactForm
-            deliveryEnabled={Boolean(getContactEndpoint())}
             initialProjectType={selected}
           />
           <aside className="contact-aside">
@@ -47,8 +45,7 @@ export default async function ContactPage({
                     Contact email coming soon.
                   </p>
                   <span className="contact-small">
-                    In the meantime, prepare a brief using the form on this
-                    page.
+                    Use the form on this page to send your enquiry.
                   </span>
                 </>
               )}

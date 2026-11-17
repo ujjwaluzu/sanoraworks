@@ -8,7 +8,7 @@ function httpsUrl(value: string | undefined) {
   }
 }
 
-const email = process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim();
+const email = process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || "sanoraworks@gmail.com";
 
 export const site = {
   name: "SANORA WORKS",

@@ -22,7 +22,7 @@ npm run build
 npm run typecheck
 ```
 
-The unit tests cover shared enquiry validation and locally prepared briefs. To check the production routes, internal links and anchors, metadata, social images, 404s, and enquiry safeguards, start a second terminal:
+The unit tests cover shared enquiry validation, email formatting, delivery acceptance and spam safeguards. To check the production routes, internal links and anchors, metadata, social images, 404s, and enquiry safeguards, start a second terminal:
 
 ```sh
 npm run start -- --port 3001
@@ -30,7 +30,7 @@ npm run start -- --port 3001
 npm run test:smoke
 ```
 
-`SMOKE_BASE_URL` overrides the smoke-test server URL. The smoke check avoids sending a valid test enquiry when delivery is enabled. Browser visual and keyboard QA should cover 375px mobile, 768px tablet, and 1440px desktop, including the wrapped navigation tabs, filters, FAQs, and contact form. No browser is required for the other checks. Restart the production server after rebuilding so its cached asset manifest matches the latest output.
+`SMOKE_BASE_URL` overrides the smoke-test server URL. The smoke check never sends a valid enquiry. Browser visual and keyboard QA should cover 375px mobile, 768px tablet, and 1440px desktop, including the responsive navigation, filters, FAQs, and contact form. No browser is required for the other checks. Restart the production server after rebuilding so its cached asset manifest matches the latest output.
 
 Optional headless browser review uses an existing Playwright installation and Chrome/Chromium without adding a production dependency:
 
@@ -40,7 +40,7 @@ node scripts/interaction-qa.mjs <installed-playwright-path> <chrome-executable>
 node scripts/banner-motion-qa.mjs <installed-playwright-path> <chrome-executable>
 ```
 
-`QA_BASE_URL` defaults to `http://localhost:3001`. The visual review saves full-page screenshots for every route at 375px, 768px, 1440px, and 1920px, then checks 320px and the 720px effective viewport of a 1440px display at 200% zoom. The interaction review covers keyboard FAQs, filters, preselection, validation, actual local brief downloads, and a browser-intercepted delivery failure. The failure fixture never sends an external enquiry. Reports and screenshots are saved under ignored `artifacts/`.
+`QA_BASE_URL` defaults to `http://localhost:3001`. The visual review saves full-page screenshots for every route at 375px, 768px, 1440px, and 1920px, then checks 320px and the 720px effective viewport of a 1440px display at 200% zoom. The interaction review covers keyboard FAQs, filters, preselection, validation, browser-intercepted email success and failure responses. The failure fixture never sends an external enquiry. Reports and screenshots are saved under ignored `artifacts/`.
 
 The banner review checks both illustrations at 320, 375, 600, 768, 800, 1024, 1050, 1100, 1280, 1440, and 1920px, the shared twelve-second animation phases, pixel equality with the original logo, automatic playback, offscreen suspension, a hidden-document visibility-event fixture, delayed logo loading, reduced motion, and disabled JavaScript. The Anatomy-based isometric computer illustrates an uncached DNS lookup, using the documentation address `192.0.2.1`. The supplied logo's two orbit curves start together and move to their final positions as SW appears. The banner keeps static artwork until it can start in view with its logo loaded. Reduced motion and disabled JavaScript keep completed artwork. Figure labels, step captions, the illustration tagline, and playback controls are omitted. See `docs/banner-motion.md` for the figure's design and source.
 
@@ -50,13 +50,11 @@ Copy `.env.example` to `.env.local`; never commit private environment files.
 
 | Setting                     | Purpose                                                                      |
 | --------------------------- | ---------------------------------------------------------------------------- |
-| `NEXT_PUBLIC_CONTACT_EMAIL` | Verified public email; otherwise the site shows a clear coming-soon message. |
+| `NEXT_PUBLIC_CONTACT_EMAIL` | Public contact address; defaults to the verified sanoraworks@gmail.com inbox. |
 | `NEXT_PUBLIC_LINKEDIN_URL`  | Verified HTTPS company profile; omitted until configured.                    |
 | `NEXT_PUBLIC_GITHUB_URL`    | Verified HTTPS company profile; omitted until configured.                    |
-| `CONTACT_WEBHOOK_URL`       | Private HTTPS endpoint accepting validated project enquiries.                |
-| `CONTACT_WEBHOOK_TOKEN`     | Optional private bearer token for that trusted endpoint.                     |
 
-Public environment values are read at build time. Rebuild after changing them. The private enquiry endpoint is read on the server. Set production environment variables in your hosting provider; `.env.local` is only for local development.
+Public environment values are read at build time. Rebuild after changing them. Set production environment variables in your hosting provider; `.env.local` is only for local development.
 
 X, Instagram, and YouTube use the `sanoraworks` handle configured in `src/data/site.ts` (YouTube uses `/@sanoraworks`). The shared social profile list supplies the sidebar, footer, contact page, and Organization `sameAs` metadata. Optional GitHub and LinkedIn profiles join that same list when configured.
 
@@ -76,26 +74,34 @@ Project interfaces are explicitly illustrative concepts. No client results, foun
 
 ## Enquiry integration
 
-Without an enquiry endpoint, the form validates the brief and downloads a text file locally. It makes no network submission and explicitly says the brief has not been sent.
+The contact form sends enquiries through `/api/enquiry` to Cloudflare Email
+Service. It sends from `enquiries@sanoraworks.com` to the fixed verified inbox
+`sanoraworks@gmail.com`, with the visitor's email as Reply-To. The recipient is
+also restricted in the Worker's `ENQUIRY_EMAIL` binding, so a client cannot use
+the form to send to arbitrary recipients. No downloads or webhook service are
+involved.
 
-Once `CONTACT_WEBHOOK_URL` is set to a trusted HTTPS endpoint, the same form submits to `/api/enquiry`. That route validates the payload again, limits its size, checks browser origin, rejects a populated honeypot, and forwards JSON server-side. Endpoint credentials are never exposed to the browser. The endpoint must return a successful `2xx` response only after accepting responsibility for delivery or storage; that response is the basis for the website’s success state. Failed requests and timeouts produce an error without clearing the form.
+The endpoint validates the payload and origin, limits the body to 32 KiB,
+rejects the honeypot, and uses the `ENQUIRY_RATE_LIMIT` binding to limit repeated
+valid submissions to five per minute per connecting IP and Cloudflare location.
+Only a digest of the IP is used as the rate-limit key. Validation and error
+responses do not include the message contents in application logs. The UI
+reports success only after the email service accepts the message; errors keep
+the fields intact for retry. There is no project database or browser draft
+storage.
 
-Example forwarded payload:
+Cloudflare Email Routing must be enabled for `sanoraworks.com`, with its MX,
+SPF and DKIM records intact, and the destination Gmail address verified. No
+paid arbitrary-recipient email sending subscription is required for this
+verified destination. The site does not send automatic emails to visitors.
 
-```json
-{
-  "name": "Alex Morgan",
-  "email": "alex@example.com",
-  "company": "Example",
-  "projectType": "Product Engineering",
-  "budget": "Not yet defined",
-  "description": "A project description of at least 30 characters.",
-  "submittedAt": "2026-11-15T12:00:00.000Z",
-  "source": "https://sanoraworks.com"
-}
-```
-
-The endpoint should supply durable delivery/storage, appropriate rate limiting, and operational monitoring. No database or email provider is bundled into this first release. The site does not persist drafts or add analytics/tracking scripts. Review the privacy notice alongside the actual enquiry provider and hosting configuration before enabling delivery.
+Use `npm run preview:cloudflare` to test the binding integration locally.
+Cloudflare's local email simulator captures messages rather than sending real
+email; ordinary Node production servers do not have the email bindings and
+return an honest unavailable response. Routine smoke and browser checks do not
+send email: unit tests use stub bindings and browser tests intercept the API.
+A real delivery test must be explicitly performed against the production form
+and checked in the recipient inbox.
 
 ## Routes and deployment
 
@@ -145,7 +151,7 @@ security headers to static assets and immutable caching to Next.js build files.
 `sanoraworks.com/*` is a Worker route on the active Cloudflare zone. The domain
 has Hostinger-managed DNS records, which prevent direct Worker Custom Domain
 registration. The route uses the existing proxied DNS and TLS certificate;
-email-related DNS records were not modified. Keep the website's DNS record
+Cloudflare Email Routing supplies the domain's MX, SPF, and DKIM records. Keep the website's DNS record
 proxied in Cloudflare, and keep this Worker route attached. If the Hostinger DNS
 integration is removed later, the route can be replaced by a Worker Custom
 Domain after reviewing the DNS records.
@@ -157,11 +163,10 @@ the Worker's **Settings > Builds**. Use `npm run build:cloudflare` as the build
 command and `npx opennextjs-cloudflare deploy -- --keep-vars` as the deploy
 command. Keep credentials in Cloudflare's build settings, never in this repo.
 
-The contact form currently prepares and downloads a local brief. Enquiry
-delivery requires a verified `CONTACT_WEBHOOK_URL` and, if needed, its private
-`CONTACT_WEBHOOK_TOKEN`. Set these as Worker runtime secrets; set public
-`NEXT_PUBLIC_*` values in the build environment and rebuild. Deployments use
-`--keep-vars` to preserve existing dashboard-managed runtime variables.
+The email and rate-limit bindings are configured in `wrangler.jsonc`; no
+third-party email API key is needed. Public `NEXT_PUBLIC_*` values belong in the
+build environment. Deployments use `--keep-vars` to preserve dashboard-managed
+runtime variables.
 
 To verify the deployed website without sending a real enquiry:
 

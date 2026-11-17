@@ -2,7 +2,6 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {
   validateEnquiry,
-  formatProjectBrief,
   projectTypes,
 } from "../src/lib/enquiry.ts";
 
@@ -117,12 +116,4 @@ test("enforces name and company length limits", () => {
     validateEnquiry({ ...valid, company: "A".repeat(161) }).success,
     false,
   );
-});
-
-test("downloaded briefs explicitly say they have not been sent", () => {
-  const brief = formatProjectBrief(valid);
-  assert.match(brief, /This brief has not been sent/);
-  assert.match(brief, /Company: Not provided/);
-  assert.match(brief, /Name: Alex Morgan/);
-  assert.ok(brief.includes(valid.description));
 });

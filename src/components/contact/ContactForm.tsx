@@ -5,13 +5,11 @@ import Link from "next/link";
 import {
   ArrowUpRight,
   Check,
-  Download,
   LoaderCircle,
   AlertCircle,
 } from "lucide-react";
 import {
   budgetOptions,
-  formatProjectBrief,
   projectTypes,
   validateEnquiry,
   type Enquiry,
@@ -19,15 +17,13 @@ import {
 } from "@/lib/enquiry";
 
 export function ContactForm({
-  deliveryEnabled,
   initialProjectType,
 }: {
-  deliveryEnabled: boolean;
   initialProjectType: string;
 }) {
   const [errors, setErrors] = useState<EnquiryErrors>({});
   const [status, setStatus] = useState<
-    "idle" | "sending" | "sent" | "downloaded" | "error"
+    "idle" | "sending" | "sent" | "error"
   >("idle");
   const [message, setMessage] = useState("");
   const [descriptionLength, setDescriptionLength] = useState(0);
@@ -50,32 +46,11 @@ export function ContactForm({
     return result.data;
   }
 
-  function downloadBrief(data: Enquiry) {
-    const blob = new Blob([formatProjectBrief(data)], {
-      type: "text/plain;charset=utf-8",
-    });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "sanora-works-project-brief.txt";
-    link.click();
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
-    setStatus("downloaded");
-    setMessage(
-      "Your project brief is ready and the download has started. It has not been sent to Sanora Works.",
-    );
-    requestAnimationFrame(() => statusRef.current?.focus());
-  }
-
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (status === "sending") return;
     const data = readForm();
     if (!data) return;
-    if (!deliveryEnabled) {
-      downloadBrief(data);
-      return;
-    }
     setStatus("sending");
     setMessage("");
     try {
@@ -99,7 +74,7 @@ export function ContactForm({
       setStatus("sent");
       setMessage(
         result.message ||
-          "Your enquiry has been accepted. Thank you for sharing your idea.",
+          "Your enquiry has been sent. Thank you for sharing your idea.",
       );
       formRef.current?.reset();
     } catch (error) {
@@ -107,7 +82,7 @@ export function ContactForm({
       setMessage(
         error instanceof Error && error.name !== "TimeoutError"
           ? error.message
-          : "We couldn’t confirm delivery. Your brief is still here; try again or download a copy.",
+          : "We couldn’t confirm delivery. Your details are still here; please try again.",
       );
     }
     requestAnimationFrame(() => statusRef.current?.focus());
@@ -166,15 +141,6 @@ export function ContactForm({
         </div>
         <span className="mono">REQUIRED FIELDS ARE LABELED</span>
       </div>
-      {!deliveryEnabled && (
-        <div className="form-availability">
-          <span className="status-dot" aria-hidden="true" />
-          <p>
-            Online enquiries are not open yet. This form downloads a project
-            brief; it doesn’t send it.
-          </p>
-        </div>
-      )}
       {Object.keys(errors).length > 0 && (
         <div
           className="form-error-summary"
@@ -311,11 +277,7 @@ export function ContactForm({
       </fieldset>
       <div className="form-submit-row">
         <p>
-          {deliveryEnabled ? (
-            <>Your details will be used to respond to your enquiry. </>
-          ) : (
-            <>Your brief is created on your device and isn’t sent to us. </>
-          )}
+          Your details will be used to respond to your enquiry.{" "}
           <Link href="/privacy">Privacy Policy</Link>
         </p>
         <button
@@ -328,33 +290,14 @@ export function ContactForm({
               Sending enquiry
               <LoaderCircle size={16} className="spin" aria-hidden="true" />
             </>
-          ) : deliveryEnabled ? (
+          ) : (
             <>
               Send project enquiry
               <ArrowUpRight size={16} aria-hidden="true" />
             </>
-          ) : (
-            <>
-              Download project brief
-              <Download size={16} aria-hidden="true" />
-            </>
           )}
         </button>
       </div>
-      {deliveryEnabled && (
-        <button
-          type="button"
-          className="download-alternative"
-          disabled={status === "sending"}
-          onClick={() => {
-            const data = readForm();
-            if (data) downloadBrief(data);
-          }}
-        >
-          <Download size={12} aria-hidden="true" />
-          Or download a copy of your brief
-        </button>
-      )}
       {message && (
         <div
           ref={statusRef}
@@ -372,8 +315,8 @@ export function ContactForm({
       )}
       <noscript>
         <p className="form-availability">
-          JavaScript is needed to validate and prepare this enquiry. You can
-          still use the contact email alongside this form when it is available.
+          JavaScript is needed to submit this form. You can also email{" "}
+          <a href="mailto:sanoraworks@gmail.com">sanoraworks@gmail.com</a>.
         </p>
       </noscript>
     </form>

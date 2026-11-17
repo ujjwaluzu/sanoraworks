@@ -23,7 +23,7 @@ export default function TermsPage() {
         <p>
           The Sanora Works website introduces our technology and engineering
           services and independent projects. Its content is general information.
-          A project enquiry, downloaded brief, or conversation does not create a
+          A project enquiry or conversation does not create a
           service agreement or a commitment to deliver work.
         </p>
         <h2>Project agreements</h2>

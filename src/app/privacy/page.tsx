@@ -5,7 +5,7 @@ import { PageHero } from "@/components/ui/PageHero";
 
 export const metadata = pageMetadata(
   "Privacy Policy",
-  "How the Sanora Works website handles project enquiry details, locally prepared briefs, and basic website information.",
+  "How the Sanora Works website handles project enquiry details, email delivery, and basic website information.",
   "/privacy",
 );
 
@@ -16,31 +16,30 @@ export default function PrivacyPage() {
         eyebrow="Website information"
         index="PRIVACY"
         title="Privacy Policy"
-        description="An explanation of the information this website uses and what happens when you prepare or send a project enquiry."
+        description="An explanation of the information this website uses and what happens when you send a project enquiry."
       />
       <article className="container legal">
-        <p className="legal-date">Last updated: 15 November 2026</p>
+        <p className="legal-date">Last updated: 17 November 2026</p>
         <h2>Project enquiry information</h2>
         <p>
           The enquiry form asks for your name, email address, project type, and
           description. Company and estimated budget are optional. Please avoid
           including passwords, financial account details, or other sensitive
-          information in your brief.
+          information in your message.
         </p>
-        <h2>When you download a brief</h2>
+        <h2>When you send an enquiry</h2>
         <p>
-          The download option creates a text file in your browser. The form
-          details are not submitted to Sanora Works by that action. This website
-          does not save your draft to browser storage; keep the downloaded file
-          if you want a copy.
+          The form sends your details through our Cloudflare-hosted website and
+          Cloudflare Email Service to our Gmail inbox, where Google processes
+          the email. We use this information to respond to your enquiry. Your
+          email address is included as the Reply-To address so we can reply
+          directly. We do not add you to a marketing list.
         </p>
-        <h2>When online enquiries are available</h2>
         <p>
-          If online sending is enabled, the form sends the information you
-          provide to our server and configured enquiry service so the enquiry
-          can be received and addressed. The page will show whether delivery was
-          accepted or could not be confirmed. We do not use project enquiries to
-          add you to a marketing list.
+          The website does not save form drafts in browser storage or a project
+          database. A failed submission keeps your entries on the page so you
+          can retry. Enquiries received in our mailbox are retained as business
+          correspondence; you can contact us to request deletion.
         </p>
         <h2>Website operation</h2>
         <p>
@@ -48,7 +47,10 @@ export default function PrivacyPage() {
           analytics scripts. Fonts and interface assets are served with the
           website. The hosting provider may process technical request
           information, such as IP addresses and request timestamps, to operate
-          the service.
+          the service. We use a digest of the connecting IP address to limit
+          repeated form submissions, together with a hidden field to reject
+          automated spam. Application error logs contain delivery error codes,
+          not enquiry contents.
         </p>
         <h2>External links</h2>
         <p>
