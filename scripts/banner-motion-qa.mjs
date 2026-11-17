@@ -55,18 +55,18 @@ try {
       const computer = await page.locator(".dns-computer").boundingBox();
       const logo = await page.locator(".banner-monogram").boundingBox();
       const copy = await page.locator(".workshop-banner-copy").boundingBox();
-      assert.ok(computer.width > 0 && logo.width > 0 && copy.width > 0);
+      assert.ok(computer.width > 0 && copy.width > 0);
       if (width < 600) {
-        assert.ok(copy.y >= logo.y + logo.height);
+        assert.equal(logo, null, "the existing phone layout hides the duplicate banner logo");
         assert.ok(computer.y >= copy.y + copy.height);
-        assert.ok(Math.abs(logo.x + logo.width / 2 - (computer.x + computer.width / 2)) < 1);
       } else {
+        assert.ok(logo.width > 0);
         assert.ok(computer.x + computer.width <= logo.x);
         assert.ok(copy.x >= computer.x + computer.width);
         assert.ok(copy.x + copy.width <= logo.x);
       }
       assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `Overflow at ${width}`);
-      assert.equal(await page.getByRole("heading", { level: 2, name: "Websites, business tools, and automation.", exact: true }).count(), 1);
+      assert.equal(await page.getByRole("heading", { level: 2, name: "A website, a team tool, or a first release.", exact: true }).count(), 1);
       assert.equal(await banner.locator("button, figcaption, .dns-figure-heading, .banner-illustration-label").count(), 0);
       assert.doesNotMatch(await banner.innerText(), /FIG\. 01|DNS, in motion|A name, not a number|Looking up|Ask the resolver|Name resolved|Ideas into orbit|Pause animations/);
       await banner.screenshot({ path: path.join(output, `banner-${width}.png`) });
@@ -162,7 +162,7 @@ try {
     await page.waitForTimeout(100);
     assert.ok((await times()).every((time, i) => time > paused[i]));
   });
-  await check("Logo loading gates startup even when the banner scrolls out of view", async () => {
+  await check("Logo loading gates its own tracks while DNS playback stays independent", async () => {
     const delayed = await context.newPage();
     let release;
     const gate = new Promise((resolve) => { release = resolve; });
@@ -170,14 +170,16 @@ try {
     try {
       await delayed.goto(base, { waitUntil: "domcontentloaded" });
       await delayed.waitForTimeout(200);
-      assert.notEqual(await delayed.locator(".workshop-banner").getAttribute("data-motion"), "true");
+      assert.notEqual(await delayed.locator(".workshop-banner").getAttribute("data-logo-motion"), "true");
+      assert.equal(await delayed.locator(".workshop-banner").getAttribute("data-playing"), "true");
       await delayed.evaluate(() => window.scrollTo({ top: document.body.scrollHeight, behavior: "instant" }));
       await delayed.waitForTimeout(100);
       release();
       await delayed.waitForLoadState("networkidle");
-      assert.notEqual(await delayed.locator(".workshop-banner").getAttribute("data-motion"), "true");
+      assert.notEqual(await delayed.locator(".workshop-banner").getAttribute("data-logo-motion"), "true");
       await delayed.locator(".workshop-banner").scrollIntoViewIfNeeded();
       await running(delayed);
+      await delayed.waitForSelector('.workshop-banner[data-logo-motion="true"]');
     } finally { release(); await delayed.close(); }
   });
   await check("Reduced motion, live preference changes and no JavaScript show completed static artwork", async () => {
@@ -189,7 +191,7 @@ try {
       for (const target of [page, noJs]) {
         assert.equal(await target.locator(".workshop-banner").evaluate((el) => el.getAnimations({ subtree: true }).length), 0);
         assert.equal(await target.locator(".banner-motion-toggle").count(), 0);
-        assert.ok(await target.locator(".banner-logo-source").isVisible());
+        assert.equal(await target.locator(".banner-logo-source").isVisible(), target === page);
         assert.equal(await target.locator('[data-dns-screen="answer"]').evaluate((el) => getComputedStyle(el).opacity), "1");
         await target.locator(".workshop-banner").screenshot({ path: path.join(output, target === page ? "reduced-motion.png" : "no-javascript.png") });
       }

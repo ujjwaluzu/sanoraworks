@@ -1,4 +1,5 @@
 import { validateEnquiry } from "./enquiry.ts";
+import { enquiryConfirmation } from "./enquiry-copy.ts";
 import { enquiryEmail, type ContactBindings } from "./enquiry-email.ts";
 
 function reply(body: object, status: number, headers?: Record<string, string>) {
@@ -52,7 +53,7 @@ export function createEnquiryHandler(getBindings: () => Promise<ContactBindings 
 
       const sent = await bindings.ENQUIRY_EMAIL.send(enquiryEmail(result.data));
       if (!sent?.messageId) return reply({ error: unavailable }, 502);
-      return reply({ message: "Your enquiry has been sent. Thank you for sharing your idea." }, 202);
+      return reply({ message: enquiryConfirmation }, 202);
     } catch (error) {
       const code = error && typeof error === "object" && "code" in error ? String(error.code) : "UNKNOWN";
       // Log a provider code only: visitor details and message content stay out of application logs.

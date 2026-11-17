@@ -2,6 +2,7 @@
 
 import { useRef, useState, type FormEvent } from "react";
 import Link from "next/link";
+import { enquiryConfirmation, enquiryNextStep } from "@/lib/enquiry-copy";
 import {
   ArrowUpRight,
   Check,
@@ -74,7 +75,7 @@ export function ContactForm({
       setStatus("sent");
       setMessage(
         result.message ||
-          "Your enquiry has been sent. Thank you for sharing your idea.",
+          enquiryConfirmation,
       );
       formRef.current?.reset();
     } catch (error) {
@@ -136,8 +137,9 @@ export function ContactForm({
     >
       <div className="form-heading">
         <div>
-          <h1 id="contact-title">Start a project</h1>
-          <p>Tell us what you’d like to build and the problem it should solve.</p>
+          <h1 id="contact-title">Tell us what you need</h1>
+          <p>Describe your business, a task to improve, or a product idea.</p>
+          <p>{enquiryNextStep}</p>
         </div>
         <span className="mono">REQUIRED FIELDS ARE LABELED</span>
       </div>
@@ -292,7 +294,7 @@ export function ContactForm({
             </>
           ) : (
             <>
-              Send project enquiry
+              Send enquiry
               <ArrowUpRight size={16} aria-hidden="true" />
             </>
           )}

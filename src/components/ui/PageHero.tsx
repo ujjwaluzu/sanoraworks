@@ -5,20 +5,19 @@ export function PageHero({
   eyebrow,
   title,
   description,
-  index,
 }: {
-  eyebrow: string;
+  eyebrow?: string;
   title: ReactNode;
   description: string;
-  index?: string;
 }) {
   return (
     <section className="page-hero">
       <div className="container">
-        <div className="page-hero-top">
-          <Eyebrow>{eyebrow}</Eyebrow>
-          {index && <span className="mono">SANORA WORKS / {index}</span>}
-        </div>
+        {eyebrow && (
+          <div className="page-hero-top">
+            <Eyebrow>{eyebrow}</Eyebrow>
+          </div>
+        )}
         <h1>{title}</h1>
         <p className="page-hero-description">{description}</p>
       </div>

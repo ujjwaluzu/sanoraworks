@@ -5,12 +5,13 @@ import { ServiceCard } from "@/components/ui/ServiceCard";
 export function ServicesOverview() {
   return (
     <Panel
-      title="What we can build together"
+      title="Services"
       id="capabilities"
       className="section-services"
     >
       <p className="panel-intro">
-        Practical engineering, from the first idea to the systems behind it.
+        Build a business website, replace a manual workflow, or develop a first
+        version of your product.
       </p>
       <div className="service-directory">
         {services.map((service) => (
@@ -19,7 +20,7 @@ export function ServicesOverview() {
       </div>
       <p className="directory-bottom">
         <Link href="/services">
-          Browse capabilities & frequently asked questions →
+          Service details and frequently asked questions →
         </Link>
       </p>
     </Panel>

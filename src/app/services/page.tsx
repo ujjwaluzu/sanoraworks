@@ -1,13 +1,7 @@
 import {
   ArrowDown,
   ArrowUpRight,
-  Braces,
-  Check,
-  Cloud,
-  Layers3,
   Plus,
-  Settings2,
-  Workflow,
 } from "lucide-react";
 import Link from "next/link";
 import { ServiceExplainer } from "@/components/services/ServiceExplainer";
@@ -19,25 +13,17 @@ import { FinalCTA } from "@/components/home/FinalCTA";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export const metadata = pageMetadata(
-  "Services",
-  "Software development, product engineering, AI automation, and cloud infrastructure. Technology solutions built around real-world needs by Sanora Works.",
+  "Website and Software Services",
+  "Websites, internal tools, product prototypes, AI automation, and cloud deployment for business owners and startup founders. Explore what SanoraWorks can build and hand over.",
   "/services",
 );
-
-const serviceIcons = {
-  code: Braces,
-  layers: Layers3,
-  workflow: Workflow,
-  cloud: Cloud,
-};
 
 export default function ServicesPage() {
   return (
     <main id="main-content">
       <PageHero
-        eyebrow="The service directory"
-        title="Engineering services"
-        description="Connected capabilities, from the first question to the systems that keep your product moving. Built around what your business actually needs."
+        title="Websites, software, and the systems behind them"
+        description="Choose the service closest to your situation. The examples below show what we can build; we agree on the deliverables for your project before work starts."
       />
       <nav
         className="container service-jump-links"
@@ -51,9 +37,7 @@ export default function ServicesPage() {
         ))}
       </nav>
       <div className="container service-details">
-        {services.map((service) => {
-          const Icon = serviceIcons[service.icon];
-          return (
+        {services.map((service) => (
             <section
               className="service-detail"
               id={service.slug}
@@ -62,9 +46,6 @@ export default function ServicesPage() {
             >
               <div className="service-detail-title">
                 <div className="service-detail-heading">
-                  <span className="service-detail-icon" aria-hidden="true">
-                    <Icon size={26} strokeWidth={1.6} />
-                  </span>
                   <div>
                     <h2 id={`${service.slug}-title`}>{service.title}</h2>
                     <p>{service.fit}</p>
@@ -73,9 +54,9 @@ export default function ServicesPage() {
                 <Link
                   href={`/contact?service=${service.slug}`}
                   className="service-project-link"
-                  aria-label={`Discuss your ${service.shortTitle.toLowerCase()} project`}
+                  aria-label={`Tell us what you need for ${service.shortTitle.toLowerCase()}`}
                 >
-                  Discuss your project
+                  Tell us what you need
                   <ArrowUpRight size={15} aria-hidden="true" />
                 </Link>
               </div>
@@ -83,11 +64,10 @@ export default function ServicesPage() {
                 <p className="service-detail-lead">{service.detail}</p>
                 <div className="service-detail-columns">
                   <div className="service-detail-panel">
-                    <h3>What we can build</h3>
+                    <h3>Examples we can build</h3>
                     <ul className="capability-list">
                       {service.capabilities.map((item) => (
                         <li key={item}>
-                          <Plus size={14} aria-hidden="true" />
                           {item}
                         </li>
                       ))}
@@ -98,7 +78,6 @@ export default function ServicesPage() {
                     <ul className="capability-list">
                       {service.deliverables.map((item) => (
                         <li key={item}>
-                          <Check size={14} aria-hidden="true" />
                           {item}
                         </li>
                       ))}
@@ -107,21 +86,19 @@ export default function ServicesPage() {
                 </div>
                 <ServiceExplainer slug={service.slug} />
                 <div className="technology-note">
-                  <Settings2 size={18} aria-hidden="true" />
                   <div>
-                    <h3>A considered toolkit</h3>
+                    <h3>Technology choices</h3>
                     <p>{service.tools}</p>
                   </div>
                 </div>
               </div>
             </section>
-          );
-        })}
+        ))}
       </div>
       <Approach detailed />
       <section className="section">
         <div className="container faq-layout">
-          <SectionHeading eyebrow="A few useful answers">
+          <SectionHeading>
             Frequently asked questions
           </SectionHeading>
           <div className="faq-list">

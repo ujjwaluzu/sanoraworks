@@ -2,9 +2,6 @@ import { Hero } from "@/components/home/Hero";
 import { ServicesOverview } from "@/components/home/ServicesOverview";
 import { SelectedWork } from "@/components/home/SelectedWork";
 import { Approach } from "@/components/home/Approach";
-import { Principles } from "@/components/home/Principles";
-import { AboutPreview } from "@/components/home/AboutPreview";
-import { BrandPhilosophy } from "@/components/home/BrandPhilosophy";
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { pageMetadata } from "@/lib/metadata";
 import { site } from "@/data/site";
@@ -12,10 +9,10 @@ import { site } from "@/data/site";
 export const metadata = {
   ...pageMetadata(
     site.tagline,
-    "Sanora Works engineers ideas into meaningful digital solutions. Explore our software development, product engineering, AI automation, and cloud capabilities.",
+    site.description,
     "/",
   ),
-  title: { absolute: `Sanora Works: ${site.tagline}` },
+  title: { absolute: `SanoraWorks: ${site.tagline}` },
 };
 
 export default function Home() {
@@ -25,9 +22,6 @@ export default function Home() {
       <ServicesOverview />
       <SelectedWork />
       <Approach />
-      <Principles />
-      <AboutPreview />
-      <BrandPhilosophy />
       <FinalCTA />
     </main>
   );

@@ -7,10 +7,10 @@ export function EngineeringForm({ compact = false }: { compact?: boolean }) {
     <BannerMotion compact={compact}>
       <DnsComputer />
       <div className="workshop-banner-copy">
-        <h2>Websites, business tools, and automation.</h2>
+        <h2>A website, a team tool, or a first release.</h2>
         <p>
-          Reach customers online, organise day-to-day operations, and spend less
-          time on repetitive tasks with software built around your business.
+          A service website, an order dashboard, or a product prototype: the
+          starting point depends on what you need people to do.
         </p>
       </div>
       <OrbitLogo />

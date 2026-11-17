@@ -1,4 +1,4 @@
-import { ArrowUpRight, MessageSquare, MoveRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { site } from "@/data/site";
 import { services } from "@/data/services";
 import { pageMetadata } from "@/lib/metadata";
@@ -6,8 +6,8 @@ import { ContactForm } from "@/components/contact/ContactForm";
 import { SocialLinks } from "@/components/ui/SocialLinks";
 
 export const metadata = pageMetadata(
-  "Start a Project",
-  "Have an idea worth engineering? Discuss your next digital product, software project, or technology challenge with Sanora Works.",
+  "Tell Us What You Need",
+  "Tell SanoraWorks about your website, internal tool, or product idea. We’ll review your message, reply with any questions, and agree on the next step.",
   "/contact",
 );
 
@@ -26,11 +26,11 @@ export default async function ContactPage({
             initialProjectType={selected}
           />
           <aside className="contact-aside">
-            <MessageSquare size={27} strokeWidth={1} aria-hidden="true" />
-            <h2>Every good build starts with an idea.</h2>
+            <h2>What to include</h2>
             <p>
-              You don’t need all the answers. A clear starting point, a rough
-              brief, or a question is enough.
+              Tell us who will use it, what they need to do, and how you handle
+              the task today. Include any timing or budget constraints you
+              already know. A rough description is enough to begin.
             </p>
             <div className="contact-email-block">
               <span className="eyebrow">Prefer email?</span>
@@ -53,23 +53,6 @@ export default async function ContactPage({
             <div className="contact-email-block">
               <span className="eyebrow">Follow SanoraWorks</span>
               <SocialLinks label="Contact social media" />
-            </div>
-            <div className="contact-next">
-              <span className="eyebrow">A considered beginning</span>
-              <ol>
-                <li>
-                  <span className="mono">01</span>Share the idea
-                  <MoveRight size={12} aria-hidden="true" />
-                </li>
-                <li>
-                  <span className="mono">02</span>Explore the possibilities
-                  <MoveRight size={12} aria-hidden="true" />
-                </li>
-                <li>
-                  <span className="mono">03</span>Define a useful next step
-                  <MoveRight size={12} aria-hidden="true" />
-                </li>
-              </ol>
             </div>
           </aside>
         </div>

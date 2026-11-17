@@ -3,13 +3,14 @@ export function FinalCTA() {
   return (
     <section className="final-cta">
       <div>
-        <h2>Have an idea worth engineering?</h2>
+        <h2>What do you need to build?</h2>
         <p>
-          Tell us about your next digital product, business challenge, or
-          technology project.
+          Describe your business, the task you want to change, or the product
+          you have in mind. We’ll review your message, reply with any questions,
+          and agree on the next step.
         </p>
       </div>
-      <Button href="/contact">Start a conversation</Button>
+      <Button href="/contact#contact-title">Tell us what you need</Button>
     </section>
   );
 }

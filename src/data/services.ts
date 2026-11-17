@@ -1,97 +1,93 @@
 export const services = [
   {
-    number: "01",
     slug: "software-web-development",
     title: "Software & Web Development",
     shortTitle: "Software & web",
     icon: "code",
     description:
-      "Custom websites, web applications, APIs, backend systems, and scalable digital platforms.",
+      "Company websites, customer portals, and internal tools for tasks such as enquiries, orders, and bookings.",
     detail:
-      "From a focused company website to a connected web application, we turn requirements into purposeful software. We consider the interface, the underlying system, and the way your team will maintain it.",
+      "If customers cannot find your services online, or your team manages requests across spreadsheets and email, we can build a website or application around that job. A project might include service pages, an enquiry form, a customer portal, or an order dashboard, with integrations where needed.",
     capabilities: [
-      "Websites & web applications",
-      "APIs & backend systems",
-      "Digital platforms",
-      "System integrations",
+      "Company and service websites",
+      "Customer portals and booking tools",
+      "Order and enquiry dashboards",
+      "APIs connecting your existing tools",
     ],
     deliverables: [
       "Responsive, accessible interfaces",
-      "Documented application architecture",
-      "Tested APIs and integration boundaries",
+      "The agreed pages and application features",
+      "Tested APIs and integrations where scoped",
       "Deployment and handover documentation",
     ],
-    fit: "You need a new digital platform, a dependable business tool, or a clearer path for an existing application.",
+    fit: "You need a website for your business or a web application to manage work currently handled by hand.",
     tools:
-      "Technology choices follow the requirements. This website uses Next.js, React, TypeScript, and Tailwind CSS; the right stack for your project will be agreed during discovery.",
+      "This website uses Next.js, React, TypeScript, and Tailwind CSS. For your project, we choose the framework, database, and integrations after reviewing the features and maintenance needs.",
   },
   {
-    number: "02",
     slug: "product-engineering",
     title: "Product Engineering",
     shortTitle: "Product engineering",
     icon: "layers",
     description:
-      "End-to-end digital product development, technical architecture, prototyping, and application ecosystems.",
+      "Prototypes and first releases for a new product, with scope, user journeys, and features agreed before development.",
     detail:
-      "Bring a new idea into focus, test the assumptions, and build a useful first release. We connect product thinking with engineering decisions so that each stage has a clear purpose and a foundation for the next.",
+      "If you have a product idea but need to decide what to build first, we can map the main user journey and make a prototype for feedback. The next stage could be a first release with the essential screens, accounts, and features needed to try it with users.",
     capabilities: [
-      "Product strategy & discovery",
-      "Prototyping & MVPs",
-      "Technical architecture",
-      "Application ecosystems",
+      "User journeys and feature priorities",
+      "Interactive product prototypes",
+      "First releases with core features",
+      "New features for an existing product",
     ],
     deliverables: [
       "Prioritised product requirements",
-      "Prototypes for validating key interactions",
-      "A scoped, usable first release",
-      "A roadmap for future development",
+      "Prototypes for reviewing key interactions",
+      "A first release scoped around the core journey",
+      "A list of possible next features",
     ],
-    fit: "You have a product idea to validate or an existing product that needs a more considered technical direction.",
+    fit: "You want to test a product idea, plan a first release, or add a defined feature to an existing product.",
     tools:
-      "Prototypes, architecture diagrams, version control, and testing tools are selected around the product and your existing environment.",
+      "We use prototypes to review interactions before committing to implementation. Frameworks, storage, and testing tools depend on the product features and any existing codebase.",
   },
   {
-    number: "03",
     slug: "ai-intelligent-automation",
     title: "AI & Intelligent Automation",
     shortTitle: "AI & automation",
     icon: "workflow",
     description:
-      "AI-powered workflows, integrations, process automation, and intelligent business tools.",
+      "Workflows that move information between tools, prepare drafts, or sort incoming documents for your team to review.",
     detail:
-      "Make repetitive work easier and give teams more room to think. We look for practical applications of automation and AI, with clear inputs, measurable acceptance criteria, and appropriate human oversight.",
+      "If your team copies the same information between tools or sorts incoming requests by hand, we can map the steps and automate the repeatable parts. Possible uses include routing enquiries, extracting fields from documents, or preparing a draft response for a person to check. We test the workflow with sample inputs and define what happens when it fails.",
     capabilities: [
-      "Workflow automation",
-      "AI-powered integrations",
-      "Process optimisation",
-      "Intelligent business tools",
+      "Enquiry routing between tools",
+      "Document field extraction",
+      "Scheduled reports and data transfers",
+      "Draft responses with human review",
     ],
     deliverables: [
-      "Workflow and integration mapping",
-      "A proof of concept for the core use case",
-      "Defined failure and review paths",
-      "Documentation for operating the workflow",
+      "A map of the workflow and integrations",
+      "A proof of concept for the core task",
+      "Defined failure and human review paths",
+      "Instructions for operating the workflow",
     ],
-    fit: "Your team spends time on repeatable tasks, disconnected tools, or information that is difficult to put to work.",
+    fit: "Your team repeats the same data entry, document sorting, or handoffs between tools.",
     tools:
-      "Model providers and workflow tools are evaluated against privacy, cost, reliability, and the needs of the use case. We do not prescribe a platform before understanding the problem.",
+      "Some workflows need only an API integration or a scheduled task. When AI is useful, we evaluate providers against data handling, cost, and reliability requirements, and agree on human review steps.",
   },
   {
-    number: "04",
     slug: "cloud-infrastructure",
     title: "Cloud & Infrastructure",
     shortTitle: "Cloud & infrastructure",
     icon: "cloud",
     description:
-      "Cloud architecture, deployment, infrastructure engineering, integrations, and performance optimisation.",
+      "Hosting, deployment workflows, and monitoring for a new application or an existing one that is difficult to release.",
     detail:
-      "Give your product a dependable place to run. We think through deployment, environments, visibility, and maintenance together, with infrastructure that fits the actual workload and the team operating it.",
+      "If your application runs locally but needs to go online, or each release requires manual fixes, we can set up hosting and a repeatable deployment process. The scope could include separate test and production environments, error monitoring, or a review of slow requests.",
     capabilities: [
-      "Cloud architecture",
-      "Deployment workflows",
-      "Performance optimisation",
-      "Monitoring & integrations",
+      "Hosting and environment setup",
+      "Automated build and release workflows",
+      "Application performance reviews",
+      "Error monitoring and alerts",
     ],
     deliverables: [
       "An environment and deployment plan",
@@ -99,9 +95,9 @@ export const services = [
       "Monitoring and operational guidance",
       "Documented maintenance considerations",
     ],
-    fit: "You need to launch a product, simplify deployments, or improve the reliability of your current environment.",
+    fit: "You need to put an application online, make releases repeatable, or investigate hosting and performance issues.",
     tools:
-      "Hosting and infrastructure choices depend on workload, operational requirements, and budget. We review your current platform before proposing changes.",
+      "We review your current hosting, expected usage, and budget before choosing a platform. Deployment and monitoring tools must fit the application and the people who will operate it.",
   },
 ] as const;
 
@@ -109,31 +105,31 @@ export const faqs = [
   {
     question: "What kind of projects are a good fit?",
     answer:
-      "Web applications, digital products, internal tools, practical automation, and the infrastructure behind them. We start by understanding the problem and will be straightforward about whether the work fits our capabilities.",
+      "Business websites, customer portals, internal tools, product prototypes, workflow automation, and cloud deployments. Describe the job you need done and we will discuss whether it fits our services.",
   },
   {
     question: "Can we start with an idea rather than a full brief?",
     answer:
-      "Yes. A short description of the problem, who it affects, and what you hope to achieve is enough for an initial conversation. Discovery helps turn those early thoughts into a practical scope.",
+      "Yes. Tell us who the website or product is for, what they need to do, and any existing tools or constraints. We will ask questions to help define the scope.",
   },
   {
     question: "How do you estimate timelines and cost?",
     answer:
-      "We assess scope, dependencies, technical uncertainty, and the level of support required. A proposal should make deliverables, assumptions, milestones, and pricing clear before implementation starts. We do not publish a fixed promise without understanding the work.",
+      "We review the features, integrations, existing code, and support needed. We then agree on deliverables, assumptions, milestones, and pricing before implementation begins.",
   },
   {
     question: "Can you work with an existing product or team?",
     answer:
-      "We can discuss a focused feature, a system integration, or a broader technical review. Access to the existing codebase and documentation helps us assess compatibility and identify a useful starting point.",
+      "We can discuss a focused feature, a system integration, or a technical review. Access to the existing codebase and documentation helps us assess compatibility and identify a starting point.",
   },
   {
     question: "What happens after launch?",
     answer:
-      "We agree on documentation, handover, and any maintenance needs as part of the scope. Ongoing support and future improvements can be planned separately around the product's requirements.",
+      "We agree on documentation, handover, and any maintenance needs as part of the scope. Ongoing support and future improvements can be planned separately around the product’s requirements.",
   },
   {
     question: "Who owns the code and project deliverables?",
     answer:
-      "Ownership, licensing, third-party dependencies, and handover arrangements should be defined in the project agreement before work begins. We aim to make those terms clear from the start.",
+      "Ownership, licensing, third-party dependencies, and handover arrangements are defined in the project agreement before work begins.",
   },
 ] as const;

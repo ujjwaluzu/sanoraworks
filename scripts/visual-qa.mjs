@@ -34,7 +34,7 @@ const routes = [
 ];
 const report = [];
 try {
-  for (const width of [375, 768, 1440, 1920]) {
+  for (const width of [320, 375, 768, 1440, 1920]) {
     await page.setViewportSize({ width, height: 1000 });
     for (const route of routes) {
       const response = await page.goto(base + route, {
@@ -76,7 +76,7 @@ try {
   }
   // A 720px CSS viewport exercises desktop content at the effective width of
   // a 1440px display with 200% browser zoom. Also stress the 320px minimum.
-  for (const width of [720, 320]) {
+  for (const width of [720]) {
     await page.setViewportSize({ width, height: 900 });
     for (const route of routes) {
       await page.goto(base + route, { waitUntil: "networkidle" });

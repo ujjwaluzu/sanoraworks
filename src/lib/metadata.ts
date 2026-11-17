@@ -11,10 +11,10 @@ export function pageMetadata(
     description,
     alternates: { canonical: path },
     openGraph: {
-      title: `${title} | Sanora Works`,
+      title: `${title} | SanoraWorks`,
       description,
       url: path,
-      siteName: "Sanora Works",
+      siteName: "SanoraWorks",
       locale: "en_US",
       type: "website",
       images: [
@@ -22,13 +22,13 @@ export function pageMetadata(
           url: "/opengraph-image",
           width: 1200,
           height: 630,
-          alt: `Sanora Works: ${site.tagline}`,
+          alt: `SanoraWorks: ${site.tagline}`,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${title} | Sanora Works`,
+      title: `${title} | SanoraWorks`,
       description,
       images: [`${site.url}/opengraph-image`],
     },

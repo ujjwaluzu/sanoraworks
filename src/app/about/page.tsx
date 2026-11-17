@@ -1,16 +1,12 @@
-import { UserRound } from "lucide-react";
 import { pageMetadata } from "@/lib/metadata";
-import { site } from "@/data/site";
 import { PageHero } from "@/components/ui/PageHero";
 import { LogoReveal } from "@/components/about/LogoReveal";
-import { Principles } from "@/components/home/Principles";
 import { Approach } from "@/components/home/Approach";
-import { BrandPhilosophy } from "@/components/home/BrandPhilosophy";
 import { FinalCTA } from "@/components/home/FinalCTA";
 
 export const metadata = pageMetadata(
-  "About Us",
-  "Sanora Works is an independent technology and engineering company built around research, architecture, innovation, and purposeful execution.",
+  "About SanoraWorks",
+  "An independent software company for business owners and startup founders. Learn how SanoraWorks scopes, builds, tests, and hands over websites and applications.",
   "/about",
 );
 
@@ -18,104 +14,36 @@ export default function AboutPage() {
   return (
     <main id="main-content">
       <PageHero
-        eyebrow="The company behind the work"
         title="About SanoraWorks"
-        description="We are Sanora Works. An independent technology and engineering company with a simple belief: the most useful technology starts with a real purpose."
+        description="An independent company building websites and software for business owners and startup founders."
       />
       <section className="section">
-        <div className="container">
-          <div className="about-intro">
-            <div>
-              <h2>Technology that moves things forward.</h2>
-              <p>
-                SANORA WORKS develops digital solutions, software products, and
-                intelligent systems. Our approach brings research, architecture,
-                engineering, and innovation together to make complex challenges
-                more practical.
-              </p>
-              <p>
-                We don’t just build what’s required today. We think about what
-                will be needed tomorrow, without losing sight of what matters
-                now.
-              </p>
-              <p>
-                Alongside our services, we are working on four independent
-                projects: SlotBreeze for service bookings, ProofHuddle for client
-                feedback and approvals, EnquiryWing for organising enquiries,
-                and UptimePerch for website monitoring and cloud operations.
-                All four are in development.
-              </p>
-              <p>
-                We work closely with the people who use what we build. Their
-                goals, feedback, and day-to-day challenges guide each decision,
-                from the first idea to the way a product grows after launch.
-              </p>
-            </div>
-            <LogoReveal />
-          </div>
-          <div className="mission-grid">
-            <article>
-              <p className="eyebrow">Our mission</p>
-              <h2>Turn meaningful challenges into useful technology.</h2>
-              <p>
-                To design and engineer practical digital solutions that help
-                people and businesses move forward, with clear thinking,
-                reliable foundations, and purposeful execution.
-              </p>
-            </article>
-            <article>
-              <p className="eyebrow">Our vision</p>
-              <h2>Build for what’s next. Keep purpose at the centre.</h2>
-              <p>
-                To grow an independent engineering company recognised for
-                thoughtful products, intelligent systems, and a lasting
-                commitment to making technology useful.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
-      <BrandPhilosophy />
-      <Principles />
-      <Approach detailed />
-      <section className="section">
-        <div className="container founders-layout">
-          <div className="section-heading">
-            <h2>The people behind SanoraWorks</h2>
-          </div>
+        <div className="container about-intro">
           <div>
-            {site.founders.length ? (
-              site.founders.map((founder) => (
-                <article className="founder-card" key={founder.name}>
-                  <div className="founder-avatar" aria-hidden="true">
-                    <UserRound size={25} strokeWidth={1} />
-                  </div>
-                  <div>
-                    <h3>{founder.name}</h3>
-                    <span className="eyebrow">{founder.role}</span>
-                    <p>{founder.bio}</p>
-                  </div>
-                </article>
-              ))
-            ) : (
-              <article className="founder-card">
-                <div className="founder-avatar" aria-hidden="true">
-                  <UserRound size={25} strokeWidth={1} />
-                </div>
-                <div>
-                  <h3>Founder profile</h3>
-                  <span className="eyebrow">To be introduced</span>
-                  <p>
-                    We’ll share the people behind Sanora Works here. Founder
-                    names, roles, and biographies will be published once
-                    confirmed.
-                  </p>
-                </div>
-              </article>
-            )}
+            <h2>From a business task to a working application</h2>
+            <p>
+              You might need a website that explains your services, an internal
+              tool to replace a spreadsheet, or a first version of a product.
+              We work with you to decide what it needs to do, then design, build,
+              test, and prepare it for use.
+            </p>
+            <p>
+              Before development begins, we agree on the scope, deliverables,
+              and milestones. You review the work as it develops, and we plan
+              the documentation, handover, and any ongoing support with you.
+            </p>
+            <p>
+              Alongside our services, we are working on four independent
+              projects: SlotBreeze for service bookings, ProofHuddle for client
+              feedback and approvals, EnquiryWing for organising enquiries,
+              and UptimePerch for website monitoring and cloud operations.
+              All four are in development.
+            </p>
           </div>
+          <LogoReveal />
         </div>
       </section>
+      <Approach detailed />
       <FinalCTA />
     </main>
   );

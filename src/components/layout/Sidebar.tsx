@@ -2,71 +2,39 @@ import Link from "next/link";
 import { services } from "@/data/services";
 import { projects } from "@/data/projects";
 import { site } from "@/data/site";
-import { SocialLinks } from "@/components/ui/SocialLinks";
 
 export function Sidebar() {
   return (
-    <aside className="site-sidebar" aria-label="Workshop directory">
+    <aside className="site-sidebar" aria-label="SanoraWorks directory">
       <section className="sidebar-box">
-        <h2>
-          <span aria-hidden="true">▤</span> Service directory
-        </h2>
+        <h2>Services</h2>
         <ul className="sidebar-links">
           {services.map((item) => (
             <li key={item.slug}>
-              <Link href={`/services#${item.slug}`}>
-                <span aria-hidden="true">›</span>
-                {item.shortTitle}
-              </Link>
+              <Link href={`/services#${item.slug}`}>{item.shortTitle}</Link>
             </li>
           ))}
         </ul>
-        <p className="sidebar-footnote">
-          From first idea to a dependable system.
-        </p>
       </section>
       <section className="sidebar-box">
-        <h2>
-          <span aria-hidden="true">▧</span> Project index
-        </h2>
-        <ul className="sidebar-links project-index">
-          {projects.map((item, index) => (
+        <h2>Projects</h2>
+        <ul className="sidebar-links">
+          {projects.map((item) => (
             <li key={item.slug}>
-              <Link href={`/work/${item.slug}`}>
-                <span className="mono" aria-hidden="true">
-                  0{index + 1}
-                </span>
-                <span>
-                  {item.name}
-                  <small>{item.category}</small>
-                </span>
-              </Link>
+              <Link href={`/work/${item.slug}`}>{item.name}</Link>
             </li>
           ))}
         </ul>
-        <Link className="sidebar-all" href="/work">
-          Browse all projects →
-        </Link>
+        <Link className="sidebar-all" href="/work">All projects →</Link>
       </section>
-      <section className="sidebar-box about-workshop">
-        <h2>About the workshop</h2>
-        <p>
-          We’re an independent technology and engineering company. We turn
-          complex challenges into practical digital solutions.
-        </p>
-        <Link href="/about">Meet SanoraWorks →</Link>
-      </section>
-      <div className="sidebar-note">
-        <strong>A good place to start.</strong>
-        <p>Have a problem to solve or an idea to explore?</p>
-        <Link href="/contact">Tell us about your project →</Link>
-      </div>
-      <section className="sidebar-box sidebar-connect">
-        <h2>Connect</h2>
-        {site.email && (
-          <a href={`mailto:${site.email}`}>Email the workshop</a>
-        )}
-        <SocialLinks label="Workshop social media" />
+      <section className="sidebar-box">
+        <h2>Contact</h2>
+        <ul className="sidebar-links">
+          <li><Link href="/contact#contact-title">Tell us what you need</Link></li>
+          {site.email && (
+            <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+          )}
+        </ul>
       </section>
     </aside>
   );

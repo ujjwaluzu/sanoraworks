@@ -26,6 +26,7 @@ test("sends to the fixed owner inbox with the visitor as Reply-To", async () => 
   const { post, emails, keys } = fixture();
   const response = await post(request({ ...valid, to: "attacker@example.com", from: "spoof@example.com" }));
   assert.equal(response.status, 202);
+  assert.equal((await response.json()).message, "Your enquiry has been sent. We’ll review your message, reply with any questions, and agree on the next step.");
   assert.equal(response.headers.get("cache-control"), "no-store");
   assert.equal(emails.length, 1);
   assert.equal(emails[0].to, "sanoraworks@gmail.com");

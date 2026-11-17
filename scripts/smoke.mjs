@@ -57,18 +57,38 @@ for (const path of pages) {
   const organization = JSON.parse(
     html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1],
   );
+  assert.equal(organization.name, "SanoraWorks", `${path}: current organization name`);
+  const sidebar = html.match(/<aside\b[^>]*class="site-sidebar"[^>]*>(.*?)<\/aside>/s)?.[1];
+  assert.ok(sidebar, `${path}: current directory sidebar`);
+  assert.deepEqual(
+    [...sidebar.matchAll(/<h2>(.*?)<\/h2>/g)].map((match) => match[1]),
+    ["Services", "Projects", "Contact"],
+    `${path}: approved sidebar sections`,
+  );
   for (const url of socialUrls) {
     assert.ok(organization.sameAs.includes(url), `${path}: social identity ${url}`);
     assert.ok(
-      html.split(`href="${url}"`).length - 1 >= 2,
-      `${path}: social profile visible in shared sidebar and footer: ${url}`,
+      html.split(`href="${url}"`).length - 1 >= 1,
+      `${path}: social profile visible in footer: ${url}`,
     );
   }
   assert.equal(response.headers.get("x-content-type-options"), "nosniff");
   const title = html.match(/<title>(.*?)<\/title>/s)?.[1];
   assert.ok(title && !titles.has(title), `${path}: unique page title`);
+  assert.ok(title.includes("SanoraWorks"), `${path}: current page branding`);
   titles.add(title);
 }
+
+assert.ok(documents.get("/").includes("Websites for your business. Software for your next product."));
+for (const [path, html] of documents) {
+  assert.doesNotMatch(html, /Workshop directory|Email the workshop|About the workshop|More from the workshop|To be introduced|The people behind SanoraWorks/);
+  if (path.startsWith("/work")) {
+    assert.ok(html.includes("Illustrative interface concept."), `${path}: visible preview label`);
+    assert.doesNotMatch(html, /Technology details forthcoming|Public URL not yet published|built with purpose/);
+  }
+}
+assert.ok(documents.get("/contact").includes("Send enquiry"));
+assert.doesNotMatch(documents.get("/about"), /Founder profile|Our mission|Our vision|The SANORA philosophy/);
 
 
 const projectRoutes = ["slotbreeze", "proofhuddle", "enquirywing", "uptimeperch"];

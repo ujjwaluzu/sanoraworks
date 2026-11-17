@@ -4,13 +4,11 @@ import { ProjectPreview } from "./ProjectPreview";
 import styles from "./project-content.module.css";
 export function ProjectCard({
   project,
-  featured = false,
 }: {
   project: Project;
-  featured?: boolean;
 }) {
   return (
-    <article className={`project-card ${styles.card} ${featured ? "project-featured" : ""}`}>
+    <article className={`project-card ${styles.card}`}>
       <Link
         href={`/work/${project.slug}`}
         className={`project-card-link ${styles.cardLink}`}

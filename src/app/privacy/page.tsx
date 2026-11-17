@@ -5,7 +5,7 @@ import { PageHero } from "@/components/ui/PageHero";
 
 export const metadata = pageMetadata(
   "Privacy Policy",
-  "How the Sanora Works website handles project enquiry details, email delivery, and basic website information.",
+  "How the SanoraWorks website handles project enquiry details, email delivery, and basic website information.",
   "/privacy",
 );
 
@@ -14,7 +14,6 @@ export default function PrivacyPage() {
     <main id="main-content">
       <PageHero
         eyebrow="Website information"
-        index="PRIVACY"
         title="Privacy Policy"
         description="An explanation of the information this website uses and what happens when you send a project enquiry."
       />

@@ -4,7 +4,7 @@ import { socialSvg } from "@/lib/brand-artwork";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "SanoraWorks: Practical technology for business.";
+export const alt = "SanoraWorks: Websites and software for businesses and startups.";
 
 export default async function BrandImage() {
   const sources = await readBrandSources();

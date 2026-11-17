@@ -25,8 +25,10 @@ screen. Visibility and tab state suspend every track together. Reduced motion
 and JavaScript-disabled rendering show the finished original logo and a completed
 DNS lookup. The banner has no figure labels, step captions, illustration tagline,
 or playback button; only its main heading and business description remain.
-Below 600px, the banner stacks the centered logo, full-width text, and centered
-DNS computer in that order. Wider viewports retain the three-column composition.
+Below 600px, the banner shows the text above the centered DNS computer and hides
+the duplicate banner logo. Wider viewports retain the three-column composition.
+DNS playback starts independently; the orbit tracks wait for their source image
+to load. Both suspend when the banner is offscreen or the tab is hidden.
 
 DNS sequence reference: https://www.cloudflare.com/learning/dns/what-is-dns/
 

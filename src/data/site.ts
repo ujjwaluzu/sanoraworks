@@ -11,16 +11,16 @@ function httpsUrl(value: string | undefined) {
 const email = process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || "enquiries@sanoraworks.com";
 
 export const site = {
-  name: "SANORA WORKS",
+  name: "SanoraWorks",
   url: "https://sanoraworks.com",
-  tagline: "Practical technology. Built for your business.",
+  tagline: "Websites and software for businesses and startups.",
+  description: "SanoraWorks builds websites, internal tools, and web applications for business owners and startup founders. Bring us a workflow to improve or a product idea to test.",
   email: email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? email : null,
   linkedin: httpsUrl(process.env.NEXT_PUBLIC_LINKEDIN_URL),
   github: httpsUrl(process.env.NEXT_PUBLIC_GITHUB_URL),
   x: "https://x.com/sanoraworks",
   instagram: "https://www.instagram.com/sanoraworks/",
   youtube: "https://www.youtube.com/@sanoraworks",
-  founders: [] as { name: string; role: string; bio: string }[],
 };
 
 /** Shared by the page chrome, contact page, and Organization metadata. */
@@ -40,95 +40,29 @@ export const navigation = [
   { label: "Contact", href: "/contact" },
 ];
 
-export const philosophy = [
-  {
-    letter: "S",
-    word: "Solutions",
-    detail: "Start with the problem. Build what matters.",
-  },
-  {
-    letter: "A",
-    word: "Architecture",
-    detail: "Give every idea a considered foundation.",
-  },
-  {
-    letter: "N",
-    word: "Networks",
-    detail: "Connect people, products, and possibilities.",
-  },
-  {
-    letter: "O",
-    word: "Operations",
-    detail: "Make reliability part of the everyday.",
-  },
-  {
-    letter: "R",
-    word: "Research",
-    detail: "Ask better questions. Explore what comes next.",
-  },
-  {
-    letter: "A",
-    word: "Automation",
-    detail: "Make space for more meaningful work.",
-  },
-];
-
-export const principles = [
-  {
-    title: "Engineering-first mindset.",
-    description:
-      "We look beneath the interface. Sound architecture, considered trade-offs, and careful implementation shape every decision.",
-  },
-  {
-    title: "Purpose-driven solutions.",
-    description:
-      "Technology should solve a real problem. We connect what we build to the people who use it and the work it needs to do.",
-  },
-  {
-    title: "Scalable foundations.",
-    description:
-      "Build for today with a clear path forward. We favour maintainable systems that can evolve without unnecessary complexity.",
-  },
-  {
-    title: "Continuous improvement.",
-    description:
-      "A launch is a starting point. Feedback, observation, and iteration help a good product become a more useful one.",
-  },
-];
-
 export const approach = [
   {
-    number: "01",
-    name: "Discover",
-    description:
-      "Understand the challenge, business requirements, and opportunities.",
-    detail:
-      "We align on the people, constraints, and desired outcomes before deciding what to build.",
-    output: "A clear problem statement and shared priorities",
+    name: "Describe the job",
+    description: "Show us the task, the people doing it, and what needs to change.",
+    detail: "We ask about your current tools, who will use the website or application, and any constraints on time or budget.",
+    output: "A written summary of the problem and priorities",
   },
   {
-    number: "02",
-    name: "Architect",
-    description:
-      "Define the technical strategy, architecture, and implementation roadmap.",
-    detail:
-      "We map the system, explore trade-offs, and break the work into practical, reviewable milestones.",
-    output: "A technical direction and delivery roadmap",
+    name: "Agree on the scope",
+    description: "Decide what to build first and how you will review it.",
+    detail: "We define the screens, features, integrations, and acceptance criteria, then agree on milestones and costs before development starts.",
+    output: "A scope with deliverables, assumptions, and milestones",
   },
   {
-    number: "03",
-    name: "Engineer",
-    description: "Design, develop, test, and refine the solution.",
-    detail:
-      "We work in focused iterations, keeping the product accessible, maintainable, and aligned with the original purpose.",
-    output: "A tested product, with progress you can review",
+    name: "Build and review",
+    description: "Review working versions, give feedback, and check the agreed requirements.",
+    detail: "We develop in stages and test the main user journeys, including validation and failure cases. You can review progress at each milestone.",
+    output: "Working software checked against the agreed scope",
   },
   {
-    number: "04",
-    name: "Deploy & Evolve",
-    description: "Launch, monitor, maintain, and improve the product.",
-    detail:
-      "We plan the handover, document key decisions, and identify what to observe and improve after launch.",
-    output: "A considered launch and a plan for what follows",
+    name: "Launch and hand over",
+    description: "Prepare the release, documentation, and access your team needs.",
+    detail: "We agree on deployment, explain how to operate the software, and document the handover. Maintenance or later changes can be scoped separately.",
+    output: "The release, handover documentation, and agreed support arrangements",
   },
 ];

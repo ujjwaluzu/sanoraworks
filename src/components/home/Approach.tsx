@@ -11,8 +11,7 @@ export function Approach({ detailed = false }: { detailed?: boolean }) {
         className={`approach-directory ${detailed ? "approach-detailed" : ""}`}
       >
         {approach.map((stage) => (
-          <li key={stage.number}>
-            <span className="stage-number mono">{stage.number}</span>
+          <li key={stage.name}>
             <div>
               <h3>{stage.name}</h3>
               <p>{stage.description}</p>
@@ -20,7 +19,7 @@ export function Approach({ detailed = false }: { detailed?: boolean }) {
                 <>
                   <p>{stage.detail}</p>
                   <p className="stage-output">
-                    <strong>The outcome:</strong> {stage.output}
+                    <strong>You receive:</strong> {stage.output}
                   </p>
                 </>
               )}

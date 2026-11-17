@@ -22,6 +22,8 @@ const context = await browser.newContext({
   viewport: { width: 1440, height: 1000 },
   acceptDownloads: true,
 });
+// Any unexpected submission is blocked, including when an earlier assertion fails.
+await context.route("**/api/enquiry", (route) => route.abort());
 const page = await context.newPage();
 const report = {
   base,
@@ -58,6 +60,18 @@ async function fillBrief(target) {
     );
 }
 try {
+  await check("Homepage has five sections and clear actions", async () => {
+    await page.goto(base, { waitUntil: "load" });
+    assert.equal(await page.locator("main > section").count(), 5);
+    assert.equal(await page.locator("h1").textContent(), "Websites for your business. Software for your next product.");
+    const actions = page.locator(".hero-actions");
+    await actions.getByRole("link", { name: "Tell us what you need", exact: true }).click();
+    await page.waitForURL("**/contact#contact-title");
+    assert.ok(await page.locator("#contact-title").isVisible());
+    await page.goto(base, { waitUntil: "load" });
+    await actions.getByRole("link", { name: "See our projects", exact: true }).click();
+    await page.waitForURL("**/work");
+  });
   await check("Homepage shortcuts reach the requested section", async () => {
     for (const [name, id] of [
       ["Services", "capabilities"],
@@ -73,7 +87,8 @@ try {
       await page.waitForFunction(
         (id) => {
           const top = document.getElementById(id).getBoundingClientRect().top;
-          return top >= 0 && top < 100;
+          const atEnd = scrollY + innerHeight >= document.documentElement.scrollHeight - 2;
+          return top >= 0 && (top < 100 || (atEnd && top < innerHeight));
         },
         id,
       );
@@ -92,7 +107,7 @@ try {
     );
     assert.equal(
       await page.locator("h1").textContent(),
-      "Engineering services",
+      "Websites, software, and the systems behind them",
     );
   });
   await check("Service category anchor and enquiry preselection", async () => {
@@ -104,7 +119,7 @@ try {
     assert.ok(await page.locator("#product-engineering").isVisible());
     await page
       .locator("#product-engineering")
-      .getByRole("link", { name: /Discuss your .* project/ })
+      .getByRole("link", { name: /Tell us what you need for product engineering/ })
       .click();
     await page.waitForURL("**/contact?service=product-engineering");
     assert.equal(
@@ -112,9 +127,24 @@ try {
       "Product Engineering",
     );
   });
+  await check("Every service preselects its existing form option", async () => {
+    for (const [slug, title] of [
+      ["software-web-development", "Software & Web Development"],
+      ["product-engineering", "Product Engineering"],
+      ["ai-intelligent-automation", "AI & Intelligent Automation"],
+      ["cloud-infrastructure", "Cloud & Infrastructure"],
+    ]) {
+      await page.goto(`${base}/services#${slug}`, { waitUntil: "load" });
+      const section = page.locator(`#${slug}`);
+      await section.locator(".service-project-link").click();
+      await page.waitForURL(`**/contact?service=${slug}`);
+      assert.equal(await page.locator("#projectType").inputValue(), title);
+    }
+    await page.goto(`${base}/contact?service=product-engineering`, { waitUntil: "load" });
+  });
   await check("Required validation and error summary focus", async () => {
     await page
-      .getByRole("button", { name: "Send project enquiry", exact: true })
+      .getByRole("button", { name: "Send enquiry", exact: true })
       .click();
     await page.locator(".form-error-summary").waitFor();
     assert.ok(
@@ -175,14 +205,16 @@ try {
     await page.route("**/api/enquiry", async (route) => {
       const payload = route.request().postDataJSON();
       assert.equal(payload.email, "qa@example.com");
-      await route.fulfill({ status: 202, contentType: "application/json", body: JSON.stringify({ message: "Your enquiry has been sent. Thank you for sharing your idea." }) });
+      await route.fulfill({ status: 202, contentType: "application/json", body: JSON.stringify({ message: "Your enquiry has been sent. We’ll review your message, reply with any questions, and agree on the next step." }) });
     });
     await fillBrief(page);
     assert.equal(await page.getByRole("button", { name: /download/i }).count(), 0);
-    await page.getByRole("button", { name: "Send project enquiry", exact: true }).click();
+    await page.getByRole("button", { name: "Send enquiry", exact: true }).click();
     await page.getByRole("status").filter({ hasText: "Your enquiry has been sent" }).waitFor();
     assert.equal(await page.locator("#name").inputValue(), "");
     assert.equal(await page.locator("#description").inputValue(), "");
+    assert.equal(await page.locator("#description-count").textContent(), "0 / 5,000 characters");
+    assert.match(await page.locator(".status-success").textContent(), /We’ll review your message, reply with any questions, and agree on the next step\./);
     await page.unroute("**/api/enquiry");
   });
   await check("Expandable FAQs support pointer and keyboard", async () => {
@@ -250,6 +282,19 @@ try {
       );
     },
   );
+  await check("Project previews sit beside text on desktop and stack on mobile", async () => {
+    for (const width of [320, 375, 768, 1440]) {
+      await page.setViewportSize({ width, height: 1000 });
+      await page.goto(`${base}/work`, { waitUntil: "load" });
+      for (const card of await page.locator(".project-card").all()) {
+        const preview = await card.locator(".project-visual-link").boundingBox();
+        const text = await card.locator(".project-card-info").boundingBox();
+        if (width < 600) assert.ok(text.y >= preview.y + preview.height, `stacked at ${width}px`);
+        else assert.ok(text.x >= preview.x + preview.width, `side by side at ${width}px`);
+        assert.equal(await card.locator(".preview-disclaimer").textContent(), "Illustrative interface concept.");
+      }
+    }
+  });
   await check("Mobile navigation keeps all links usable", async () => {
     await page.setViewportSize({ width: 375, height: 812 });
     await page.goto(base, { waitUntil: "load" });
@@ -262,6 +307,18 @@ try {
     }
     await nav.getByRole("link", { name: /Contact/ }).click();
     await page.waitForURL("**/contact");
+  });
+  await check("Back to top works from the keyboard and returns focus", async () => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto(base, { waitUntil: "load" });
+    await page.evaluate(() => window.scrollTo({ top: document.body.scrollHeight, behavior: "instant" }));
+    const topButton = page.getByRole("button", { name: "Back to top", exact: true });
+    await topButton.waitFor();
+    await topButton.focus();
+    await page.keyboard.press("Enter");
+    await page.waitForFunction(() => scrollY === 0);
+    assert.ok(await page.locator(".site-header .brand").evaluate((el) => el === document.activeElement));
+    await page.emulateMedia({ reducedMotion: "no-preference" });
   });
   await check(
     "Delivery failure retains fields and supports retry (browser fixture)",
@@ -285,11 +342,11 @@ try {
       });
       await failurePage.goto(`${base}/contact`, { waitUntil: "load" });
       await failurePage
-        .getByRole("button", { name: "Send project enquiry", exact: true })
+        .getByRole("button", { name: "Send enquiry", exact: true })
         .waitFor();
       await fillBrief(failurePage);
       await failurePage
-        .getByRole("button", { name: "Send project enquiry", exact: true })
+        .getByRole("button", { name: "Send enquiry", exact: true })
         .click();
       await failurePage.locator(".form-status.status-error").waitFor();
       assert.equal(blockedPosts, 1);
@@ -321,6 +378,7 @@ try {
       await failureContext.close();
     },
   );
+  assert.deepEqual(report.pageErrors, []);
 } catch (error) {
   await page.screenshot({
     path: path.join(output, "interaction-failure.png"),

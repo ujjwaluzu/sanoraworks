@@ -11,15 +11,15 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = {
   ...pageMetadata(
     site.tagline,
-    "Sanora Works is an independent technology and engineering company building digital products, software solutions, intelligent systems, and scalable infrastructure.",
+    site.description,
     "/",
   ),
   metadataBase: new URL(site.url),
   title: {
-    default: `Sanora Works: ${site.tagline}`,
-    template: "%s | Sanora Works",
+    default: `SanoraWorks: ${site.tagline}`,
+    template: "%s | SanoraWorks",
   },
-  applicationName: "Sanora Works",
+  applicationName: "SanoraWorks",
   robots: { index: true, follow: true },
   category: "technology",
 };
@@ -33,12 +33,12 @@ const organization = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "@id": `${site.url}/#organization`,
-  name: "Sanora Works",
+  name: "SanoraWorks",
   url: site.url,
   logo: `${site.url}/icon.svg`,
   slogan: site.tagline,
   description:
-    "An independent technology and engineering company building digital products, software solutions, intelligent systems, and scalable infrastructure.",
+    site.description,
   ...(site.email ? { email: site.email } : {}),
   sameAs: socialProfiles.map((profile) => profile.url),
 };

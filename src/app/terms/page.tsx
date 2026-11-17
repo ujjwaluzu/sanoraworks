@@ -4,7 +4,7 @@ import { PageHero } from "@/components/ui/PageHero";
 
 export const metadata = pageMetadata(
   "Terms of Service",
-  "Information about using the Sanora Works website, independent project previews, enquiries, and project agreements.",
+  "Information about using the SanoraWorks website, independent project previews, enquiries, and project agreements.",
   "/terms",
 );
 
@@ -13,7 +13,6 @@ export default function TermsPage() {
     <main id="main-content">
       <PageHero
         eyebrow="Website information"
-        index="TERMS"
         title="Terms of Service"
         description="Information about the website, the work presented here, and the starting point for a project conversation."
       />
@@ -21,7 +20,7 @@ export default function TermsPage() {
         <p className="legal-date">Last updated: 17 November 2026</p>
         <h2>About this website</h2>
         <p>
-          The Sanora Works website introduces our technology and engineering
+          The SanoraWorks website introduces our technology and engineering
           services and independent projects. Its content is general information.
           A project enquiry or conversation does not create a
           service agreement or a commitment to deliver work.
@@ -44,7 +43,7 @@ export default function TermsPage() {
         </p>
         <h2>Website content</h2>
         <p>
-          Sanora Works branding and original website content are reserved by
+          SanoraWorks branding and original website content are reserved by
           their respective owners. Third-party software, fonts, and other
           licensed materials retain their own licenses. Linking to this website
           does not transfer rights to its content.
