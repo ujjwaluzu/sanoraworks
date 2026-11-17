@@ -148,11 +148,14 @@ security headers to static assets and immutable caching to Next.js build files.
 
 ### Domain and future updates
 
-`sanoraworks.com/*` is a Worker route on the active Cloudflare zone. The domain
+`sanoraworks.com/*` and `www.sanoraworks.com/*` are Worker routes on the active
+Cloudflare zone. Requests to `www` permanently redirect to
+`https://sanoraworks.com`, preserving the path and query string. The domain
 has Hostinger-managed DNS records, which prevent direct Worker Custom Domain
-registration. The route uses the existing proxied DNS and TLS certificate;
-Cloudflare Email Routing supplies the domain's MX, SPF, and DKIM records. Keep the website's DNS record
-proxied in Cloudflare, and keep this Worker route attached. If the Hostinger DNS
+registration. The routes use the existing proxied DNS and TLS certificate.
+Cloudflare Email Routing supplies the domain's MX, SPF, and DKIM records. Keep
+the website's DNS records proxied in Cloudflare, and keep both Worker routes
+attached. If the Hostinger DNS
 integration is removed later, the route can be replaced by a Worker Custom
 Domain after reviewing the DNS records.
 

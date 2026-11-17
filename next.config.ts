@@ -9,6 +9,12 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/:path*",
+        has: [{ type: "host", value: "www.sanoraworks.com" }],
+        destination: "https://sanoraworks.com/:path*",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
         has: [
           { type: "host", value: "sanoraworks.com" },
           { type: "header", key: "x-forwarded-proto", value: "http" },
