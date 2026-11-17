@@ -5,19 +5,19 @@ import styles from "./project-content.module.css";
 const artwork: Record<Project["theme"], { file: string; alt: string }> = {
   booking: {
     file: "slotbreeze",
-    alt: "SlotBreeze concept: a weekly service calendar with appointment blocks and booking details.",
+    alt: "SlotBreeze concept: a home-service website with cleaning options, a date picker, available times, and booking confirmation.",
   },
   approval: {
     file: "proofhuddle",
-    alt: "ProofHuddle concept: a website design proof beside client feedback, version history, and approval actions.",
+    alt: "ProofHuddle concept: a design poster with numbered feedback pins, client comments, version history, and approval actions.",
   },
   enquiry: {
     file: "enquirywing",
-    alt: "EnquiryWing concept: an incoming enquiry, an organised brief, and a reply draft awaiting human review.",
+    alt: "EnquiryWing concept: an incoming message becomes an organised brief and a suggested reply awaiting human approval.",
   },
   monitoring: {
     file: "uptimeperch",
-    alt: "UptimePerch concept: website availability checks, response times, and incident and release history.",
+    alt: "UptimePerch concept: a dark monitoring console showing service availability, response times, incidents, and recovery.",
   },
 };
 
