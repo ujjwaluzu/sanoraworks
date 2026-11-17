@@ -13,8 +13,8 @@ const email = process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || "enquiries@sanora
 export const site = {
   name: "SanoraWorks",
   url: "https://sanoraworks.com",
-  tagline: "Websites and software for businesses and startups.",
-  description: "SanoraWorks builds websites, internal tools, and web applications for business owners and startup founders. Bring us a workflow to improve or a product idea to test.",
+  tagline: "Web, product, AI, and cloud services for businesses and startups.",
+  description: "SanoraWorks helps businesses and startups build websites and web applications, develop and improve software products, automate workflows with AI, and deploy and operate applications in the cloud.",
   email: email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? email : null,
   linkedin: httpsUrl(process.env.NEXT_PUBLIC_LINKEDIN_URL),
   github: httpsUrl(process.env.NEXT_PUBLIC_GITHUB_URL),

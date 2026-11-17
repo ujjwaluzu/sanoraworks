@@ -80,12 +80,11 @@ const projectLinks = projects.map((p) => ({
 const core: PublicPage[] = [
   {
     path: "/",
-    title: "Web Development & AI Automation | SanoraWorks",
+    title: "Web Development, Products, AI & Cloud | SanoraWorks",
     description:
-      "SanoraWorks builds business websites, custom web applications, MVPs, AI workflows, and cloud deployments for businesses and startups. Discuss your project.",
-    h1: "Web development and AI automation for businesses and startups",
-    intro:
-      "SanoraWorks builds websites, internal tools, and web applications for business owners and startup founders. Bring us a workflow your team does by hand or a product idea you want to test.",
+      "Web development, product engineering, AI workflow automation, and cloud deployment for businesses and startups. Explore all four SanoraWorks services.",
+    h1: "Web development, product engineering, AI automation, and cloud services",
+    intro: site.description,
     revised: "2026-11-17",
     kind: "WebPage",
     sections: services
@@ -102,10 +101,10 @@ const core: PublicPage[] = [
   },
   {
     path: "/services",
-    title: "Software Development & Automation Services | SanoraWorks",
+    title: "Web, Product, AI & Cloud Services | SanoraWorks",
     description:
       "Compare SanoraWorks web development, product engineering, AI workflow automation, and cloud deployment services. Explore suitable projects and deliverables.",
-    h1: "Software development and automation services",
+    h1: "Explore web development, product engineering, AI automation, and cloud services",
     intro:
       "Choose the service closest to your situation. The examples below show what we can build; we agree on the deliverables for your project before work starts.",
     revised: "2026-11-17",

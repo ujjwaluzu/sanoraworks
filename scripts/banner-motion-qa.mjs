@@ -66,7 +66,7 @@ try {
         assert.ok(copy.x + copy.width <= logo.x);
       }
       assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `Overflow at ${width}`);
-      assert.equal(await page.getByRole("heading", { level: 2, name: "A website, a team tool, or a first release.", exact: true }).count(), 1);
+      assert.equal(await page.getByRole("heading", { level: 2, name: "Websites, products, automation, and the cloud.", exact: true }).count(), 1);
       assert.equal(await banner.locator("button, figcaption, .dns-figure-heading, .banner-illustration-label").count(), 0);
       assert.doesNotMatch(await banner.innerText(), /FIG\. 01|DNS, in motion|A name, not a number|Looking up|Ask the resolver|Name resolved|Ideas into orbit|Pause animations/);
       await banner.screenshot({ path: path.join(output, `banner-${width}.png`) });

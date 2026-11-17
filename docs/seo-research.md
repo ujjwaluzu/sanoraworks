@@ -21,13 +21,13 @@ P0: shared public content, dedicated services, canonical/404 safety, read-only p
 ### /
 
 - Current issue/gap: Existing title and hero focus on websites and software; AI automation and service fit are harder to identify. Service cards link to shared anchors rather than distinct buying-intent pages.
-- Primary queries: SanoraWorks; web development and AI automation agency.
-- Secondary queries: Sanora (secondary brand query); business websites; custom web applications.
+- Primary queries: SanoraWorks; web development; product engineering; AI automation; cloud services.
+- Secondary queries: Sanora (secondary brand query); business websites; custom web applications; MVP development; workflow automation; cloud deployment.
 - Search intent: Branded navigation and commercial discovery.
 - Competitor/format examples: [GR8R Studio product engineering](https://gr8rstudio.com/services/product-engineering); [Artificial Workflow](https://artificialworkflow.com/) (service positioning benchmarks, not evidence of brand-query competitors).
-- Proposed browser title: **Web Development & AI Automation | SanoraWorks**
-- Proposed description: SanoraWorks builds business websites, custom web applications, MVPs, AI workflows, and cloud deployments for businesses and startups. Discuss your project.
-- H1: Web development and AI automation for businesses and startups
+- Proposed browser title: **Web Development, Products, AI & Cloud | SanoraWorks**
+- Proposed description: Web development, product engineering, AI workflow automation, and cloud deployment for businesses and startups. Explore all four SanoraWorks services.
+- H1: Web development, product engineering, AI automation, and cloud services
 - Supporting headings: Software & Web Development; Product Engineering; AI & Intelligent Automation; Cloud & Infrastructure; How a project moves forward.
 - Answer opportunity: Who does SanoraWorks help, what does it build, and which of the four services fits a particular need?
 - Buyer questions: Use the direct explanatory sections above; do not add repetitive FAQ blocks merely for schema.
@@ -43,9 +43,9 @@ P0: shared public content, dedicated services, canonical/404 safety, read-only p
 - Secondary queries: website development; product engineering; AI automation; cloud deployment.
 - Search intent: Commercial comparison of four service categories.
 - Competitor/format examples: [GR8R Studio product engineering](https://gr8rstudio.com/services/product-engineering); [Artificial Workflow](https://artificialworkflow.com/); [Startwyse cloud and DevOps](https://www.startwyse.com/services/cloud-devops).
-- Proposed browser title: **Software Development & Automation Services | SanoraWorks**
+- Proposed browser title: **Web, Product, AI & Cloud Services | SanoraWorks**
 - Proposed description: Compare SanoraWorks web development, product engineering, AI workflow automation, and cloud deployment services. Explore suitable projects and deliverables.
-- H1: Software development and automation services
+- H1: Explore web development, product engineering, AI automation, and cloud services
 - Supporting headings: Software & Web Development; Product Engineering; AI & Intelligent Automation; Cloud & Infrastructure; How a project moves forward.
 - Answer opportunity: How do web development, product engineering, workflow automation, and deployment differ? What deliverables and review steps should a buyer expect?
 - Buyer questions: What kind of projects are a good fit?; Can we start with an idea rather than a full brief?; How do you estimate timelines and cost?; Can you work with an existing product or team?; What happens after launch?; Who owns the code and project deliverables?

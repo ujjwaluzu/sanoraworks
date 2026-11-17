@@ -19,9 +19,9 @@ const notes: Record<
   }
 > = {
   "/": {
-    primary: "SanoraWorks; web development and AI automation agency",
+    primary: "SanoraWorks; web development; product engineering; AI automation; cloud services",
     secondary:
-      "Sanora (secondary brand query); business websites; custom web applications",
+      "Sanora (secondary brand query); business websites; custom web applications; MVP development; workflow automation; cloud deployment",
     intent: "Branded navigation and commercial discovery",
     issue:
       "Existing title and hero focus on websites and software; AI automation and service fit are harder to identify. Service cards link to shared anchors rather than distinct buying-intent pages.",

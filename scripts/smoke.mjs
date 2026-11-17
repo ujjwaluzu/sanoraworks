@@ -83,7 +83,7 @@ for (const path of pages) {
   titles.add(title);
 }
 
-assert.ok(documents.get("/").includes("Web development and AI automation for businesses and startups"));
+assert.ok(documents.get("/").includes("Web development, product engineering, AI automation, and cloud services"));
 for (const [path, html] of documents) {
   assert.doesNotMatch(html, /Workshop directory|Email the workshop|About the workshop|More from the workshop|To be introduced|The people behind SanoraWorks/);
   if (path.startsWith("/work")) {

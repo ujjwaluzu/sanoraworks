@@ -10,8 +10,8 @@ export function ServicesOverview() {
       className="section-services"
     >
       <p className="panel-intro">
-        Build a business website, replace a manual workflow, or develop a first
-        version of your product.
+        Build a website, develop a product, automate a workflow, or deploy an
+        application to the cloud.
       </p>
       <div className="service-directory">
         {services.map((service) => (
