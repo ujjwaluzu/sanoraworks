@@ -10,7 +10,6 @@ export function Footer() {
         <nav aria-label="Footer navigation">
           <Link href="/privacy">Privacy Policy</Link>
           <Link href="/terms">Terms of Service</Link>
-          <a href="#top">Back to top ↑</a>
         </nav>
       </div>
     </footer>

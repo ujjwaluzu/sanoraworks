@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { BackToTop } from "@/components/layout/BackToTop";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { site, socialProfiles } from "@/data/site";
 import { pageMetadata } from "@/lib/metadata";
@@ -65,6 +66,7 @@ export default function RootLayout({
           </div>
           <Footer />
         </div>
+        <BackToTop />
       </body>
     </html>
   );
