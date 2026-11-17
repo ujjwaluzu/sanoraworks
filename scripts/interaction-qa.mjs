@@ -198,7 +198,7 @@ try {
     "Project filters update entries, pressed state and result count",
     async () => {
       await page.goto(`${base}/work`, { waitUntil: "load" });
-      assert.equal(await page.locator(".project-card").count(), 3);
+      assert.equal(await page.locator(".project-card").count(), 4);
       for (const card of await page.locator(".project-card").all()) {
         assert.equal(
           await card.getByRole("link").count(),
@@ -207,9 +207,10 @@ try {
         );
       }
       for (const [category, project] of [
-        ["Developer tools", "RepoTeam"],
-        ["Digital entertainment", "UzzUTV"],
-        ["Collaboration", "CrewLab"],
+        ["Booking & scheduling", "SlotBreeze"],
+        ["Feedback & approvals", "ProofHuddle"],
+        ["AI & enquiry automation", "EnquiryWing"],
+        ["Monitoring & cloud operations", "UptimePerch"],
       ]) {
         const button = page.getByRole("button", {
           name: category,
@@ -230,22 +231,22 @@ try {
       await page
         .getByRole("button", { name: "All projects", exact: true })
         .click();
-      assert.equal(await page.locator(".project-card").count(), 3);
+      assert.equal(await page.locator(".project-card").count(), 4);
       assert.equal(
         await page.locator(".work-count").textContent(),
-        "3 projects",
+        "4 projects",
       );
       await page
-        .getByRole("link", { name: "UzzUTV", exact: true })
+        .getByRole("link", { name: "SlotBreeze", exact: true })
         .last()
         .click();
-      await page.waitForURL("**/work/uzzutv");
+      await page.waitForURL("**/work/slotbreeze");
       assert.equal(
         await page
           .getByRole("navigation", { name: "Breadcrumb", exact: true })
           .locator('[aria-current="page"]')
           .textContent(),
-        "UzzUTV",
+        "SlotBreeze",
       );
     },
   );

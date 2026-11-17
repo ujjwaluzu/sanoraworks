@@ -70,6 +70,8 @@ X, Instagram, and YouTube use the `sanoraworks` handle configured in `src/data/s
 
 Reading text starts at 16px with generous line spacing, and long paragraphs use a 68-character measure while the site frame fills the screen. Homepage shortcuts jump directly to services, projects, and process. Project entries have one full-row link each, and service rows offer a larger click target. The contact form comes before supporting information, keeps help text associated with validation errors, and displays a description character count without repeatedly announcing every keystroke.
 
+The project directory contains four independent projects, all marked **In development**: SlotBreeze (service bookings), ProofHuddle (client feedback and approvals), EnquiryWing (AI enquiry organisation and reviewed replies), and UptimePerch (website monitoring and cloud operations). Public descriptions explain planned features and possible business uses, without implementation guides or claims of live availability. Each detail page links to its related service and a preselected enquiry form.
+
 Project interfaces are explicitly illustrative concepts. No client results, founder credentials, live project URLs, or project technology stacks have been invented. Populate those fields with verified information. The manually maintained sitemap modification date should be updated with substantive site changes.
 
 ## Enquiry integration
@@ -105,7 +107,7 @@ and checked in the recipient inbox.
 
 ## Routes and deployment
 
-Completed routes: `/`, `/services`, `/work`, `/work/[slug]` for the three configured projects, `/about`, `/contact`, `/privacy`, and `/terms`. SEO includes route metadata, canonicals for `https://sanoraworks.com`, Organization JSON-LD, share imagery, a sitemap, and robots.txt.
+Completed routes: `/`, `/services`, `/work`, `/work/[slug]` for the four configured projects in development, `/about`, `/contact`, `/privacy`, and `/terms`. SEO includes route metadata, canonicals for `https://sanoraworks.com`, Organization JSON-LD, share imagery, a sitemap, and robots.txt.
 
 Service content already has stable slugs to support future service detail routes. Insights routes are deliberately absent until there is content to publish. There are no empty placeholder pages.
 

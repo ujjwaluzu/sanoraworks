@@ -39,6 +39,13 @@ export default function AboutPage() {
                 now.
               </p>
               <p>
+                Alongside our services, we are working on four independent
+                projects: SlotBreeze for service bookings, ProofHuddle for client
+                feedback and approvals, EnquiryWing for organising enquiries,
+                and UptimePerch for website monitoring and cloud operations.
+                All four are in development.
+              </p>
+              <p>
                 We work closely with the people who use what we build. Their
                 goals, feedback, and day-to-day challenges guide each decision,
                 from the first idea to the way a product grows after launch.

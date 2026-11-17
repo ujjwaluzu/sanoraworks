@@ -10,9 +10,10 @@ const pages = [
   "/contact",
   "/privacy",
   "/terms",
-  "/work/uzzutv",
-  "/work/repoteam",
-  "/work/crewlab",
+  "/work/slotbreeze",
+  "/work/proofhuddle",
+  "/work/enquirywing",
+  "/work/uptimeperch",
 ];
 const documents = new Map();
 const titles = new Set();
@@ -67,6 +68,22 @@ for (const path of pages) {
   const title = html.match(/<title>(.*?)<\/title>/s)?.[1];
   assert.ok(title && !titles.has(title), `${path}: unique page title`);
   titles.add(title);
+}
+
+
+const projectRoutes = ["slotbreeze", "proofhuddle", "enquirywing", "uptimeperch"];
+for (const slug of projectRoutes) {
+  const html = documents.get(`/work/${slug}`);
+  assert.ok(html.includes("In development"), `${slug}: clear development status`);
+  assert.ok(html.includes("How a similar system could help your business"), `${slug}: business use explained`);
+  assert.ok(html.includes("What we are working towards"), `${slug}: planned capabilities explained`);
+  assert.ok(html.includes("Discuss a similar project"), `${slug}: relevant enquiry action`);
+}
+for (const html of documents.values()) {
+  assert.doesNotMatch(html, /UzzUTV|RepoTeam|CrewLab/, "Retired projects are absent from public pages");
+}
+for (const slug of ["uzzutv", "repoteam", "crewlab"]) {
+  assert.equal((await fetch(new URL(`/work/${slug}`, base))).status, 404, `Retired route ${slug}`);
 }
 
 const links = new Set();

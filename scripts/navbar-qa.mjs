@@ -55,7 +55,7 @@ try {
   await page.waitForFunction(() => !document.querySelector(".mobile-navigation").open);
   await page.setViewportSize({ width: 390, height: 900 });
   assert.equal(await disclosure.getAttribute("open"), null);
-  await page.goto(`${base}/work/uzzutv`, { waitUntil: "networkidle" });
+  await page.goto(`${base}/work/slotbreeze`, { waitUntil: "networkidle" });
   await toggle.click();
   assert.equal(await disclosure.locator('[aria-current="page"]').textContent(), "Work");
   await page.emulateMedia({ reducedMotion: "reduce" });

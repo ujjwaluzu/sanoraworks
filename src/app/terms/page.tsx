@@ -18,7 +18,7 @@ export default function TermsPage() {
         description="Information about the website, the work presented here, and the starting point for a project conversation."
       />
       <article className="container legal">
-        <p className="legal-date">Last updated: 15 November 2026</p>
+        <p className="legal-date">Last updated: 17 November 2026</p>
         <h2>About this website</h2>
         <p>
           The Sanora Works website introduces our technology and engineering
@@ -35,11 +35,12 @@ export default function TermsPage() {
         </p>
         <h2>Independent projects and previews</h2>
         <p>
-          UzzUTV, RepoTeam, and CrewLab are presented as independent projects.
-          Interface previews on this site are illustrative concepts and are
-          labeled accordingly. They do not establish the current availability or
-          features of a live product. Technology stacks and external URLs are
-          only published when confirmed.
+          SlotBreeze, ProofHuddle, EnquiryWing, and UptimePerch are independent
+          projects in development. Descriptions explain their planned direction
+          and possible uses. Interface previews are illustrative concepts, not
+          screenshots of available products. Features may change as development
+          progresses; technology stacks and external URLs are only published
+          when confirmed.
         </p>
         <h2>Website content</h2>
         <p>

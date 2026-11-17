@@ -1,84 +1,28 @@
-﻿import type { Project } from "@/data/projects";
-export function ProjectPreview({
-  project,
-  large = false,
-}: {
-  project: Project;
-  large?: boolean;
-}) {
+import type { Project } from "@/data/projects";
+import styles from "./project-content.module.css";
+
+const concepts = {
+  booking: { label: "Your appointments", title: "A clearer day ahead.", rows: [["09:00", "Home cleaning"], ["11:00", "Consultation"], ["14:00", "Available slot"]] },
+  approval: { label: "Client review", title: "Feedback to final nod.", rows: [["V1", "Feedback received"], ["V2", "Changes requested"], ["V3", "Ready for approval"]] },
+  enquiry: { label: "Enquiry workspace", title: "A useful first reply.", rows: [["01", "New request"], ["02", "Details organised"], ["03", "Draft for review"]] },
+  monitoring: { label: "Availability overview", title: "Keep an eye on what runs.", rows: [["WEB", "Website checks"], ["APP", "Incident history"], ["OPS", "Release activity"]] },
+};
+
+export function ProjectPreview({ project, large = false }: { project: Project; large?: boolean }) {
+  const concept = concepts[project.theme];
   return (
-    <div
-      className={`project-preview preview-${project.theme} ${large ? "preview-large" : ""}`}
-      role="img"
-      aria-label={`Illustrative interface concept for ${project.name}; not a screenshot of the live product`}
-    >
-      <div className="concept-window" aria-hidden="true">
-        <div className="concept-title">
-          <span>{project.name}</span>
-          <span>_ □ ×</span>
+    <div className={`project-preview ${styles.preview} ${large ? styles.large : ""}`} role="img" aria-label={`Illustrative interface concept for ${project.name}, in development; not a live product screenshot`}>
+      <div className={styles.window} aria-hidden="true">
+        <div className={styles.titlebar}><strong>{project.name}</strong><span>_ □ ×</span></div>
+        <div className={styles.toolbar}>{concept.label}</div>
+        <div className={styles.canvas}>
+          <strong className={styles.conceptHeading}>{concept.title}</strong>
+          {concept.rows.map(([label, text]) => (
+            <div className={styles.row} key={label}><span>{label}</span><span>{text}</span><i /></div>
+          ))}
         </div>
-        <div className="concept-toolbar">
-          File <span>Explore</span> <span>Workspace</span>
-        </div>
-        {project.theme === "uzzu" && (
-          <div className="concept-entertainment">
-            <div className="concept-planet" />
-            <span className="concept-star star-one">✦</span>
-            <span className="concept-star star-two">✦</span>
-            <strong>
-              UzzU<span>TV</span>
-            </strong>
-            <span className="concept-play">▶</span>
-            <div className="concept-filmstrip">
-              <i />
-              <i />
-              <i />
-              <i />
-            </div>
-          </div>
-        )}
-        {project.theme === "repo" && (
-          <div className="concept-repo">
-            <div className="concept-repo-side">
-              {`{ }`}
-              <i />
-              <i />
-              <i />
-            </div>
-            <div className="concept-code">
-              <strong>Better, together.</strong>
-              <span>
-                <b>▸</b> platform-core
-              </span>
-              <span>
-                <b>▸</b> design-system
-              </span>
-              <span>
-                <b>▸</b> api-gateway
-              </span>
-              <small>⌘ SHARED WORKSPACE</small>
-            </div>
-          </div>
-        )}
-        {project.theme === "crew" && (
-          <div className="concept-crew">
-            <strong>A place for the next idea.</strong>
-            <div className="concept-notes">
-              <div>
-                <span>01 / THINK</span>
-                <b>What if?</b>
-                <i />
-              </div>
-              <div>
-                <span>02 / BUILD</span>
-                <b>Together.</b>
-                <i />
-              </div>
-            </div>
-          </div>
-        )}
       </div>
-      <span className="preview-disclaimer mono">ILLUSTRATIVE CONCEPT</span>
+      <span className={styles.disclaimer}>Illustrative interface concept.</span>
     </div>
   );
 }

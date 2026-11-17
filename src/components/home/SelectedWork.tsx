@@ -1,16 +1,18 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import { projects } from "@/data/projects";
 import { Panel } from "@/components/ui/Panel";
 import { ProjectCard } from "@/components/ui/ProjectCard";
 export function SelectedWork() {
   return (
     <Panel
-      title="From the project directory"
+      title="Projects in development"
       className="section-work"
       id="projects"
     >
       <p className="panel-intro">
-        Ideas we’re exploring, and the products taking shape.
+        Four independent projects taking shape around everyday business tasks:
+        booking appointments, reviewing client work, following up on enquiries,
+        and keeping an eye on websites. Explore how a similar system could help your team.
       </p>
       <div className="selected-work-grid">
         {projects.map((project) => (

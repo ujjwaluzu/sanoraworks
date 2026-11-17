@@ -1,6 +1,7 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import type { Project } from "@/data/projects";
 import { ProjectPreview } from "./ProjectPreview";
+import styles from "./project-content.module.css";
 export function ProjectCard({
   project,
   featured = false,
@@ -22,7 +23,7 @@ export function ProjectCard({
         <div className="project-card-info">
           <p className="project-meta mono">
             <span>{project.category}</span>
-            <span>Independent project</span>
+            <span className={styles.status}>{project.status}</span>
           </p>
           <h3 id={`project-title-${project.slug}`}>{project.name}</h3>
           <p id={`project-summary-${project.slug}`}>{project.description}</p>
