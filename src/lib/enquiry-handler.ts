@@ -4,7 +4,7 @@ import { enquiryEmail, type ContactBindings } from "./enquiry-email.ts";
 function reply(body: object, status: number, headers?: Record<string, string>) {
   return Response.json(body, { status, headers: { "Cache-Control": "no-store", ...headers } });
 }
-const unavailable = "We couldn’t send your enquiry. Your details are still here; please try again or email sanoraworks@gmail.com.";
+const unavailable = "We couldn’t send your enquiry. Your details are still here; please try again or email enquiries@sanoraworks.com.";
 
 export function createEnquiryHandler(getBindings: () => Promise<ContactBindings | null>) {
   return async function POST(request: Request) {

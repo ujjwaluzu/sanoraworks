@@ -50,7 +50,7 @@ Copy `.env.example` to `.env.local`; never commit private environment files.
 
 | Setting                     | Purpose                                                                      |
 | --------------------------- | ---------------------------------------------------------------------------- |
-| `NEXT_PUBLIC_CONTACT_EMAIL` | Public contact address; defaults to the verified sanoraworks@gmail.com inbox. |
+| `NEXT_PUBLIC_CONTACT_EMAIL` | Public contact address; defaults to enquiries@sanoraworks.com, forwarded to Gmail. |
 | `NEXT_PUBLIC_LINKEDIN_URL`  | Verified HTTPS company profile; omitted until configured.                    |
 | `NEXT_PUBLIC_GITHUB_URL`    | Verified HTTPS company profile; omitted until configured.                    |
 

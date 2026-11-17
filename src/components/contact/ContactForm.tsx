@@ -316,7 +316,7 @@ export function ContactForm({
       <noscript>
         <p className="form-availability">
           JavaScript is needed to submit this form. You can also email{" "}
-          <a href="mailto:sanoraworks@gmail.com">sanoraworks@gmail.com</a>.
+          <a href="mailto:enquiries@sanoraworks.com">enquiries@sanoraworks.com</a>.
         </p>
       </noscript>
     </form>
