@@ -5,9 +5,8 @@ export function Hero() {
     <section className="home-welcome">
       <h1>Welcome to SanoraWorks</h1>
       <p className="welcome-intro">
-        A small workshop for big possibilities. We design and engineer digital
-        products, intelligent systems, and dependable software that helps
-        businesses move forward.
+        We design and engineer digital products, intelligent systems, and
+        dependable software that helps businesses move forward.
       </p>
       <div className="hero-actions">
         <Button href="/work">Explore the projects</Button>

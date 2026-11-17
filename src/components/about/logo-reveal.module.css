@@ -1,0 +1,19 @@
+.stage {
+  position: relative;
+  align-self: center;
+  min-width: 0;
+  width: 100%;
+  max-width: 440px;
+  margin-inline: auto;
+  isolation: isolate;
+}
+.art {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+.art :global([data-reveal]) { transform-box: view-box; }
+@media (width <= 600px) {
+  .stage { max-width: 340px; padding: 8px 14px; }
+}

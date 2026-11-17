@@ -3,7 +3,6 @@ import { site } from "@/data/site";
 import { services } from "@/data/services";
 import { pageMetadata } from "@/lib/metadata";
 import { getContactEndpoint } from "@/lib/contact-server";
-import { PageHero } from "@/components/ui/PageHero";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { SocialLinks } from "@/components/ui/SocialLinks";
 
@@ -22,12 +21,6 @@ export default async function ContactPage({
   const selected = services.find((item) => item.slug === service)?.title ?? "";
   return (
     <main id="main-content">
-      <PageHero
-        eyebrow="Let’s start a conversation"
-        index="04"
-        title="Start a project"
-        description="Tell us what you’d like to build and the problem it should solve."
-      />
       <section className="section contact-section">
         <div className="container contact-layout">
           <ContactForm

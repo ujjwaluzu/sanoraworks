@@ -93,10 +93,16 @@
   background: var(--cobalt);
   color: var(--white);
 }
-.form-heading h2 {
+.form-heading h1 {
   font-size: 24px;
   margin: 0;
   color: var(--white);
+}
+.form-heading p {
+  max-width: 56ch;
+  margin: 6px 0 0;
+  font-size: 14px;
+  line-height: 1.6;
 }
 .form-heading .mono {
   font-size: 12px;
@@ -370,7 +376,7 @@
     flex-direction: column;
     gap: 5px;
   }
-  .form-heading h2 {
+  .form-heading h1 {
     font-size: 22px;
   }
   .form-heading .mono {

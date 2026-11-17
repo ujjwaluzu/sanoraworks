@@ -18,8 +18,10 @@ export function BannerMotion({
 
     const logo = banner.querySelector<HTMLImageElement>(".banner-monogram img");
     const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const phone = window.matchMedia("(width < 600px)");
     let visible = false;
     let animations: Animation[] = [];
+    let logoAnimations: Animation[] = [];
 
     function track(element: Element | null, frames: Keyframe[], easing = "linear") {
       if (!element) return;
@@ -31,11 +33,21 @@ export function BannerMotion({
       animations.push(animation);
     }
 
-    function createTracks() {
+    function createLogoTracks() {
       if (!banner) return;
+      const dnsAnimations = animations;
+      animations = [];
       for (const [part, frames] of Object.entries(orbitFrames)) {
         track(banner.querySelector(`[data-orbit="${part}"]`), frames, "cubic-bezier(0.22, 1, 0.36, 1)");
       }
+      logoAnimations = animations;
+      animations = dnsAnimations;
+      // Join the current DNS phase after loading or crossing the breakpoint.
+      logoAnimations.forEach((animation) => { animation.currentTime = animations[0]?.currentTime ?? 0; });
+    }
+
+    function createTracks() {
+      if (!banner) return;
       dnsSteps.forEach((step, index) => {
         if (!step.route) return;
         const path = banner.querySelector<SVGPathElement>(`[data-dns-route="${step.route}"]`);
@@ -80,15 +92,22 @@ export function BannerMotion({
       if (motionPreference.matches) {
         animations.forEach((animation) => animation.cancel());
         animations = [];
-      } else if (!animations.length && canPlay && logo?.complete && logo.naturalWidth > 0) {
+      } else if (!animations.length && canPlay) {
         createTracks();
       }
+      if (phone.matches || motionPreference.matches) {
+        logoAnimations.forEach((animation) => animation.cancel());
+        logoAnimations = [];
+      } else if (!logoAnimations.length && canPlay && logo?.complete && logo.naturalWidth > 0) {
+        createLogoTracks();
+      }
       const playing = canPlay;
-      animations.forEach((animation) => {
+      [...animations, ...logoAnimations].forEach((animation) => {
         if (playing && animation.playState !== "running") animation.play();
         if (!playing && animation.playState !== "paused") animation.pause();
       });
       banner.dataset.motion = String(animations.length > 0);
+      banner.dataset.logoMotion = String(logoAnimations.length > 0);
       banner.dataset.playing = String(animations.length > 0 && playing);
     }
 
@@ -99,15 +118,19 @@ export function BannerMotion({
     });
     observer.observe(banner);
     logo?.addEventListener("load", updatePlayback);
+    logo?.addEventListener("error", updatePlayback);
     document.addEventListener("visibilitychange", updatePlayback);
     motionPreference.addEventListener("change", updatePlayback);
+    phone.addEventListener("change", updatePlayback);
 
     return () => {
       observer.disconnect();
-      animations.forEach((animation) => animation.cancel());
+      [...animations, ...logoAnimations].forEach((animation) => animation.cancel());
       logo?.removeEventListener("load", updatePlayback);
+      logo?.removeEventListener("error", updatePlayback);
       document.removeEventListener("visibilitychange", updatePlayback);
       motionPreference.removeEventListener("change", updatePlayback);
+      phone.removeEventListener("change", updatePlayback);
     };
   }, []);
 

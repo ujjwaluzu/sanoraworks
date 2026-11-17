@@ -2,8 +2,7 @@ import { UserRound } from "lucide-react";
 import { pageMetadata } from "@/lib/metadata";
 import { site } from "@/data/site";
 import { PageHero } from "@/components/ui/PageHero";
-import { BrandMark } from "@/components/ui/Logo";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { LogoReveal } from "@/components/about/LogoReveal";
 import { Principles } from "@/components/home/Principles";
 import { Approach } from "@/components/home/Approach";
 import { BrandPhilosophy } from "@/components/home/BrandPhilosophy";
@@ -20,7 +19,6 @@ export default function AboutPage() {
     <main id="main-content">
       <PageHero
         eyebrow="The company behind the work"
-        index="03"
         title="About SanoraWorks"
         description="We are Sanora Works. An independent technology and engineering company with a simple belief: the most useful technology starts with a real purpose."
       />
@@ -28,7 +26,6 @@ export default function AboutPage() {
         <div className="container">
           <div className="about-intro">
             <div>
-              <p className="eyebrow">{site.tagline}</p>
               <h2>Technology that moves things forward.</h2>
               <p>
                 SANORA WORKS develops digital solutions, software products, and
@@ -41,15 +38,17 @@ export default function AboutPage() {
                 will be needed tomorrow, without losing sight of what matters
                 now.
               </p>
+              <p>
+                We work closely with the people who use what we build. Their
+                goals, feedback, and day-to-day challenges guide each decision,
+                from the first idea to the way a product grows after launch.
+              </p>
             </div>
-            <div className="brand-object">
-              <BrandMark />
-              <span className="mono">SANORA WORKS / INDEPENDENT BY DESIGN</span>
-            </div>
+            <LogoReveal />
           </div>
           <div className="mission-grid">
             <article>
-              <p className="eyebrow">01 / Our mission</p>
+              <p className="eyebrow">Our mission</p>
               <h2>Turn meaningful challenges into useful technology.</h2>
               <p>
                 To design and engineer practical digital solutions that help
@@ -58,7 +57,7 @@ export default function AboutPage() {
               </p>
             </article>
             <article>
-              <p className="eyebrow">02 / Our vision</p>
+              <p className="eyebrow">Our vision</p>
               <h2>Build for what’s next. Keep purpose at the centre.</h2>
               <p>
                 To grow an independent engineering company recognised for
@@ -74,9 +73,9 @@ export default function AboutPage() {
       <Approach detailed />
       <section className="section">
         <div className="container founders-layout">
-          <SectionHeading eyebrow="The people behind the thinking">
-            The people behind SanoraWorks
-          </SectionHeading>
+          <div className="section-heading">
+            <h2>The people behind SanoraWorks</h2>
+          </div>
           <div>
             {site.founders.length ? (
               site.founders.map((founder) => (

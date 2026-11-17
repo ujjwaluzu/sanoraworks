@@ -153,13 +153,17 @@ export function ContactForm({
     <form
       ref={formRef}
       className="enquiry-form"
+      aria-labelledby="contact-title"
       onSubmit={submit}
       onInput={updateField}
       onReset={() => setDescriptionLength(0)}
       noValidate
     >
       <div className="form-heading">
-        <h2>Tell us what you have in mind.</h2>
+        <div>
+          <h1 id="contact-title">Start a project</h1>
+          <p>Tell us what you’d like to build and the problem it should solve.</p>
+        </div>
         <span className="mono">REQUIRED FIELDS ARE LABELED</span>
       </div>
       {!deliveryEnabled && (
