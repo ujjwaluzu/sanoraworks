@@ -33,3 +33,7 @@ jobs:
             sleep 1
           done
           npm run test:smoke
+      - name: Check Cloudflare Workers build
+        run: npm run build:cloudflare -- --skipNextBuild
+      - name: Validate Worker bundle without publishing
+        run: npx wrangler deploy --dry-run

@@ -7,6 +7,10 @@
     "dev": "next dev --hostname 0.0.0.0",
     "build": "next build",
     "start": "next start --hostname 0.0.0.0",
+    "build:cloudflare": "opennextjs-cloudflare build",
+    "preview:cloudflare": "opennextjs-cloudflare preview",
+    "deploy:cloudflare": "opennextjs-cloudflare build && opennextjs-cloudflare deploy -- --keep-vars",
+    "cf:typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "node --experimental-strip-types --test tests/*.test.ts",
@@ -15,6 +19,7 @@
     "brand:check": "node --experimental-strip-types scripts/brand-qa.mjs"
   },
   "dependencies": {
+    "@opennextjs/cloudflare": "^1.20.17",
     "lucide-react": "^1.73.0",
     "next": "^16.4.6",
     "react": "^19.3.1",
@@ -29,7 +34,8 @@
     "eslint-config-next": "^16.4.6",
     "sharp": "0.35.5",
     "tailwindcss": "^4.3.5",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "wrangler": "^4.163.0"
   },
   "overrides": {
     "@typescript-eslint/typescript-estree": {

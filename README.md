@@ -103,7 +103,72 @@ Completed routes: `/`, `/services`, `/work`, `/work/[slug]` for the three config
 
 Service content already has stable slugs to support future service detail routes. Insights routes are deliberately absent until there is content to publish. There are no empty placeholder pages.
 
-Deploy to a host that supports the Next.js Node.js runtime, such as Vercel or a Node.js server. Build with `npm ci && npm run build`; start with `npm start`. The dynamic contact route requires a server runtime. Domain registration, DNS changes, and public hosting are separate from this repository implementation.
+Production runs on Cloudflare Workers in the `sanoraworks@gmail.com` account,
+with `https://sanoraworks.com` as the canonical website. The OpenNext adapter
+preserves the existing Next.js build, server-rendered pages and enquiry API.
+The account and zone IDs in `wrangler.jsonc` are public configuration, not
+credentials. Authentication stays outside the repository.
+
+### Build, preview and deploy on Cloudflare
+
+```sh
+npm ci
+npm run build:cloudflare
+npm run preview:cloudflare
+# Preview runs at http://localhost:8787
+
+# Authenticate as sanoraworks@gmail.com before deploying:
+npx wrangler login
+npm run deploy:cloudflare
+```
+
+The local Windows setup keeps this account's login separate from the existing
+Cloudflare login. To reuse that session in PowerShell, first run:
+
+```powershell
+$env:XDG_CONFIG_HOME = Join-Path $env:APPDATA 'sanoraworks-cloudflare'
+```
+
+`npm run build` and `npm start` still provide the normal Node.js production
+workflow. OpenNext recommends WSL or Linux for builds on Windows; validate with
+the Workers preview before publishing. CI also builds the adapter and performs
+a Wrangler dry run, without publishing or requiring deployment credentials.
+
+The prerendered marketing pages use a read-only Workers Static Assets cache.
+The contact page and `/api/enquiry` stay dynamic. No R2 bucket, database or queue
+is required. If timed or on-demand revalidation is added later, replace the
+read-only cache with an appropriate writable cache. `public/_headers` applies
+security headers to static assets and immutable caching to Next.js build files.
+
+### Domain and future updates
+
+`sanoraworks.com/*` is a Worker route on the active Cloudflare zone. The domain
+has Hostinger-managed DNS records, which prevent direct Worker Custom Domain
+registration. The route uses the existing proxied DNS and TLS certificate;
+email-related DNS records were not modified. Keep the website's DNS record
+proxied in Cloudflare, and keep this Worker route attached. If the Hostinger DNS
+integration is removed later, the route can be replaced by a Worker Custom
+Domain after reviewing the DNS records.
+
+The initial deployment is performed through Wrangler. Git pushes run the
+repository checks; they do not automatically publish to Cloudflare. For
+automatic deployments, connect `ujjwaluzu/sanoraworks` and the `main` branch in
+the Worker's **Settings > Builds**. Use `npm run build:cloudflare` as the build
+command and `npx opennextjs-cloudflare deploy -- --keep-vars` as the deploy
+command. Keep credentials in Cloudflare's build settings, never in this repo.
+
+The contact form currently prepares and downloads a local brief. Enquiry
+delivery requires a verified `CONTACT_WEBHOOK_URL` and, if needed, its private
+`CONTACT_WEBHOOK_TOKEN`. Set these as Worker runtime secrets; set public
+`NEXT_PUBLIC_*` values in the build environment and rebuild. Deployments use
+`--keep-vars` to preserve existing dashboard-managed runtime variables.
+
+To verify the deployed website without sending a real enquiry:
+
+```powershell
+$env:SMOKE_BASE_URL = 'https://sanoraworks.com'
+npm run test:smoke
+```
 
 Work is committed and pushed incrementally to `main` in reviewable milestones. A scoped dependency override keeps the lint toolchain on a patched version of `minimatch`; rerun lint and audit when updating the toolchain.
 

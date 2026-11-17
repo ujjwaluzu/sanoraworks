@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "sanoraworks",
+  "account_id": "eb4fe189008b29f9e29997303bd4a3e6",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-11-17",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [
+    { "binding": "WORKER_SELF_REFERENCE", "service": "sanoraworks" }
+  ],
+  "observability": { "enabled": true },
+  "routes": [
+    { "pattern": "sanoraworks.com/*", "zone_id": "0b6408c915adf319c1d443305f1bd86a" }
+  ],
+  "workers_dev": false,
+  "preview_urls": false
+}
