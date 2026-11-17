@@ -8,24 +8,31 @@
     "build": "next build",
     "start": "next start --hostname 0.0.0.0",
     "build:cloudflare": "opennextjs-cloudflare build",
-    "preview:cloudflare": "opennextjs-cloudflare preview",
+    "preview:cloudflare": "opennextjs-cloudflare preview -- --infer-origin-from-routes=false",
     "deploy:cloudflare": "node scripts/deploy-cloudflare.mjs",
     "cf:typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "node --experimental-strip-types --test tests/*.test.ts",
     "test:smoke": "node scripts/smoke.mjs",
+    "test:agents": "node --experimental-strip-types scripts/agent-readiness.ts",
+    "test:seo-browser": "node scripts/seo-browser-qa.mjs",
+    "docs:seo": "node --experimental-strip-types scripts/seo-research.ts",
     "brand:build": "node --experimental-strip-types scripts/brand-kit.mjs",
     "brand:check": "node --experimental-strip-types scripts/brand-qa.mjs"
   },
   "dependencies": {
+    "@modelcontextprotocol/server": "^2.4.0",
     "@opennextjs/cloudflare": "^1.20.17",
     "lucide-react": "^1.73.0",
     "next": "^16.4.6",
     "react": "^19.3.1",
-    "react-dom": "^19.3.1"
+    "react-dom": "^19.3.1",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@playwright/test": "^1.65.1",
     "@tailwindcss/postcss": "^4.3.5",
     "@types/node": "^22",
     "@types/react": "^19",

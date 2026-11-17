@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
 import { site } from "@/data/site";
+import { requirePublicPage } from "@/data/public-content";
+
+export function publicMetadata(path: string): Metadata {
+  const page = requirePublicPage(path);
+  return pageMetadata(page.title, page.description, path);
+}
 
 export function pageMetadata(
   title: string,
@@ -7,11 +13,11 @@ export function pageMetadata(
   path: string,
 ): Metadata {
   return {
-    title,
+    title: { absolute: title },
     description,
     alternates: { canonical: path },
     openGraph: {
-      title: `${title} | SanoraWorks`,
+      title,
       description,
       url: path,
       siteName: "SanoraWorks",
@@ -28,7 +34,7 @@ export function pageMetadata(
     },
     twitter: {
       card: "summary_large_image",
-      title: `${title} | SanoraWorks`,
+      title,
       description,
       images: [`${site.url}/opengraph-image`],
     },

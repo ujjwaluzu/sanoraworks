@@ -19,8 +19,10 @@ import {
 
 export function ContactForm({
   initialProjectType,
+  heading,
 }: {
   initialProjectType: string;
+  heading: string;
 }) {
   const [errors, setErrors] = useState<EnquiryErrors>({});
   const [status, setStatus] = useState<
@@ -137,7 +139,7 @@ export function ContactForm({
     >
       <div className="form-heading">
         <div>
-          <h1 id="contact-title">Tell us what you need</h1>
+          <h1 id="contact-title">{heading}</h1>
           <p>Describe your business, a task to improve, or a product idea.</p>
           <p>{enquiryNextStep}</p>
         </div>

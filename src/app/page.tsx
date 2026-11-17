@@ -3,21 +3,15 @@ import { ServicesOverview } from "@/components/home/ServicesOverview";
 import { SelectedWork } from "@/components/home/SelectedWork";
 import { Approach } from "@/components/home/Approach";
 import { FinalCTA } from "@/components/home/FinalCTA";
-import { pageMetadata } from "@/lib/metadata";
-import { site } from "@/data/site";
+import { publicMetadata } from "@/lib/metadata";
+import { PageStructuredData } from '@/components/ui/PublicContent';
 
-export const metadata = {
-  ...pageMetadata(
-    site.tagline,
-    site.description,
-    "/",
-  ),
-  title: { absolute: `SanoraWorks: ${site.tagline}` },
-};
+export const metadata = publicMetadata('/');
 
 export default function Home() {
   return (
     <main id="main-content">
+      <PageStructuredData path="/" />
       <Hero />
       <ServicesOverview />
       <SelectedWork />

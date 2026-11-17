@@ -1,8 +1,10 @@
+import { requirePublicPage } from '@/data/public-content';
+import { PageStructuredData } from '@/components/ui/PublicContent';
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { projects } from "@/data/projects";
-import { pageMetadata } from "@/lib/metadata";
+import { publicMetadata } from "@/lib/metadata";
 import { PageHero } from "@/components/ui/PageHero";
 import { ProjectPreview } from "@/components/ui/ProjectPreview";
 import { ProjectCard } from "@/components/ui/ProjectCard";
@@ -20,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const project = projects.find((item) => item.slug === slug);
   if (!project) notFound();
-  return pageMetadata(`${project.name} - ${project.status}`, project.description, `/work/${slug}`);
+  return publicMetadata(`/work/${slug}`);
 }
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -31,12 +33,13 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   const enquiryUrl = `/contact?service=${project.serviceSlug}`;
   return (
     <main id="main-content">
+      <PageStructuredData path={`/work/${slug}`} />
       <nav className="breadcrumb" aria-label="Breadcrumb">
         <Link href="/">Home</Link><span aria-hidden="true"> / </span>
         <Link href="/work">Project directory</Link><span aria-hidden="true"> / </span>
         <span aria-current="page">{project.name}</span>
       </nav>
-      <PageHero eyebrow={`In development / ${project.category}`} title={project.name} description={project.description} />
+      <PageHero eyebrow={`In development / ${project.category}`} title={requirePublicPage(`/work/${slug}`).h1} description={project.description} />
       <div className="container project-detail-visual">
         <Link href="/work" className="back-link"><ArrowLeft size={14} aria-hidden="true" />Back to all projects</Link>
         <ProjectPreview project={project} large />
@@ -75,7 +78,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             <div><dt>Project</dt><dd>{project.name}</dd></div>
             <div><dt>Status</dt><dd><span className={styles.status}>{project.status}</span></dd></div>
             <div><dt>Category</dt><dd>{project.category}</dd></div>
-            <div><dt>Related service</dt><dd><Link href={`/services#${project.serviceSlug}`}>{project.discipline}</Link></dd></div>
+            <div><dt>Related service</dt><dd><Link href={`/services/${project.serviceSlug}`}>{project.discipline}</Link></dd></div>
             <div><dt>Development</dt><dd>Independent SanoraWorks project</dd></div>
           </dl>
         </div>

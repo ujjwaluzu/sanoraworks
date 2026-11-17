@@ -74,7 +74,7 @@ The homepage has five sections: introduction and banner animation, services, ind
 
 The project directory contains four independent projects, all marked **In development**: SlotBreeze (service bookings), ProofHuddle (client feedback and approvals), EnquiryWing (AI enquiry organisation and reviewed replies), and UptimePerch (website monitoring and cloud operations). Public descriptions explain planned features and possible business uses, without implementation guides or claims of live availability. Each detail page links to its related service and a preselected enquiry form.
 
-Project interfaces are explicitly illustrative concepts. No client results, founder credentials, live project URLs, or project technology stacks have been invented. Populate those fields with verified information. The manually maintained sitemap modification date should be updated with substantive site changes.
+Project interfaces are explicitly illustrative concepts. No client results, founder credentials, live project URLs, or project technology stacks have been invented. Populate those fields with verified information. Each public page has an explicit content revision date in `src/data/public-content.ts`; update only the pages substantively changed, never all dates on a build.
 
 ## Enquiry integration
 
@@ -111,7 +111,7 @@ and checked in the recipient inbox.
 
 Completed routes: `/`, `/services`, `/work`, `/work/[slug]` for the four configured projects in development, `/about`, `/contact`, `/privacy`, and `/terms`. SEO includes route metadata, canonicals for `https://sanoraworks.com`, Organization JSON-LD, share imagery, a sitemap, and robots.txt.
 
-Service content already has stable slugs to support future service detail routes. Insights routes are deliberately absent until there is content to publish. There are no empty placeholder pages.
+Four dedicated service pages use the existing stable slugs at `/services/[slug]`. Overview section anchors and contact service parameters are retained. Insights routes are deliberately absent until there is content to publish. There are no empty placeholder pages.
 
 Production runs on Cloudflare Workers in the `sanoraworks@gmail.com` account,
 with `https://sanoraworks.com` as the canonical website. The OpenNext adapter
@@ -192,3 +192,27 @@ npm run test:smoke
 Work is committed and pushed incrementally to `main` in reviewable milestones. A scoped dependency override keeps the lint toolchain on a patched version of `minimatch`; rerun lint and audit when updating the toolchain.
 
 The site uses system Verdana/Tahoma for reading, Arial for headings, and Courier New for technical labels. The former Manrope font remains archived under the SIL Open Font License in `src/app/fonts/OFL.txt` and is no longer loaded. All rights reserved for original Sanora Works branding and website content. This repository does not grant an open-source license.
+
+### Public content, SEO and agent discovery
+
+The fifteen-page allowlist in `src/data/public-content.ts` composes existing site, service and project data for visible copy, metadata, structured data, Markdown, REST and MCP. See [page-by-page research](docs/seo-research.md), [verification](docs/seo-verification.md), and the [DNS record plan](docs/agent-dns-records.json). Utility endpoints carry noindex and stay outside the marketing sitemap. No visitor analytics scripts are added.
+
+`src/worker.ts` wraps the generated OpenNext Worker without editing generated files. It appends discovery Link headers, merges Vary: Accept, serves explicitly preferred Markdown with no-store, and keeps Next navigation on the adapter. `npm run preview:cloudflare` disables Wrangler's inferred production origin for local preview; always use this command so OpenNext populates the static cache. Run `npm run build:cloudflare` first.
+
+The four REST endpoints are `/api/public/site`, `/api/public/services`, `/api/public/projects`, and `/api/public/pages?path=/services`. The last accepts only exact allowlisted public paths. `/agents` documents the interfaces; `/openapi.json`, `/.well-known/api-catalog`, and `/llms.txt` describe them. The enquiry endpoint is intentionally absent from the catalog.
+
+MCP at `https://mcp.sanoraworks.com/` uses the official fetch-native SDK, a fresh server per request, read-only annotations, canonical public-page resources, strict host/origin validation, a 64 KiB request limit, and its own 60-request/minute IP limiter per Cloudflare location. `https://agents.sanoraworks.com/` serves the organization-owned JSON registry. Custom domains attach through the guarded Wrangler release. DNS-AID SVCB/TXT and DNSSEC require separate DNS access. Never invent private-use SVCB key registrations or advertise protocols that are not implemented.
+
+Additional checks:
+
+```powershell
+npm run docs:seo
+npm run test:agents # production, including DNS/TLS/MCP
+$env:READINESS_BASE_URL='http://localhost:8787'
+npm run test:agents # preview
+$env:QA_BASE_URL='http://localhost:8787'
+$env:CHROME_PATH='C:/Program Files/Google/Chrome/Application/chrome.exe'
+npm run test:seo-browser
+```
+
+`scripts/provision-agent-dns.mjs` reads a zone-scoped DNS Edit token from ignored `.env.dns.local` or `CLOUDFLARE_DNS_API_TOKEN`; its default mode is read-only. `--apply` creates only the four reviewed records and enables DNSSEC if disabled. It checks unrelated records and nameservers for changes. It does not delete conflicting records, alter email settings, publish a registrar DS, or persist credentials in the repo. Enter the exact returned DS in Hostinger, then verify authenticated answers through both resolvers using the readiness check. Search Console and Bing verification values must come from their accounts; no placeholders are published. Measurement starts when those accounts are connected, with 30/60/90-day comparisons described in the research document.

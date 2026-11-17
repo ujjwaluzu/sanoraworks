@@ -1,0 +1,38 @@
+{
+  "zone": "sanoraworks.com",
+  "reference": "https://datatracker.ietf.org/doc/html/draft-mozleywilliams-dawn-dnsaid-00",
+  "records": [
+    {
+      "type": "SVCB",
+      "name": "_index._agents.sanoraworks.com",
+      "ttl": 300,
+      "data": {
+        "priority": 1,
+        "target": "agents.sanoraworks.com",
+        "value": "alpn=\"h2\" port=443"
+      }
+    },
+    {
+      "type": "TXT",
+      "name": "_index._agents.sanoraworks.com",
+      "ttl": 300,
+      "content": "\"path=/\""
+    },
+    {
+      "type": "SVCB",
+      "name": "mcp.sanoraworks.com",
+      "ttl": 300,
+      "data": {
+        "priority": 1,
+        "target": "mcp.sanoraworks.com",
+        "value": "alpn=\"h2\" port=443"
+      }
+    },
+    {
+      "type": "TXT",
+      "name": "mcp.sanoraworks.com",
+      "ttl": 300,
+      "content": "\"proto=mcp\" \"path=/\""
+    }
+  ]
+}

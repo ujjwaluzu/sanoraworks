@@ -5,6 +5,10 @@ const canonicalBase = "https://sanoraworks.com";
 const pages = [
   "/",
   "/services",
+  "/services/software-web-development",
+  "/services/product-engineering",
+  "/services/ai-intelligent-automation",
+  "/services/cloud-infrastructure",
   "/work",
   "/about",
   "/contact",
@@ -79,7 +83,7 @@ for (const path of pages) {
   titles.add(title);
 }
 
-assert.ok(documents.get("/").includes("Websites for your business. Software for your next product."));
+assert.ok(documents.get("/").includes("Web development and AI automation for businesses and startups"));
 for (const [path, html] of documents) {
   assert.doesNotMatch(html, /Workshop directory|Email the workshop|About the workshop|More from the workshop|To be introduced|The people behind SanoraWorks/);
   if (path.startsWith("/work")) {
@@ -148,7 +152,9 @@ for (const path of pages)
     `${path}: sitemap`,
   );
 const robots = await (await fetch(new URL("/robots.txt", base))).text();
-assert.ok(robots.includes("Disallow: /api/"));
+assert.ok(robots.includes("Disallow: /api/enquiry"));
+assert.ok(robots.includes("Content-Signal: search=yes, ai-input=yes, ai-train=no"));
+assert.equal((sitemap.match(/<loc>/g) || []).length, 15);
 assert.ok(robots.includes(`${canonicalBase}/sitemap.xml`));
 
 for (const [path, width, height] of [

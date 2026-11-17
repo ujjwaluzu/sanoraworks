@@ -9,11 +9,7 @@ import { site, socialProfiles } from "@/data/site";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = {
-  ...pageMetadata(
-    site.tagline,
-    site.description,
-    "/",
-  ),
+  ...pageMetadata(site.tagline, site.description, "/"),
   metadataBase: new URL(site.url),
   title: {
     default: `SanoraWorks: ${site.tagline}`,
@@ -34,11 +30,11 @@ const organization = {
   "@type": "Organization",
   "@id": `${site.url}/#organization`,
   name: "SanoraWorks",
+  alternateName: "Sanora",
   url: site.url,
   logo: `${site.url}/icon.svg`,
   slogan: site.tagline,
-  description:
-    site.description,
+  description: site.description,
   ...(site.email ? { email: site.email } : {}),
   sameAs: socialProfiles.map((profile) => profile.url),
 };
@@ -53,6 +49,21 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(organization).replace(/</g, "\\u003c"),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "@id": `${site.url}/#website`,
+              name: site.name,
+              alternateName: "Sanora",
+              url: site.url,
+              publisher: { "@id": `${site.url}/#organization` },
+              inLanguage: "en",
+            }).replace(/</g, "\\u003c"),
           }}
         />
         <a href="#main-content" className="skip-link">

@@ -1,73 +1,30 @@
-import Link from "next/link";
-import { pageMetadata } from "@/lib/metadata";
+import { requirePublicPage } from "@/data/public-content";
+import { publicMetadata } from "@/lib/metadata";
 import { PageHero } from "@/components/ui/PageHero";
-
-export const metadata = pageMetadata(
-  "Terms of Service",
-  "Information about using the SanoraWorks website, independent project previews, enquiries, and project agreements.",
-  "/terms",
-);
-
-export default function TermsPage() {
+import {
+  Breadcrumbs,
+  ContentSection,
+  PageLinks,
+  PageStructuredData,
+} from "@/components/ui/PublicContent";
+export const metadata = publicMetadata("/terms");
+export default function PolicyPage() {
+  const page = requirePublicPage("/terms");
   return (
     <main id="main-content">
+      <PageStructuredData path={page.path} />
+      <Breadcrumbs path={page.path} />
       <PageHero
         eyebrow="Website information"
-        title="Terms of Service"
-        description="Information about the website, the work presented here, and the starting point for a project conversation."
+        title={page.h1}
+        description={page.intro}
       />
       <article className="container legal">
         <p className="legal-date">Last updated: 17 November 2026</p>
-        <h2>About this website</h2>
-        <p>
-          The SanoraWorks website introduces our technology and engineering
-          services and independent projects. Its content is general information.
-          A project enquiry or conversation does not create a
-          service agreement or a commitment to deliver work.
-        </p>
-        <h2>Project agreements</h2>
-        <p>
-          Scope, deliverables, schedule, pricing, ownership, support, and other
-          commercial terms are defined in a separate written project agreement.
-          Budget ranges in the enquiry form help describe a project; they are
-          not quotes or published service prices.
-        </p>
-        <h2>Independent projects and previews</h2>
-        <p>
-          SlotBreeze, ProofHuddle, EnquiryWing, and UptimePerch are independent
-          projects in development. Descriptions explain their planned direction
-          and possible uses. Interface previews are illustrative concepts, not
-          screenshots of available products. Features may change as development
-          progresses; technology stacks and external URLs are only published
-          when confirmed.
-        </p>
-        <h2>Website content</h2>
-        <p>
-          SanoraWorks branding and original website content are reserved by
-          their respective owners. Third-party software, fonts, and other
-          licensed materials retain their own licenses. Linking to this website
-          does not transfer rights to its content.
-        </p>
-        <h2>Responsible use</h2>
-        <p>
-          Please use the website and enquiry form for legitimate conversations.
-          Do not submit malicious code, unwanted bulk messages, private
-          credentials, or information you are not authorised to share.
-        </p>
-        <h2>Availability and external services</h2>
-        <p>
-          Website content and availability may change. External links, when
-          present, lead to services operated separately from this website. A
-          form error means delivery has not been confirmed; keep a copy of your
-          brief if needed.
-        </p>
-        <h2>Questions</h2>
-        <p>
-          Visit the <Link href="/contact">Contact page</Link> for the current
-          contact options, and read the{" "}
-          <Link href="/privacy">Privacy Policy</Link> for details about enquiry
-          information.
-        </p>
+        {page.sections.map((section) => (
+          <ContentSection key={section.heading} section={section} />
+        ))}
+        <PageLinks path={page.path} />
       </article>
     </main>
   );

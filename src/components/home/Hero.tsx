@@ -1,13 +1,12 @@
 ﻿import { Button } from "@/components/ui/Button";
 import { EngineeringForm } from "./EngineeringForm";
+import { requirePublicPage } from '@/data/public-content';
 export function Hero() {
   return (
     <section className="home-welcome">
-      <h1>Websites for your business. Software for your next product.</h1>
+      <h1>{requirePublicPage('/').h1}</h1>
       <p className="welcome-intro">
-        SanoraWorks builds websites, internal tools, and web applications for
-        business owners and startup founders. Bring us a workflow your team does
-        by hand or a product idea you want to test.
+        {requirePublicPage('/').intro}
       </p>
       <div className="hero-actions">
         <Button href="/contact#contact-title">Tell us what you need</Button>

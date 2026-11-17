@@ -9,9 +9,10 @@ export function ServiceCard({
     <article className="service-card">
       <div>
         <h3>
-          <Link href={`/services#${service.slug}`}>{service.title}</Link>
+          <Link href={`/services/${service.slug}`}>{service.title}</Link>
         </h3>
         <p>{service.description}</p>
+        <p>{service.fit}</p>
       </div>
     </article>
   );

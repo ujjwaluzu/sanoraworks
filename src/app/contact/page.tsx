@@ -1,15 +1,17 @@
+import { requirePublicPage } from "@/data/public-content";
+import {
+  Breadcrumbs,
+  PageStructuredData,
+  PageLinks,
+} from "@/components/ui/PublicContent";
 import { ArrowUpRight } from "lucide-react";
 import { site } from "@/data/site";
 import { services } from "@/data/services";
-import { pageMetadata } from "@/lib/metadata";
+import { publicMetadata } from "@/lib/metadata";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { SocialLinks } from "@/components/ui/SocialLinks";
 
-export const metadata = pageMetadata(
-  "Tell Us What You Need",
-  "Tell SanoraWorks about your website, internal tool, or product idea. We’ll review your message, reply with any questions, and agree on the next step.",
-  "/contact",
-);
+export const metadata = publicMetadata("/contact");
 
 export default async function ContactPage({
   searchParams,
@@ -20,18 +22,20 @@ export default async function ContactPage({
   const selected = services.find((item) => item.slug === service)?.title ?? "";
   return (
     <main id="main-content">
+      <PageStructuredData path="/contact" />
+      <Breadcrumbs path="/contact" />
       <section className="section contact-section">
         <div className="container contact-layout">
           <ContactForm
             initialProjectType={selected}
+            heading={requirePublicPage("/contact").h1}
           />
           <aside className="contact-aside">
-            <h2>What to include</h2>
-            <p>
-              Tell us who will use it, what they need to do, and how you handle
-              the task today. Include any timing or budget constraints you
-              already know. A rough description is enough to begin.
-            </p>
+            <h2>{requirePublicPage("/contact").sections[0].heading}</h2>
+            <p>{requirePublicPage("/contact").sections[0].paragraphs?.[0]}</p>
+            <h2>{requirePublicPage("/contact").sections[1].heading}</h2>
+            <p>{requirePublicPage("/contact").sections[1].paragraphs?.[0]}</p>
+            <PageLinks path="/contact" />
             <div className="contact-email-block">
               <span className="eyebrow">Prefer email?</span>
               {site.email ? (

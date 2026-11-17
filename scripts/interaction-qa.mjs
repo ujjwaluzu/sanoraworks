@@ -63,7 +63,7 @@ try {
   await check("Homepage has five sections and clear actions", async () => {
     await page.goto(base, { waitUntil: "load" });
     assert.equal(await page.locator("main > section").count(), 5);
-    assert.equal(await page.locator("h1").textContent(), "Websites for your business. Software for your next product.");
+    assert.equal(await page.locator("h1").textContent(), "Web development and AI automation for businesses and startups");
     const actions = page.locator(".hero-actions");
     await actions.getByRole("link", { name: "Tell us what you need", exact: true }).click();
     await page.waitForURL("**/contact#contact-title");
@@ -107,7 +107,7 @@ try {
     );
     assert.equal(
       await page.locator("h1").textContent(),
-      "Websites, software, and the systems behind them",
+      "Software development and automation services",
     );
   });
   await check("Service category anchor and enquiry preselection", async () => {
