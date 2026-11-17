@@ -105,6 +105,7 @@ export default function ServicesPage() {
                     </ul>
                   </div>
                 </div>
+                <ServiceExplainer slug={service.slug} />
                 <div className="technology-note">
                   <Settings2 size={18} aria-hidden="true" />
                   <div>
@@ -112,7 +113,6 @@ export default function ServicesPage() {
                     <p>{service.tools}</p>
                   </div>
                 </div>
-                <ServiceExplainer slug={service.slug} />
               </div>
             </section>
           );
