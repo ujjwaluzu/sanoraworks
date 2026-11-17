@@ -15,6 +15,8 @@
     "typecheck": "tsc --noEmit",
     "test": "node --experimental-strip-types --test tests/*.test.ts",
     "test:smoke": "node scripts/smoke.mjs",
+    "test:turnstile-browser": "node scripts/turnstile-browser-qa.mjs",
+    "test:turnstile-worker": "node scripts/turnstile-worker-qa.mjs",
     "test:agents": "node --experimental-strip-types scripts/agent-readiness.ts",
     "test:seo-browser": "node scripts/seo-browser-qa.mjs",
     "docs:seo": "node --experimental-strip-types scripts/seo-research.ts",

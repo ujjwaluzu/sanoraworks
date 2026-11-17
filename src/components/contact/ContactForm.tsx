@@ -1,6 +1,8 @@
 "use client";
 
-import { useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import { TurnstileVerification, type VerificationHandle } from "./TurnstileVerification";
+import { verificationUnavailable } from "@/lib/turnstile";
 import Link from "next/link";
 import { enquiryConfirmation, enquiryNextStep } from "@/lib/enquiry-copy";
 import {
@@ -20,19 +22,26 @@ import {
 export function ContactForm({
   initialProjectType,
   heading,
+  turnstileSiteKey,
 }: {
   initialProjectType: string;
   heading: string;
+  turnstileSiteKey: string;
 }) {
   const [errors, setErrors] = useState<EnquiryErrors>({});
   const [status, setStatus] = useState<
-    "idle" | "sending" | "sent" | "error"
+    "idle" | "checking" | "sending" | "sent" | "error"
   >("idle");
   const [message, setMessage] = useState("");
   const [descriptionLength, setDescriptionLength] = useState(0);
   const formRef = useRef<HTMLFormElement>(null);
   const statusRef = useRef<HTMLDivElement>(null);
   const errorRef = useRef<HTMLDivElement>(null);
+  const verificationRef = useRef<VerificationHandle>(null);
+  const busyRef = useRef(false);
+  const abortRef = useRef<AbortController | null>(null);
+  useEffect(() => () => abortRef.current?.abort(), []);
+  const busy = status === "checking" || status === "sending";
 
   function readForm() {
     const result = validateEnquiry(
@@ -51,17 +60,24 @@ export function ContactForm({
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (status === "sending") return;
+    if (busyRef.current) return;
     const data = readForm();
     if (!data) return;
-    setStatus("sending");
+    busyRef.current = true;
+    const controller = new AbortController();
+    abortRef.current = controller;
+    setStatus("checking");
     setMessage("");
     try {
+      if (!verificationRef.current) throw new Error(verificationUnavailable);
+      const turnstileToken = await verificationRef.current.verify();
+      if (controller.signal.aborted) return;
+      setStatus("sending");
       const response = await fetch("/api/enquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-        signal: AbortSignal.timeout(15_000),
+        body: JSON.stringify({ ...data, turnstileToken }),
+        signal: AbortSignal.any([controller.signal, AbortSignal.timeout(15_000)]),
       });
       const result = (await response.json()) as {
         message?: string;
@@ -81,12 +97,16 @@ export function ContactForm({
       );
       formRef.current?.reset();
     } catch (error) {
+      if (controller.signal.aborted || (error instanceof Error && error.name === "AbortError")) return;
       setStatus("error");
       setMessage(
         error instanceof Error && error.name !== "TimeoutError"
           ? error.message
           : "We couldn’t confirm delivery. Your details are still here; please try again.",
       );
+    } finally {
+      busyRef.current = false;
+      verificationRef.current?.reset();
     }
     requestAnimationFrame(() => statusRef.current?.focus());
   }
@@ -162,7 +182,7 @@ export function ContactForm({
           </ul>
         </div>
       )}
-      <fieldset disabled={status === "sending"} className="form-fields">
+      <fieldset disabled={busy} className="form-fields">
         <legend className="sr-only">Project enquiry details</legend>
         <div className="form-row">
           <div className="field">
@@ -279,6 +299,8 @@ export function ContactForm({
           <input id="website" name="website" tabIndex={-1} autoComplete="off" />
         </div>
       </fieldset>
+      <TurnstileVerification ref={verificationRef} siteKey={turnstileSiteKey} />
+      <span className="sr-only" role="status">{status === "checking" ? "Checking security verification…" : status === "sending" ? "Sending enquiry…" : ""}</span>
       <div className="form-submit-row">
         <p>
           Your details will be used to respond to your enquiry.{" "}
@@ -286,12 +308,12 @@ export function ContactForm({
         </p>
         <button
           type="submit"
-          disabled={status === "sending"}
+          disabled={busy}
           className="button button-primary"
         >
-          {status === "sending" ? (
+          {busy ? (
             <>
-              Sending enquiry
+              {status === "checking" ? "Checking…" : "Sending enquiry"}
               <LoaderCircle size={16} className="spin" aria-hidden="true" />
             </>
           ) : (
@@ -314,7 +336,7 @@ export function ContactForm({
           ) : (
             <Check size={18} aria-hidden="true" />
           )}
-          <p>{message}</p>
+          <p>{message}{status === "error" && <> <a href="mailto:enquiries@sanoraworks.com">Email us instead</a>.</>}</p>
         </div>
       )}
       <noscript>

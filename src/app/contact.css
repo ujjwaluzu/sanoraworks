@@ -1,4 +1,16 @@
 /* Email enquiry form and supporting contact information. */
+.form-verification {
+  width: 100%;
+  min-width: 0;
+  margin: 20px 0;
+}
+.form-verification > div {
+  max-width: 100%;
+}
+.form-verification .form-availability {
+  display: block;
+  overflow-wrap: anywhere;
+}
 .contact-layout {
   display: grid;
   gap: 24px;

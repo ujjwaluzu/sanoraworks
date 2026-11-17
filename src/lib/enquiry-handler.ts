@@ -1,13 +1,14 @@
 import { validateEnquiry } from "./enquiry.ts";
 import { enquiryConfirmation } from "./enquiry-copy.ts";
 import { enquiryEmail, type ContactBindings } from "./enquiry-email.ts";
+import { verifyTurnstile, verificationFailed, verificationUnavailable } from "./turnstile.ts";
 
 function reply(body: object, status: number, headers?: Record<string, string>) {
   return Response.json(body, { status, headers: { "Cache-Control": "no-store", ...headers } });
 }
 const unavailable = "We couldn’t send your enquiry. Your details are still here; please try again or email enquiries@sanoraworks.com.";
 
-export function createEnquiryHandler(getBindings: () => Promise<ContactBindings | null>) {
+export function createEnquiryHandler(getBindings: () => Promise<ContactBindings | null>, fetcher: typeof fetch = fetch) {
   return async function POST(request: Request) {
     const origin = request.headers.get("origin");
     if (origin && origin !== new URL(request.url).origin && origin !== "https://sanoraworks.com")
@@ -51,13 +52,18 @@ export function createEnquiryHandler(getBindings: () => Promise<ContactBindings 
       const limit = await bindings.ENQUIRY_RATE_LIMIT.limit({ key });
       if (!limit.success) return reply({ error: "Too many enquiries. Please wait a minute before trying again." }, 429, { "Retry-After": "60" });
 
+      const token = input && typeof input === "object" && "turnstileToken" in input ? input.turnstileToken : undefined;
+      const verification = await verifyTurnstile(token, bindings.TURNSTILE_SECRET_KEY, fetcher);
+      if (verification !== "verified")
+        return reply({ error: verification === "unavailable" ? verificationUnavailable : verificationFailed }, verification === "unavailable" ? 503 : 400);
+
       const sent = await bindings.ENQUIRY_EMAIL.send(enquiryEmail(result.data));
       if (!sent?.messageId) return reply({ error: unavailable }, 502);
       return reply({ message: enquiryConfirmation }, 202);
     } catch (error) {
       const code = error && typeof error === "object" && "code" in error ? String(error.code) : "UNKNOWN";
       // Log a provider code only: visitor details and message content stay out of application logs.
-      console.error("Enquiry delivery failed:", code);
+      console.error("Enquiry delivery failed:", ["E_RATE_LIMIT_EXCEEDED", "E_DELIVERY_FAILED"].includes(code) ? code : "UNKNOWN");
       if (code === "E_RATE_LIMIT_EXCEEDED")
         return reply({ error: "Too many enquiries. Please wait a minute before trying again." }, 429, { "Retry-After": "60" });
       return reply({ error: unavailable }, 502);

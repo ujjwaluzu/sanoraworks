@@ -1,0 +1,3 @@
+# Copy to ignored .dev.vars. Use a production secret only for release setup.
+# Local browser QA uses official test widgets and mocks Siteverify responses.
+TURNSTILE_SECRET_KEY=

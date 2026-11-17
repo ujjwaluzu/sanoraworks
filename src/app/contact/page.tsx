@@ -10,6 +10,7 @@ import { services } from "@/data/services";
 import { publicMetadata } from "@/lib/metadata";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { SocialLinks } from "@/components/ui/SocialLinks";
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 
 export const metadata = publicMetadata("/contact");
 
@@ -20,6 +21,10 @@ export default async function ContactPage({
 }) {
   const { service } = await searchParams;
   const selected = services.find((item) => item.slug === service)?.title ?? "";
+  let turnstileSiteKey = process.env.TURNSTILE_SITE_KEY ?? "";
+  try {
+    turnstileSiteKey = (await getCloudflareContext({ async: true })).env.TURNSTILE_SITE_KEY ?? turnstileSiteKey;
+  } catch { /* Next.js standalone tests use the local environment. */ }
   return (
     <main id="main-content">
       <PageStructuredData path="/contact" />
@@ -27,6 +32,7 @@ export default async function ContactPage({
       <section className="section contact-section">
         <div className="container contact-layout">
           <ContactForm
+            turnstileSiteKey={turnstileSiteKey}
             initialProjectType={selected}
             heading={requirePublicPage("/contact").h1}
           />

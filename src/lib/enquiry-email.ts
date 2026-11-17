@@ -8,6 +8,7 @@ export interface EnquiryEmail {
   text: string;
 }
 export interface ContactBindings {
+  TURNSTILE_SECRET_KEY?: string;
   ENQUIRY_EMAIL?: { send(message: EnquiryEmail): Promise<{ messageId: string }> };
   ENQUIRY_RATE_LIMIT?: { limit(options: { key: string }): Promise<{ success: boolean }> };
 }

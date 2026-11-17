@@ -339,6 +339,7 @@ export const legalPages: PublicPage[] = [
       {
         heading: "When you send an enquiry",
         paragraphs: [
+          "Cloudflare Turnstile provides security verification on the contact page to help prevent spam. Cloudflare processes browser and device signals for this check. Our server sends only the verification token and our secret key to Cloudflare’s Siteverify service, without your name, email address, company, or project description.",
           "The form sends your details through our Cloudflare-hosted website and Cloudflare Email Service to our Gmail inbox, where Google processes the email. We use this information to respond to your enquiry. Your email address is included as the Reply-To address so we can reply directly. We do not add you to a marketing list.",
           "The website does not save form drafts in browser storage or a project database. A failed submission keeps your entries on the page so you can retry. Enquiries received in our mailbox are retained as business correspondence; you can contact us to request deletion.",
         ],

@@ -167,18 +167,20 @@ Use `npm run deploy:cloudflare` from the primary `main` checkout for manual
 releases. It requires a clean working tree and a commit matching `origin/main`,
 prints the release commit, then builds and deploys that source. This prevents
 releasing an older checkout while newer content remains uncommitted elsewhere.
-`npm run deploy:cloudflare -- --check` checks the source without building or
-publishing. Private PDFs and local QA artifacts stay excluded from Git.
+`npm run deploy:cloudflare -- --check` checks the source and Turnstile production
+configuration without building or publishing. Private PDFs and local QA artifacts stay excluded from Git.
 
-The initial deployment is performed through Wrangler. Git pushes run the
-repository checks; they do not automatically publish to Cloudflare. For
-automatic deployments, connect `ujjwaluzu/sanoraworks` and the `main` branch in
-the Worker's **Settings > Builds**. Use `npm run build:cloudflare` as the build
-command and `npx opennextjs-cloudflare deploy -- --keep-vars` as the deploy
-command. Keep credentials in Cloudflare's build settings, never in this repo.
+Git pushes run the repository checks; they do not automatically publish to
+Cloudflare. Publish through the guarded `npm run deploy:cloudflare` command.
+Any future automatic deployment must preserve the source and production
+configuration checks and obtain secrets from protected build settings.
 
 The email and rate-limit bindings are configured in `wrangler.jsonc`; no
-third-party email API key is needed. Public `NEXT_PUBLIC_*` values belong in the
+third-party email API key is needed. Contact submissions also require Cloudflare
+Turnstile. Follow [Turnstile setup and release](docs/turnstile.md) for the public
+`TURNSTILE_SITE_KEY`, Worker secret `TURNSTILE_SECRET_KEY`, and local tests.
+The guarded release rejects missing/test configuration and uploads the secret
+from ignored `.dev.vars` through stdin. Public `NEXT_PUBLIC_*` values belong in the
 build environment. Deployments use `--keep-vars` to preserve dashboard-managed
 runtime variables.
 

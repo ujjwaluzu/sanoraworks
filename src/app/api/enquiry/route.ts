@@ -6,6 +6,8 @@ export const runtime = "nodejs";
 
 declare global {
   interface CloudflareEnv {
+    TURNSTILE_SITE_KEY?: string;
+    TURNSTILE_SECRET_KEY?: string;
     ENQUIRY_EMAIL?: ContactBindings["ENQUIRY_EMAIL"];
     ENQUIRY_RATE_LIMIT?: ContactBindings["ENQUIRY_RATE_LIMIT"];
   }
