@@ -1,7 +1,8 @@
 # Performance verification
 
-Reviewed 18 November 2026. Changes are prepared locally; these measurements do
-not describe a deployed release or a new production Lighthouse score.
+Reviewed 18 November 2026. The implementation was subsequently deployed; local
+measurements and post-release production observations are recorded separately.
+No new Lighthouse score or field Core Web Vitals result is claimed.
 
 ## Changes
 
@@ -71,3 +72,24 @@ Raw reports and screenshots: ignored `artifacts/performance/before.json`,
 - All seven banner checks passed, including responsive artwork, exact assembled
   source-pixel equality, playback, suspension, delayed image loading, reduced
   motion and no-JavaScript fallback.
+
+
+## Production release (18 November 2026)
+
+- Application source: `23bef42334f6529a182e80bce81110d7ca4a744c`, committed and
+  pushed to main, then built and published through `npm run deploy:cloudflare`.
+- Cloudflare Worker version: `834b3d03-11dc-4dd1-b0c7-37d912c161c1`.
+  Compressed Worker bundle: 2,641.59 KiB.
+- [GitHub CI passed](https://github.com/ujjwaluzu/sanoraworks/actions/runs/44249895421).
+- Live production smoke passed for all fifteen pages and 42 links/anchors,
+  metadata, sitemap, real 404s, share images and enquiry safeguards.
+- The same three-run mobile browser procedure against https://sanoraworks.com
+  measured LCP at 2,944 / 660 / 1,024 ms (median 1,024 ms). Every run recorded
+  CLS 0, no horizontal overflow, no browser errors and zero external stylesheet
+  links. Results vary with edge/network and startup conditions; these are
+  throttled browser observations, not Lighthouse scores or a controlled
+  before/after production comparison.
+- Raw production evidence is under ignored `artifacts/performance/production.json`
+  and `production-mobile.png`. No real enquiry email was sent.
+- This release record is a subsequent documentation-only commit and does not
+  change the deployed application code.
