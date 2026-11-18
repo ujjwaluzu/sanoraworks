@@ -218,3 +218,26 @@ npm run test:seo-browser
 ```
 
 `scripts/provision-agent-dns.mjs` reads a zone-scoped DNS Edit token from ignored `.env.dns.local` or `CLOUDFLARE_DNS_API_TOKEN`; its default mode is read-only. `--apply` creates only the four reviewed records and enables DNSSEC if disabled. It checks unrelated records and nameservers for changes. It does not delete conflicting records, alter email settings, publish a registrar DS, or persist credentials in the repo. Enter the exact returned DS in Hostinger, then verify authenticated answers through both resolvers using the readiness check. Search Console and Bing verification values must come from their accounts; no placeholders are published. Measurement starts when those accounts are connected, with 30/60/90-day comparisons described in the research document.
+
+## Performance checks
+
+The production build inlines CSS to remove a render-blocking stylesheet request
+on first visits. This uses Next.js's experimental `inlineCss` option; styles
+travel with each HTML response rather than being cached separately. Client
+navigation continues to use Next.js stylesheet handling. The banner text precedes
+its large SVG in the HTML so streamed mobile rendering keeps the intended order.
+
+Animation marks use lossless WebP derivatives of the existing PNGs. Project
+previews select 320, 640 or 1536-pixel artwork for the displayed size and device
+pixel ratio. To regenerate the performance derivatives after changing sources:
+
+```sh
+node scripts/prepare-performance-images.mjs
+```
+
+With a production server running on port 3004, run
+`node scripts/performance-qa.mjs <label>`. Set `QA_BASE_URL` for another port.
+It requires installed Chrome and records three cold-cache mobile runs with
+150ms latency, 1.6Mbps download and 4x CPU slowdown under ignored
+`artifacts/performance/`. These are local lab observations, not Lighthouse
+scores or field Core Web Vitals. See `docs/performance.md` for the measured change.

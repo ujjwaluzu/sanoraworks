@@ -53,3 +53,7 @@ Browser reports and desktop/mobile screenshots are saved under ignored
 - Both production keys were absent from staged changes, and the production secret was absent from all 110 public Worker assets. Screenshots and the production check report remain under ignored `artifacts/turnstile/`.
 
 References: [Siteverify](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/), [widget configuration](https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/widget-configurations/), [test keys](https://developers.cloudflare.com/turnstile/troubleshooting/testing/).
+
+## Owner delivery confirmation (2026-11-18)
+
+The owner confirmed manually using the production contact form and receiving the enquiry email in the inbox. This confirms the real challenge/submission/delivery path from the owner's test; no additional email was sent during performance work.

@@ -21,13 +21,13 @@ export function OrbitLogo() {
             </mask>
           </defs>
           <g data-orbit="letters" className="orbit-letters">
-            <image href="/brand/sanoraworks-mark.png" width="437" height="299" mask={`url(#${lettersMask})`} />
+            <image href="/brand/sanoraworks-mark.webp" width="437" height="299" mask={`url(#${lettersMask})`} />
           </g>
           <g data-orbit="upper" className="orbit-curve">
-            <image href="/brand/sanoraworks-mark.png" width="437" height="299" style={{ clipPath: upper }} />
+            <image href="/brand/sanoraworks-mark.webp" width="437" height="299" style={{ clipPath: upper }} />
           </g>
           <g data-orbit="lower" className="orbit-curve">
-            <image href="/brand/sanoraworks-mark.png" width="437" height="299" style={{ clipPath: lower }} />
+            <image href="/brand/sanoraworks-mark.webp" width="437" height="299" style={{ clipPath: lower }} />
           </g>
         </svg>
       </div>

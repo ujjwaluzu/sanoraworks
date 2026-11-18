@@ -5,6 +5,8 @@ if (process.env.NODE_ENV === "development") void initOpenNextCloudflareForDev();
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  // Avoid a render-blocking stylesheet round trip on first visits.
+  experimental: { inlineCss: true },
   async redirects() {
     return [
       {

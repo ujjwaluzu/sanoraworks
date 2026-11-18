@@ -5,7 +5,6 @@ import { OrbitLogo } from "@/components/home/OrbitLogo";
 export function EngineeringForm({ compact = false }: { compact?: boolean }) {
   return (
     <BannerMotion compact={compact}>
-      <DnsComputer />
       <div className="workshop-banner-copy">
         <h2>Websites, products, automation, and the cloud.</h2>
         <p>
@@ -13,6 +12,7 @@ export function EngineeringForm({ compact = false }: { compact?: boolean }) {
           deployment, choose the service that fits your next step.
         </p>
       </div>
+      <DnsComputer />
       <OrbitLogo />
     </BannerMotion>
   );

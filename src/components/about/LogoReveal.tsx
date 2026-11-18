@@ -2,7 +2,7 @@ import { useId } from "react";
 import { LogoRevealMotion } from "./LogoRevealMotion";
 import styles from "./logo-reveal.module.css";
 
-const mark = "/brand/sanoraworks-mark.png";
+const mark = "/brand/sanoraworks-mark.webp";
 export function LogoReveal() {
   const id = `about-reveal-${useId().replaceAll(":", "")}`;
   return (

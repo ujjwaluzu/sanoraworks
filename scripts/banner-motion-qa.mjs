@@ -166,7 +166,7 @@ try {
     const delayed = await context.newPage();
     let release;
     const gate = new Promise((resolve) => { release = resolve; });
-    await delayed.route("**/brand/sanoraworks-mark.png", async (route) => { await gate; await route.continue(); });
+    await delayed.route("**/brand/sanoraworks-mark.webp", async (route) => { await gate; await route.continue(); });
     try {
       await delayed.goto(base, { waitUntil: "domcontentloaded" });
       await delayed.waitForTimeout(200);

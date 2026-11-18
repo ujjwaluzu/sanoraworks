@@ -19,7 +19,7 @@ export function BrandMark({
 }) {
   return (
     <Image
-      src={`/brand/sanoraworks-mark${suffix(variant)}.png`}
+      src={`/brand/sanoraworks-mark${suffix(variant)}.webp`}
       width={width}
       height={height}
       className={className}
@@ -51,6 +51,7 @@ export function Logo({ variant = "default" }: { variant?: BrandVariant }) {
           height={299}
           alt="SanoraWorks: Practical technology for business"
           loading="eager"
+          fetchPriority="high"
           unoptimized
         />
       </picture>
